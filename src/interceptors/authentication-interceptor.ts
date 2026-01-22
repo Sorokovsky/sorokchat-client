@@ -19,6 +19,8 @@ export const authenticationInterceptor: HttpInterceptorFn = (request: HttpReques
         const accessToken: string | null = remoteAccessStorageService.getAccessToken(event);
         if (accessToken) {
           localAccessStorageService.setAccessKey(accessToken);
+        } else {
+          localAccessStorageService.clearAccessKey();
         }
       }
     })
