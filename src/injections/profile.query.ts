@@ -6,10 +6,11 @@ import {User} from '@/contracts/user.contrcact';
 
 export function injectProfileQuery(): CreateQueryResult<User, Error> {
   const authorizationService: AuthorizationService = inject(AuthorizationService);
-
   return injectQuery(() => queryOptions({
     queryKey: [QueryKeys.PROFILE],
-    queryFn: authorizationService.getProfile,
-    refetchInterval: false
+    async queryFn(): Promise<User> {
+      return await authorizationService.getProfile();
+    },
+    retry: false
   }));
 }

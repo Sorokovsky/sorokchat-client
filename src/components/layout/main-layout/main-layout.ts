@@ -1,8 +1,11 @@
 import {Component} from '@angular/core';
+import {Header} from '@/components/common/header/header';
 
 @Component({
   selector: 'app-main-layout',
-  imports: [],
+  imports: [
+    Header
+  ],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.sass',
 })

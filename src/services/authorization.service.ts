@@ -12,7 +12,7 @@ import {LoginPayload} from '@/contracts/login-payload';
 export class AuthorizationService {
   private readonly client: HttpClient;
 
-  constructor(private http: HttpClient) {
+  constructor(http: HttpClient) {
     this.client = http;
   }
 
