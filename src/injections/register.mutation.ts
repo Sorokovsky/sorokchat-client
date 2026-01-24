@@ -4,8 +4,9 @@ import {CreateMutationResult, injectMutation, mutationOptions, QueryClient} from
 import {RegisterPayload} from '@/contracts/register-payload.contract';
 import {User} from '@/contracts/user.contrcact';
 import {QueryKeys} from '@/constants/query-keys.constants';
+import {ProblemDetail} from '@/contracts/problem-detail.contract';
 
-export function injectRegisterMutation(): CreateMutationResult<User, Error, RegisterPayload, User> {
+export function injectRegisterMutation(): CreateMutationResult<User, ProblemDetail, RegisterPayload, User> {
   const authorizationService: AuthorizationService = inject(AuthorizationService);
   const queryClient: QueryClient = inject(QueryClient);
 

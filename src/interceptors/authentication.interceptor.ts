@@ -13,7 +13,7 @@ export const authenticationInterceptor: HttpInterceptorFn = (request: HttpReques
     changedRequest = remoteAccessStorageService.setAccessToken(request, requestAccessToken);
   }
   const response: Observable<HttpEvent<unknown>> = next(changedRequest);
-  response.pipe(
+  return response.pipe(
     tap((event: HttpEvent<unknown>): void => {
       if (event instanceof HttpResponse) {
         const accessToken: string | null = remoteAccessStorageService.getAccessToken(event);
@@ -25,5 +25,4 @@ export const authenticationInterceptor: HttpInterceptorFn = (request: HttpReques
       }
     })
   );
-  return response;
 };

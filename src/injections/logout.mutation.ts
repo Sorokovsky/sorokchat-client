@@ -2,8 +2,9 @@ import {CreateMutationResult, injectMutation, mutationOptions, QueryClient} from
 import {AuthorizationService} from '@/services/authorization.service';
 import {inject} from '@angular/core';
 import {QueryKeys} from '@/constants/query-keys.constants';
+import {ProblemDetail} from '@/contracts/problem-detail.contract';
 
-export function injectLogoutMutation(): CreateMutationResult<void, Error, void, void> {
+export function injectLogoutMutation(): CreateMutationResult<void, ProblemDetail, void, void> {
   const authorizationService: AuthorizationService = inject(AuthorizationService);
   const queryClient: QueryClient = inject(QueryClient);
   return injectMutation(() => mutationOptions({
