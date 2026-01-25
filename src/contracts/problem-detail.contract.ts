@@ -1,8 +1,12 @@
-export type ProblemDetail = {
-  type?: string;
-  title?: string;
-  status: number;
-  detail?: string;
-  instance?: string;
-  errors?: {}
-}
+import {z as zod} from 'zod';
+
+export const ProblemDetailScheme = zod.object({
+  type: zod.optional(zod.string()),
+  title: zod.optional(zod.string()),
+  status: zod.number(),
+  detail: zod.optional(zod.string()),
+  instance: zod.optional(zod.string()),
+  errors: zod.optional(zod.object())
+});
+
+export type ProblemDetail = zod.infer<typeof ProblemDetailScheme>;
