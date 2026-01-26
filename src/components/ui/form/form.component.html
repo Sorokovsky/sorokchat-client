@@ -1,8 +1,6 @@
-@let formData = form();
-
-<form (ngSubmit)="onSubmit()" [formGroup]="formGroup()">
-  <h1>{{ formData.title }}</h1>
-  @for (field of formData.fields; track field) {
+<form (ngSubmit)="handler()" [formGroup]="formGroup()">
+  <h1>{{ title() }}</h1>
+  @for (field of fields(); track field) {
     <input
       [formControlName]="field.name"
       [name]="field.name"
@@ -15,5 +13,5 @@
       </div>
     }
   }
-  <button type="submit">{{ formData.submitText }}</button>
+  <button type="submit">{{ submitText() }}</button>
 </form>

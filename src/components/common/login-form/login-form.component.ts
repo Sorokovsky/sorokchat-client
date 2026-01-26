@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginPayload, LoginPayloadScheme} from '@/contracts/login-payload';
 import {FormComponent} from '@/components/ui/form/form.component';
-import {Form} from '@/components/ui/form/form.types';
+import {Field} from '@/components/ui/form/form.types';
 import {injectLoginMutation} from '@/injections/login.mutation';
+import {z as zod} from 'zod';
 
 @Component({
   selector: 'app-login-form',
@@ -15,34 +16,29 @@ import {injectLoginMutation} from '@/injections/login.mutation';
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.sass',
 })
-export class LoginFormComponent implements OnInit {
-  protected readonly form: Form<LoginPayload> = {
-    title: "Увійти",
-    onSubmit: this.login,
-    zodSchema: LoginPayloadScheme,
-    submitText: "Відправити",
-    fields: [
-      {
-        name: "email",
-        label: "Електронна адреса",
-        type: "email",
-        placeholder: "Введіть електронну адресу",
-      },
-      {
-        name: "password",
-        label: "Пароль",
-        type: "password",
-        placeholder: "Введіть пароль"
-      }
-    ]
-  };
+export class LoginFormComponent {
+  protected readonly title: string = "Увійти";
+  protected readonly zodSchema: zod.Schema = LoginPayloadScheme;
+  protected readonly submitText: string = "Відправити";
+  protected readonly fields: Field[] = [
+    {
+      name: "email",
+      label: "Електронна адреса",
+      type: "email",
+      placeholder: "Введіть електронну адресу",
+    },
+    {
+      name: "password",
+      label: "Пароль",
+      type: "password",
+      placeholder: "Введіть пароль"
+    }
+  ];
   private readonly loginMutation = injectLoginMutation();
 
-  public ngOnInit() {
-    this.form.onSubmit = this.form.onSubmit.bind(this);
-  }
-
-  private login(payload: LoginPayload): void {
+  protected login(payload: LoginPayload): void {
     this.loginMutation.mutate(payload)
   }
+
+  protected readonly loginPayloadScheme = LoginPayloadScheme;
 }
