@@ -1,0 +1,19 @@
+@let formData = form();
+
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup()">
+  <h1>{{ formData.title }}</h1>
+  @for (field of formData.fields; track field) {
+    <input
+      [formControlName]="field.name"
+      [name]="field.name"
+      [placeholder]="field.placeholder"
+      [type]="field.type"
+    />
+    @if (formGroup().invalid) {
+      <div class="error-message">
+        {{ getError(field.name) }}
+      </div>
+    }
+  }
+  <button type="submit">{{ formData.submitText }}</button>
+</form>
