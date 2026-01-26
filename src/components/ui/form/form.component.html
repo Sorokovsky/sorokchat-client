@@ -1,17 +1,18 @@
-<form (ngSubmit)="handler()" [formGroup]="formGroup()">
-  <h1>{{ title() }}</h1>
+<form (ngSubmit)="handler()" [formGroup]="formGroup()" class="form">
+  <h1 class="title">{{ title() }}</h1>
   @for (field of fields(); track field) {
     <input
+      class="input"
       [formControlName]="field.name"
       [name]="field.name"
       [placeholder]="field.placeholder"
       [type]="field.type"
     />
     @if (formGroup().invalid) {
-      <div class="error-message">
+      <div class="error">
         {{ getError(field.name) }}
       </div>
     }
   }
-  <button type="submit">{{ submitText() }}</button>
+  <button class="button" type="submit">{{ submitText() }}</button>
 </form>
