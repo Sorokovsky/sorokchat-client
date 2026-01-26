@@ -1,6 +1,6 @@
 import {z as zod} from 'zod';
 
-export const ProblemDetailScheme = zod.object({
+export const ProblemDetailSchema = zod.object({
   type: zod.optional(zod.string()),
   title: zod.optional(zod.string()),
   status: zod.number(),
@@ -9,4 +9,4 @@ export const ProblemDetailScheme = zod.object({
   errors: zod.optional(zod.object())
 });
 
-export type ProblemDetail = zod.infer<typeof ProblemDetailScheme>;
+export type ProblemDetail = zod.infer<typeof ProblemDetailSchema>;

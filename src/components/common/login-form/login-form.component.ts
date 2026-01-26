@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {LoginPayload, LoginPayloadScheme} from '@/contracts/login-payload';
+import {LoginPayload, LoginPayloadSchema} from '@/contracts/login-payload';
 import {FormComponent} from '@/components/ui/form/form.component';
 import {Field} from '@/components/ui/form/form.types';
 import {injectLoginMutation} from '@/injections/login.mutation';
@@ -18,7 +18,7 @@ import {z as zod} from 'zod';
 })
 export class LoginFormComponent {
   protected readonly title: string = "Увійти";
-  protected readonly zodSchema: zod.Schema = LoginPayloadScheme;
+  protected readonly schema: zod.Schema = LoginPayloadSchema;
   protected readonly submitText: string = "Відправити";
   protected readonly fields: Field[] = [
     {
@@ -39,6 +39,4 @@ export class LoginFormComponent {
   protected login(payload: LoginPayload): void {
     this.loginMutation.mutate(payload)
   }
-
-  protected readonly loginPayloadScheme = LoginPayloadScheme;
 }

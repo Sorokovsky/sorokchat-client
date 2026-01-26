@@ -1,7 +1,7 @@
 import {z as zod} from 'zod';
-import {RegisterPayloadScheme} from '@/contracts/register-payload.contract';
-import {BaseScheme} from '@/contracts/base.contract';
+import {RegisterPayloadSchema} from '@/contracts/register-payload.contract';
+import {BaseSchema} from '@/contracts/base.contract';
 
-export const UserScheme = BaseScheme.extend(RegisterPayloadScheme);
+export const UserSchema = BaseSchema.extend(RegisterPayloadSchema);
 
-export type User = zod.infer<typeof UserScheme>;
+export type User = zod.infer<typeof UserSchema>;

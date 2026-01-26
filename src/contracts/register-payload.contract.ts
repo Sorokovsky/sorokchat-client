@@ -1,10 +1,10 @@
 import {z as zod} from 'zod';
-import {LoginPayloadScheme} from '@/contracts/login-payload';
+import {LoginPayloadSchema} from '@/contracts/login-payload';
 
-export const RegisterPayloadScheme = LoginPayloadScheme.extend({
+export const RegisterPayloadSchema = LoginPayloadSchema.extend({
   firstName: zod.string(),
   lastName: zod.string(),
   middleName: zod.string(),
 });
 
-export type RegisterPayload = zod.infer<typeof RegisterPayloadScheme>;
+export type RegisterPayload = zod.infer<typeof RegisterPayloadSchema>;
