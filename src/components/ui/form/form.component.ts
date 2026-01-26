@@ -2,7 +2,6 @@ import {Component, computed, input, InputSignal, output, OutputEmitterRef, Signa
 import {Field} from '@/components/ui/form/form.types';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {zodValidator} from '@/validators/zod.validator';
-import {ZodSchema} from 'zod/v3';
 import {z as zod} from 'zod';
 
 @Component({
