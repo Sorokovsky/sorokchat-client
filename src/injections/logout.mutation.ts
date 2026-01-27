@@ -14,7 +14,7 @@ export function injectLogoutMutation(): CreateMutationResult<void, ProblemDetail
     mutationKey: [QueryKeys.LOGOUT],
     async onSuccess(): Promise<void> {
       localAccessTokenStorage.clearAccessKey();
-      await queryClient.invalidateQueries({queryKey: [QueryKeys.PROFILE]});
+      await queryClient.resetQueries({queryKey: [QueryKeys.PROFILE]});
     }
   }));
 }

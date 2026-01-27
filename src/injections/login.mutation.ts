@@ -13,7 +13,7 @@ export function injectLoginMutation(): CreateMutationResult<User, ProblemDetail,
     mutationFn: (payload: LoginPayload) => authorizationService.login(payload),
     mutationKey: [QueryKeys.LOGIN],
     async onSuccess(): Promise<void> {
-      await queryClient.invalidateQueries({queryKey: [QueryKeys.PROFILE]});
+      await queryClient.resetQueries({queryKey: [QueryKeys.PROFILE]});
     }
   }));
 }

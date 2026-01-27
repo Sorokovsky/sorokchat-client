@@ -14,7 +14,7 @@ export function injectRegisterMutation(): CreateMutationResult<User, ProblemDeta
     mutationFn: authorizationService.register,
     mutationKey: [QueryKeys.REGISTER],
     async onSuccess(): Promise<void> {
-      await queryClient.invalidateQueries({queryKey: [QueryKeys.PROFILE]});
+      await queryClient.resetQueries({queryKey: [QueryKeys.PROFILE]});
     }
   }));
 }
