@@ -12,6 +12,6 @@ export function injectProfileQuery(): CreateQueryResult<User, ProblemDetail> {
     async queryFn(): Promise<User> {
       return await authorizationService.getProfile();
     },
-    retry: false
+    retry: 2
   }));
 }
