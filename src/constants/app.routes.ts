@@ -1,10 +1,7 @@
 import {Routes} from '@angular/router';
-import {LoginPage} from '@/components/pages/login/login.page';
+import {LOGIN_PAGE, LOGOUT_PAGE} from '@/constants/pages.constants';
 
 export const routes: Routes = [
-  {
-    title: "Вхід",
-    path: "login",
-    component: LoginPage
-  }
+  LOGIN_PAGE,
+  LOGOUT_PAGE
 ];

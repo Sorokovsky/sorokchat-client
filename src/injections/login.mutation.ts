@@ -12,11 +12,8 @@ export function injectLoginMutation(): CreateMutationResult<User, ProblemDetail,
   return injectMutation(() => mutationOptions({
     mutationFn: (payload: LoginPayload) => authorizationService.login(payload),
     mutationKey: [QueryKeys.LOGIN],
-    async onSuccess(): Promise<void> {
-      await queryClient.invalidateQueries({queryKey: [QueryKeys.PROFILE]});
-    },
-    onError(error) {
-      console.log(error)
+    onSuccess(): void {
+      queryClient.clear();
     }
   }));
 }

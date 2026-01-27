@@ -17,18 +17,18 @@ export class AuthorizationService {
   }
 
   public async register(payload: RegisterPayload): Promise<User> {
-    return lastValueFrom<User>(this.client.post<User>(ENDPOINTS.REGISTER, payload));
+    return lastValueFrom(this.client.post<User>(ENDPOINTS.REGISTER, payload));
   }
 
   public async login(payload: LoginPayload): Promise<User> {
-    return lastValueFrom<User>(this.client.post<User>(ENDPOINTS.LOGIN, payload));
+    return lastValueFrom(this.client.post<User>(ENDPOINTS.LOGIN, payload));
   }
 
   public async logout(): Promise<void> {
-    this.client.delete(ENDPOINTS.LOGOUT);
+    return lastValueFrom(this.client.delete<void>(ENDPOINTS.LOGOUT));
   }
 
   public async getProfile(): Promise<User> {
-    return lastValueFrom<User>(this.client.get<User>(ENDPOINTS.PROFILE));
+    return lastValueFrom(this.client.get<User>(ENDPOINTS.PROFILE));
   }
 }

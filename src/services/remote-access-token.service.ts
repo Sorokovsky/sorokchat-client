@@ -8,7 +8,7 @@ import {Prefixes} from '@/constants/prefixes.constants';
 })
 export class RemoteAccessTokenService {
   public getAccessToken(response: HttpResponse<unknown>): string | null {
-    const header: string | null = response.headers.get(HttpHeaders.Authorization);
+    const header: string | null = response.headers.get(HttpHeaders.Authorization.toLowerCase());
     if (header === null) return null;
     return header.trim().replace(Prefixes.BEARER, "");
   }

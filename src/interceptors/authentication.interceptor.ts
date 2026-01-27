@@ -1,5 +1,5 @@
 import {HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpResponse} from '@angular/common/http';
-import {Observable, tap} from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {LocalAccessStorageService} from '@/services/local-access-storage.service';
 import {inject} from '@angular/core';
 import {RemoteAccessTokenService} from '@/services/remote-access-token.service';
@@ -14,15 +14,14 @@ export const authenticationInterceptor: HttpInterceptorFn = (request: HttpReques
   }
   const response: Observable<HttpEvent<unknown>> = next(changedRequest);
   return response.pipe(
-    tap((event: HttpEvent<unknown>): void => {
+    map((event: HttpEvent<unknown>): HttpEvent<unknown> => {
       if (event instanceof HttpResponse) {
         const accessToken: string | null = remoteAccessStorageService.getAccessToken(event);
         if (accessToken) {
           localAccessStorageService.setAccessKey(accessToken);
-        } else {
-          localAccessStorageService.clearAccessKey();
         }
       }
+      return event;
     })
   );
 };
