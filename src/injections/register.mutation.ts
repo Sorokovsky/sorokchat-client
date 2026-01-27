@@ -13,8 +13,8 @@ export function injectRegisterMutation(): CreateMutationResult<User, ProblemDeta
   return injectMutation(() => mutationOptions({
     mutationFn: authorizationService.register,
     mutationKey: [QueryKeys.REGISTER],
-    onSuccess(): void {
-      queryClient.clear();
+    async onSuccess(): Promise<void> {
+      await queryClient.invalidateQueries({queryKey: [QueryKeys.PROFILE]});
     }
   }));
 }
