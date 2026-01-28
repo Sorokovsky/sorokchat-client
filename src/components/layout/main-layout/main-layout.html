@@ -9,6 +9,10 @@
 </head>
 <body>
 <app-header/>
-<router-outlet/>
+  @if (profile.isFetching()) {
+    <app-page-loader/>
+  } @else {
+    <router-outlet/>
+  }
 </body>
 </html>

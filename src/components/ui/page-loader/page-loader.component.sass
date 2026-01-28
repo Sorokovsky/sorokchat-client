@@ -1,0 +1,28 @@
+.loader
+  position: fixed
+  z-index: 10000
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  display: flex
+  justify-content: center
+  align-items: center
+  background-color: #131010
+
+  &__circle
+    width: 100rem
+    height: 100rem
+    display: block
+    border-left: 3rem solid #fdbf48
+    border-right: 3rem solid #fdbf48
+    border-bottom: 3rem solid #008062
+    border-top: 3rem solid #008062
+    border-radius: 50%
+    animation: spinner 1s infinite ease
+
+@keyframes spinner
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)
