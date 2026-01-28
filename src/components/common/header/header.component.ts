@@ -1,11 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, Signal} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {NgOptimizedImage} from '@angular/common';
-import {injectProfileQuery} from '@/injections/profile.query';
-import {CreateQueryResult} from '@tanstack/angular-query-experimental';
-import {User} from '@/contracts/user.contrcact';
-import {ProblemDetail} from '@/contracts/problem-detail.contract';
-import {ANONYMOUS_PAGES, Page, SECURED_PAGES} from '@/constants/pages.constants';
+import {HEADER_PAGES, Page} from '@/constants/pages.constants';
+import {injectGetPageByAccessRule} from '@/injections/inject-get-page-by.guard';
 
 @Component({
   selector: 'app-header',
@@ -17,9 +14,5 @@ import {ANONYMOUS_PAGES, Page, SECURED_PAGES} from '@/constants/pages.constants'
   styleUrl: './header.component.sass',
 })
 export class HeaderComponent {
-  private readonly profile: CreateQueryResult<User, ProblemDetail> = injectProfileQuery();
-
-  public getPages(): Page[] {
-    return this.profile.data() ? SECURED_PAGES : ANONYMOUS_PAGES;
-  }
+  protected readonly pages: Signal<Page[]> = injectGetPageByAccessRule(HEADER_PAGES);
 }

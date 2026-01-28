@@ -4,7 +4,7 @@
       <img alt="Sorokchat logo" height="50" ngSrc="/logo.svg" priority width="50"></a>
     <nav class="menu">
       <ul>
-        @for (page of getPages(); track page; ) {
+        @for (page of pages(); track page; ) {
           <li>
             <a [routerLink]="page.path">{{ page.title }}</a>
           </li>
