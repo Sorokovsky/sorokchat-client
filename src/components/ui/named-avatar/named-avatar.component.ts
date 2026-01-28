@@ -10,5 +10,6 @@ import {getUserInitials} from '@/utils/get-user-initials.util';
 })
 export class NamedAvatarComponent {
   public readonly user: InputSignal<User> = input.required<User>();
+  public readonly size: InputSignal<number> = input.required<number>();
   protected readonly initials: Signal<string> = computed(() => getUserInitials(this.user()));
 }

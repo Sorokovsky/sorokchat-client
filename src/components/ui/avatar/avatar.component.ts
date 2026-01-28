@@ -2,6 +2,7 @@ import {Component, input, InputSignal} from '@angular/core';
 import {User} from '@/contracts/user.contrcact';
 import {DefaultAvatarComponent} from '@/components/ui/default-avatar/default-avatar.component';
 import {NamedAvatarComponent} from '@/components/ui/named-avatar/named-avatar.component';
+import {AVATAR_SIZE} from '@/constants/sizes.constants';
 
 @Component({
   selector: 'app-avatar',
@@ -14,4 +15,5 @@ import {NamedAvatarComponent} from '@/components/ui/named-avatar/named-avatar.co
 })
 export class AvatarComponent {
   public readonly user: InputSignal<User | undefined> = input<User | undefined>(undefined);
+  public readonly size: InputSignal<number> = input<number>(AVATAR_SIZE);
 }

@@ -14,7 +14,6 @@ export function injectAuthenticationGuard(): EffectRef {
   const router: Router = inject(Router);
   const profile: CreateQueryResult<User, ProblemDetail> = injectProfileQuery();
   const isAuthenticated: Signal<boolean> = injectIsAuthenticated();
-
   const urlSignal: Signal<string> = toSignal(
     router.events.pipe(
       filter(event => event instanceof NavigationEnd),
@@ -31,9 +30,11 @@ export function injectAuthenticationGuard(): EffectRef {
     if (page === undefined) return;
     const haveAccess: boolean = hasAccess(page, user);
     const path: string[] = ["/"];
-    if (!isAuthenticated()) path.push(LOGIN_PAGE.path);
-    if (!haveAccess) {
-      router.navigate(path);
+    if (!profile.isLoading()) {
+      if (!isAuthenticated()) path.push(LOGIN_PAGE.path);
+      if (!haveAccess) {
+        router.navigate(path);
+      }
     }
   });
 }

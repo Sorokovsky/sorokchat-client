@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, input, InputSignal} from '@angular/core';
 import {NgOptimizedImage} from '@angular/common';
 
 @Component({
@@ -10,5 +10,5 @@ import {NgOptimizedImage} from '@angular/common';
   styleUrl: './default-avatar.component.sass',
 })
 export class DefaultAvatarComponent {
-
+  public readonly size: InputSignal<number> = input.required<number>();
 }

@@ -1,6 +1,7 @@
 import {LoginPage} from '@/components/pages/login/login.page';
 import {Type} from '@angular/core';
 import {LogoutPage} from '@/components/pages/logout/logout.page';
+import {RegisterPage} from '@/components/pages/register-page/register.page';
 
 export const AccessRule = {
   SECURED: "SECURED",
@@ -20,7 +21,8 @@ export type Page = {
 export const REGISTER_PAGE: Page = {
   title: "Реєстрація",
   path: "register",
-  accessRule: AccessRule.ANONYMOUS
+  accessRule: AccessRule.ANONYMOUS,
+  component: RegisterPage
 };
 
 export const LOGIN_PAGE: Page = {

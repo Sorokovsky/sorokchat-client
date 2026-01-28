@@ -1,8 +1,8 @@
 @let avatarUser = user();
 <button class="avatar">
   @if (avatarUser !== undefined) {
-    <app-named-avatar [user]="avatarUser"/>
+    <app-named-avatar [size]="size()" [user]="avatarUser"/>
   } @else {
-    <app-default-avatar/>
+    <app-default-avatar [size]="size()"/>
   }
 </button>
