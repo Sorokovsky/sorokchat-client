@@ -1,0 +1,9 @@
+<nav class="menu">
+  <ul>
+    @for (page of pages(); track page; ) {
+      <li>
+        <a [routerLink]="page.path">{{ page.title }}</a>
+      </li>
+    }
+  </ul>
+</nav>

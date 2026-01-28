@@ -1,14 +1,6 @@
 <header class="header">
   <div class="container header__container">
     <app-sorokchat-logo [priority]="true"/>
-    <nav class="menu">
-      <ul>
-        @for (page of pages(); track page; ) {
-          <li>
-            <a [routerLink]="page.path">{{ page.title }}</a>
-          </li>
-        }
-      </ul>
-    </nav>
+    <app-header-menu [pages]="pages()"/>
   </div>
 </header>

@@ -1,14 +1,14 @@
 import {Component, Signal} from '@angular/core';
-import {RouterLink} from '@angular/router';
 import {HEADER_PAGES, Page} from '@/constants/pages.constants';
 import {injectGetPageByAccessRule} from '@/injections/inject-get-page-by.guard';
 import {SorokchatLogoComponent} from '@/components/common/sorokchat-logo/sorokchat-logo.component';
+import {HeaderMenuComponent} from '@/components/common/header-menu/header-menu.component';
 
 @Component({
   selector: 'app-header',
   imports: [
-    RouterLink,
-    SorokchatLogoComponent
+    SorokchatLogoComponent,
+    HeaderMenuComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.sass',
