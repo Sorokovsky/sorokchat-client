@@ -11,7 +11,7 @@ export function injectRegisterMutation(): CreateMutationResult<User, ProblemDeta
   const queryClient: QueryClient = inject(QueryClient);
 
   return injectMutation(() => mutationOptions({
-    mutationFn: authorizationService.register,
+    mutationFn: (payload: RegisterPayload) => authorizationService.register(payload),
     mutationKey: [QueryKeys.REGISTER],
     async onSuccess(): Promise<void> {
       await queryClient.resetQueries({queryKey: [QueryKeys.PROFILE]});

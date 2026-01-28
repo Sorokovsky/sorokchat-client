@@ -1,5 +1,3 @@
-import {ZodType} from 'zod';
-
 export type InputType =
   | 'text' | 'number' | 'password' | 'email' | 'tel'
   | 'url' | 'date' | 'checkbox' | 'radio' | 'file'
@@ -12,12 +10,4 @@ export type Field = {
   type: InputType
   placeholder?: string;
   autocomplete?: string;
-};
-
-export type Form<T> = {
-  title: string;
-  zodSchema: ZodType<T>;
-  onSubmit: (data: T) => void;
-  fields: Field[];
-  submitText: string;
 };
