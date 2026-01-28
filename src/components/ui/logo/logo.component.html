@@ -1,0 +1,10 @@
+@let logoSize = size();
+<a class="logo" routerLink="/">
+  <img
+    [alt]="alt()"
+    [height]="logoSize"
+    [ngSrc]="image()"
+    [width]="logoSize"
+    priority
+  >
+</a>

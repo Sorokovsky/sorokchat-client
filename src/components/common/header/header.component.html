@@ -1,7 +1,6 @@
 <header class="header">
   <div class="container header__container">
-    <a class="logo" routerLink="/">
-      <img alt="Sorokchat logo" height="50" ngSrc="/logo.svg" priority width="50"></a>
+    <app-sorokchat-logo [priority]="true"/>
     <nav class="menu">
       <ul>
         @for (page of pages(); track page; ) {
