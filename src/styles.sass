@@ -9,6 +9,14 @@ html
 body
   font-size: 18rem
   min-height: 100vh
+  display: flex
+  flex-direction: column
+
+  & > *:first-child
+    flex: 0 0 auto
+
+  &:nth-child(2)
+    flex: 1 0 100%
 
 a, li
   font-size: inherit
@@ -25,3 +33,12 @@ li
   max-width: 1230rem
   padding: 10rem 15rem
   margin: 0 auto
+
+.form-page
+  max-width: 700rem
+  margin: auto
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  min-height: calc(100vh - 70px)

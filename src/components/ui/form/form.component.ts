@@ -20,14 +20,14 @@ export class FormComponent<T> {
   public readonly submitText: InputSignal<string> = input.required<string>();
   public readonly onSend: OutputEmitterRef<T> = output<T>();
 
-  protected formGroup: Signal<FormGroup> = computed(() => this.buildForm());
+  protected formGroup: Signal<FormGroup> = computed((): FormGroup => this.buildForm());
 
   constructor(private readonly formBuilder: FormBuilder) {
   }
 
   public buildForm(): FormGroup {
     const controlsNames: string[] = [];
-    this.fields().forEach(field => controlsNames.push(field.name));
+    this.fields().forEach((field: Field): number => controlsNames.push(field.name));
     const controls: Record<string, [string]> = {};
     controlsNames.forEach((controlName: string): void => {
       controls[controlName] = [''];
