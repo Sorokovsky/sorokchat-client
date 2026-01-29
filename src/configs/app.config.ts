@@ -1,5 +1,6 @@
 import {ApplicationConfig, provideBrowserGlobalErrorListeners} from '@angular/core';
 import {provideRouter} from '@angular/router';
+import {provideToastr} from "ngx-toastr";
 
 import {routes} from '@/constants/app.routes';
 import {provideHttpClient, withInterceptors} from '@angular/common/http';
@@ -13,5 +14,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withInterceptors([authenticationInterceptor, apiErrorInterceptor])),
     provideTanStackQuery(new QueryClient()),
+    provideToastr()
   ]
 };

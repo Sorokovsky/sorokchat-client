@@ -10,7 +10,7 @@ import {PageLoaderComponent} from '@/components/ui/page-loader/page-loader.compo
   imports: [
     HeaderComponent,
     RouterOutlet,
-    PageLoaderComponent
+    PageLoaderComponent,
   ],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.sass',

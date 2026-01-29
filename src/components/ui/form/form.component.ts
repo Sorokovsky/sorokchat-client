@@ -1,6 +1,6 @@
 import {Component, computed, input, InputSignal, output, OutputEmitterRef, Signal} from '@angular/core';
 import {Field} from '@/components/ui/form/form.types';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors} from '@angular/forms';
 import {zodValidator} from '@/validators/zod.validator';
 import {z as zod} from 'zod';
 
@@ -38,8 +38,10 @@ export class FormComponent<T> {
     });
   }
 
-  public getError(name: string): string {
-    return this.formGroup().errors![name];
+  public getError(name: string): string | undefined {
+    const errors: ValidationErrors | null = this.formGroup().errors;
+    if (!errors) return undefined;
+    return errors[name];
   }
 
   protected handler(): void {
