@@ -1,9 +1,7 @@
 import {NavigationEnd, Router} from '@angular/router';
 import {effect, EffectRef, inject, Signal} from '@angular/core';
-import {CreateQueryResult} from '@tanstack/angular-query-experimental';
 import {User} from '@/contracts/user.contrcact';
-import {ProblemDetail} from '@/contracts/problem-detail.contract';
-import {injectProfileQuery} from '@/injections/profile.query';
+import {injectProfileQuery, ProfileQuery} from '@/injections/profile.query';
 import {ALL_PAGES, LOGIN_PAGE, Page} from '@/constants/pages.constants';
 import {filter, map} from 'rxjs';
 import {toSignal} from '@angular/core/rxjs-interop';
@@ -12,7 +10,7 @@ import {injectIsAuthenticated} from '@/injections/is-authenticated.injection';
 
 export function injectAuthenticationGuard(): EffectRef {
   const router: Router = inject(Router);
-  const profile: CreateQueryResult<User, ProblemDetail> = injectProfileQuery();
+  const profile: ProfileQuery = injectProfileQuery();
   const isAuthenticated: Signal<boolean> = injectIsAuthenticated();
   const urlSignal: Signal<string> = toSignal(
     router.events.pipe(

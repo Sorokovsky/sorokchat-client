@@ -2,10 +2,7 @@ import {Component} from '@angular/core';
 import {HeaderComponent} from '@/components/common/header/header.component';
 import {RouterOutlet} from '@angular/router';
 import {injectAuthenticationGuard} from '@/injections/authentication.guard';
-import {CreateQueryResult} from '@tanstack/angular-query-experimental';
-import {User} from '@/contracts/user.contrcact';
-import {ProblemDetail} from '@/contracts/problem-detail.contract';
-import {injectProfileQuery} from '@/injections/profile.query';
+import {injectProfileQuery, ProfileQuery} from '@/injections/profile.query';
 import {PageLoaderComponent} from '@/components/ui/page-loader/page-loader.component';
 
 @Component({
@@ -19,7 +16,7 @@ import {PageLoaderComponent} from '@/components/ui/page-loader/page-loader.compo
   styleUrl: './main-layout.sass',
 })
 export class MainLayout {
-  protected readonly profile: CreateQueryResult<User, ProblemDetail> = injectProfileQuery();
+  protected readonly profile: ProfileQuery = injectProfileQuery();
 
   constructor() {
     injectAuthenticationGuard();

@@ -1,17 +1,16 @@
-import {CreateQueryResult, injectQuery, queryOptions} from '@tanstack/angular-query-experimental';
 import {QueryKeys} from '@/constants/query-keys.constants';
 import {AuthorizationService} from '@/services/authorization.service';
 import {inject} from '@angular/core';
 import {User} from '@/contracts/user.contrcact';
-import {ProblemDetail} from '@/contracts/problem-detail.contract';
+import {BaseQuery, injectBaseQuery} from '@/injections/base-query.injection';
 
-export function injectProfileQuery(): CreateQueryResult<User, ProblemDetail> {
+export type ProfileQuery = BaseQuery<User>;
+
+export function injectProfileQuery(): ProfileQuery {
   const authorizationService: AuthorizationService = inject(AuthorizationService);
-  return injectQuery(() => queryOptions({
-    queryKey: [QueryKeys.PROFILE],
-    async queryFn(): Promise<User> {
-      return await authorizationService.getProfile();
-    },
-    retry: 2,
-  }));
+  return injectBaseQuery(
+    [QueryKeys.PROFILE],
+    async (): Promise<User> => authorizationService.getProfile(),
+    2
+  );
 }
