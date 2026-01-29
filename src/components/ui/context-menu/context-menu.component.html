@@ -1,4 +1,4 @@
-<div class="context">
+<div [class]="`context${isOpen() ? ' _show' : ''}`">
   <nav class="context__menu">
     <ul>
       @for (item of menu(); track item; ) {
