@@ -3,11 +3,11 @@ import {ProblemDetail} from '@/contracts/problem-detail.contract';
 
 export type BaseQuery<T> = CreateQueryResult<T, ProblemDetail>;
 
-export type Function<T> = (...args: unknown[]) => Promise<T>;
+export type QueryFunction<T> = (...args: unknown[]) => Promise<T>;
 
 export function injectBaseQuery<T>(
   keys: string[],
-  queryFunction: Function<T>,
+  queryFunction: QueryFunction<T>,
   retry: number | boolean = false
 ): BaseQuery<T> {
   return injectQuery(() => queryOptions({

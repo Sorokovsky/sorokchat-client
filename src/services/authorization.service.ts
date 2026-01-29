@@ -5,15 +5,18 @@ import {lastValueFrom} from 'rxjs';
 import {ENDPOINTS} from '@/constants/endpoints.constants';
 import {User} from '@/contracts/user.contrcact';
 import {LoginPayload} from '@/contracts/login-payload';
+import {LocalAccessStorageService} from '@/services/local-access-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorizationService {
   private readonly client: HttpClient;
+  private readonly localAccessTokenStorage: LocalAccessStorageService;
 
-  constructor(http: HttpClient) {
+  constructor(http: HttpClient, localAccessTokenStorage: LocalAccessStorageService) {
     this.client = http;
+    this.localAccessTokenStorage = localAccessTokenStorage;
   }
 
   public async register(payload: RegisterPayload): Promise<User> {
@@ -25,6 +28,7 @@ export class AuthorizationService {
   }
 
   public async logout(): Promise<void> {
+    this.localAccessTokenStorage.clearAccessKey();
     return lastValueFrom(this.client.delete<void>(ENDPOINTS.LOGOUT));
   }
 

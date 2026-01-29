@@ -3,10 +3,7 @@ import {FormComponent} from '@/components/ui/form/form.component';
 import {RegisterPayload, RegisterPayloadSchema} from '@/contracts/register-payload.contract';
 import {Field} from '@/components/ui/form/form.types';
 import {z as zod} from 'zod';
-import {CreateMutationResult} from '@tanstack/angular-query-experimental';
-import {User} from '@/contracts/user.contrcact';
-import {ProblemDetail} from '@/contracts/problem-detail.contract';
-import {injectRegisterMutation} from '@/injections/register.mutation';
+import {injectRegisterMutation, RegisterMutation} from '@/injections/register.mutation';
 
 @Component({
   selector: 'app-register-form',
@@ -17,7 +14,7 @@ import {injectRegisterMutation} from '@/injections/register.mutation';
   styleUrl: './register-form.component.sass',
 })
 export class RegisterFormComponent {
-  protected readonly registerMutation: CreateMutationResult<User, ProblemDetail, RegisterPayload, User> = injectRegisterMutation();
+  protected readonly registerMutation: RegisterMutation = injectRegisterMutation();
 
   protected readonly schema: zod.Schema = RegisterPayloadSchema;
   protected readonly title: string = "Реєстрація";

@@ -3,7 +3,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginPayload, LoginPayloadSchema} from '@/contracts/login-payload';
 import {FormComponent} from '@/components/ui/form/form.component';
 import {Field} from '@/components/ui/form/form.types';
-import {injectLoginMutation} from '@/injections/login.mutation';
+import {injectLoginMutation, LoginMutation} from '@/injections/login.mutation';
 import {z as zod} from 'zod';
 
 @Component({
@@ -34,7 +34,7 @@ export class LoginFormComponent {
       placeholder: "Введіть пароль"
     }
   ];
-  private readonly loginMutation = injectLoginMutation();
+  private readonly loginMutation: LoginMutation = injectLoginMutation();
 
   protected login(payload: LoginPayload): void {
     this.loginMutation.mutate(payload)
