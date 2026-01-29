@@ -28,8 +28,9 @@ export class AuthorizationService {
   }
 
   public async logout(): Promise<void> {
+    const result: void = await lastValueFrom(this.client.delete<void>(ENDPOINTS.LOGOUT));
     this.localAccessTokenStorage.clearAccessKey();
-    return lastValueFrom(this.client.delete<void>(ENDPOINTS.LOGOUT));
+    return result;
   }
 
   public async getProfile(): Promise<User> {
