@@ -5,7 +5,7 @@
     <ul class="chats__list">
       @for (chat of chats; track chat) {
         <li class="chats__item">
-          <a [routerLink]="`/chats/${chat.id}`">
+          <a [routerLink]="`/${chatPath}/${chat.id}`">
             <h4>{{ chat.name }}</h4>
             <p>{{ chat.description }}</p>
           </a>
