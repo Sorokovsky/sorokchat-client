@@ -10,7 +10,7 @@ export const ENDPOINTS = {
   LOGOUT: `${authorization}/logout`,
   PROFILE: `${authorization}/profile`,
   CREATE_CHAT: `${chats}/create`,
-  GET_CHAT_BY_ME: `${chats}/by-me`,
+  GET_CHATS_BY_ME: `${chats}/by-me`,
   DELETE_CHAT: `${chats}/`,
 } as const;
 

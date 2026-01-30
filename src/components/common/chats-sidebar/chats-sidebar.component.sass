@@ -1,0 +1,30 @@
+:host
+  display: contents
+
+.sidebar
+  border-right: 1px solid darkgrey
+  min-height: 100%
+  flex: 0 0 200rem
+  padding: 10rem 5rem
+
+  .title
+    font-size: 28rem
+    text-align: center
+
+.chats
+  &__list
+    display: flex
+    flex-direction: column
+    gap: 10rem
+
+    a
+      display: flex
+      flex-direction: column
+      border-radius: 20rem
+      border: 1rem solid #232222
+      transition: .3s all ease
+      padding: 5rem 15rem
+
+      &:hover
+        background-color: #232222
+        color: white

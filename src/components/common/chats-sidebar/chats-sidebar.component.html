@@ -1,0 +1,16 @@
+@let chats = chatsQuery.data() || [];
+<aside class="sidebar">
+  <nav class="sidebar-content">
+    <h1 class="title">Чати</h1>
+    <ul class="chats__list">
+      @for (chat of chats; track chat) {
+        <li class="chats__item">
+          <a [routerLink]="`/chats/${chat.id}`">
+            <h4>{{ chat.name }}</h4>
+            <p>{{ chat.description }}</p>
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+</aside>

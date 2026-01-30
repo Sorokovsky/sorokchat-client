@@ -4,6 +4,7 @@ import {RouterOutlet} from '@angular/router';
 import {injectAuthenticationGuard} from '@/injections/authentication.guard';
 import {injectProfileQuery, ProfileQuery} from '@/injections/profile.query';
 import {PageLoaderComponent} from '@/components/ui/page-loader/page-loader.component';
+import {ChatsSidebarComponent} from '@/components/common/chats-sidebar/chats-sidebar.component';
 
 @Component({
   selector: 'app-main-layout',
@@ -11,6 +12,7 @@ import {PageLoaderComponent} from '@/components/ui/page-loader/page-loader.compo
     HeaderComponent,
     RouterOutlet,
     PageLoaderComponent,
+    ChatsSidebarComponent,
   ],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.sass',

@@ -11,6 +11,6 @@ export function injectProfileQuery(): ProfileQuery {
   return injectBaseQuery(
     [QueryKeys.PROFILE],
     async (): Promise<User> => authorizationService.getProfile(),
-    2
+    1
   );
 }

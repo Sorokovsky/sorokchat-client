@@ -12,7 +12,12 @@
   @if (profile.isFetching()) {
     <app-page-loader/>
   } @else {
-    <router-outlet/>
+    <div class="page">
+      <app-chats-sidebar/>
+      <main class="main">
+        <router-outlet/>
+      </main>
+    </div>
   }
 </body>
 </html>
