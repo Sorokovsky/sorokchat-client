@@ -40,12 +40,17 @@ export const LOGOUT_PAGE: Page = {
   accessRule: AccessRule.SECURED
 };
 
-export const CHAT_PAGE: Page = {
+export const NON_CHAT_PAGE: Page = {
   title: "Чат",
   path: "chat",
   component: ChatPage,
   accessRule: AccessRule.SECURED
 }
 
+export const CHAT_PAGE: Page = {
+  ...NON_CHAT_PAGE,
+  path: `${NON_CHAT_PAGE.path}/:chatId`
+}
+
 export const HEADER_PAGES: Page[] = [REGISTER_PAGE, LOGIN_PAGE, LOGOUT_PAGE];
-export const ALL_PAGES: Page[] = Array.from(new Set([...HEADER_PAGES, CHAT_PAGE]));
+export const ALL_PAGES: Page[] = Array.from(new Set([...HEADER_PAGES, NON_CHAT_PAGE, CHAT_PAGE]));

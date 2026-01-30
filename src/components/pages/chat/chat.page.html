@@ -4,6 +4,15 @@
     <div class="head">
       <div class="head__left">
         <h2 class="head__name">{{ currentChat.name }}</h2>
+        <p class="head__description">{{ currentChat.description }}</p>
+      </div>
+      <div class="chat message">
+        <form>
+          <input placeholder="Повідомлення" type="text">
+          <button type="submit">
+            Написати
+          </button>
+        </form>
       </div>
     </div>
   } @else {

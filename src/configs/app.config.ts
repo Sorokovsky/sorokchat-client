@@ -1,5 +1,5 @@
 import {ApplicationConfig, LOCALE_ID, provideBrowserGlobalErrorListeners} from '@angular/core';
-import {provideRouter} from '@angular/router';
+import {provideRouter, withHashLocation} from '@angular/router';
 import {provideToastr} from "ngx-toastr";
 
 import {routes} from '@/constants/app.routes';
@@ -16,7 +16,7 @@ export const appConfig: ApplicationConfig = {
       useValue: "uk-UA"
     },
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes),
+    provideRouter(routes, withHashLocation()),
     provideHttpClient(withInterceptors([localeInterceptor, authenticationInterceptor, apiErrorInterceptor])),
     provideTanStackQuery(new QueryClient()),
     provideToastr()
