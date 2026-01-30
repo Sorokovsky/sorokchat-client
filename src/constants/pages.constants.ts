@@ -42,7 +42,7 @@ export const LOGOUT_PAGE: Page = {
 
 export const CHAT_PAGE: Page = {
   title: "Чат",
-  path: "chats",
+  path: "chat",
   component: ChatPage,
   accessRule: AccessRule.SECURED
 }
