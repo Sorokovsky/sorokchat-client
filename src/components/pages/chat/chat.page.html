@@ -1,0 +1,12 @@
+@let currentChat = chat();
+<div class="chat">
+  @if (currentChat) {
+    <div class="head">
+      <div class="head__left">
+        <h2 class="head__name">{{ currentChat.name }}</h2>
+      </div>
+    </div>
+  } @else {
+    <h2 class="no-chats">Виберіть чат</h2>
+  }
+</div>

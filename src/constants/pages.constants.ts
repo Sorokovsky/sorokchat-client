@@ -1,7 +1,8 @@
 import {LoginPage} from '@/components/pages/login/login.page';
 import {Type} from '@angular/core';
 import {LogoutPage} from '@/components/pages/logout/logout.page';
-import {RegisterPage} from '@/components/pages/register-page/register.page';
+import {RegisterPage} from '@/components/pages/register/register.page';
+import {ChatPage} from '@/components/pages/chat/chat.page';
 
 export const AccessRule = {
   SECURED: "SECURED",
@@ -39,5 +40,12 @@ export const LOGOUT_PAGE: Page = {
   accessRule: AccessRule.SECURED
 };
 
+export const CHAT_PAGE: Page = {
+  title: "Чат",
+  path: "chats",
+  component: ChatPage,
+  accessRule: AccessRule.SECURED
+}
+
 export const HEADER_PAGES: Page[] = [REGISTER_PAGE, LOGIN_PAGE, LOGOUT_PAGE];
-export const ALL_PAGES: Page[] = Array.from(new Set([...HEADER_PAGES]));
+export const ALL_PAGES: Page[] = Array.from(new Set([...HEADER_PAGES, CHAT_PAGE]));
