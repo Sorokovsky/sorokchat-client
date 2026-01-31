@@ -1,8 +1,64 @@
 .chat
-  min-height: 100%
+  height: 100%
   display: flex
   flex-direction: column
-  padding: 10rem
   .no-chats
     margin: auto
     font-size: 35rem
+
+  &-head
+    border-bottom: 2rem solid darkgray
+    padding: 10rem
+    display: flex
+    align-items: center
+    justify-content: space-between
+    flex: 0 0 auto
+
+    &__right
+      display: flex
+      align-items: center
+      gap: 10rem
+
+    &__button
+      font-size: 25rem
+      cursor: pointer
+      outline: none
+      background: transparent
+      border: 1rem solid darkgray
+      padding: 5rem
+      border-radius: 10rem
+      transition: .3s all ease
+
+      &:hover
+        background-color: #1e1e1e
+        color: white
+
+  &-messages
+    flex: 1 1 auto
+
+  &-send-message
+    border-top: 1rem solid darkgray
+
+    form
+      display: flex
+      align-items: stretch
+
+      input
+        border: none
+        outline: none
+        flex: 1 1 auto
+        padding: 20rem
+        border-right: 1rem solid darkgray
+
+      button
+        outline: none
+        border: none
+        background: transparent
+        padding: 10rem
+        font-size: 20rem
+        cursor: pointer
+        transition: .3s all ease
+
+        &:hover
+          background-color: #1e1e1e
+          color: white

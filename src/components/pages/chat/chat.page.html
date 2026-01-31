@@ -1,19 +1,27 @@
 @let currentChat = chat();
 <div class="chat">
   @if (currentChat) {
-    <div class="head">
-      <div class="head__left">
-        <h2 class="head__name">{{ currentChat.name }}</h2>
-        <p class="head__description">{{ currentChat.description }}</p>
+    <div class="chat-head">
+      <div class="chat-head__left">
+        <h2 class="chat-head__name">{{ currentChat.name }}</h2>
+        <p class="chat-head__description">{{ currentChat.description }}</p>
       </div>
-      <div class="chat message">
-        <form>
-          <input placeholder="Повідомлення" type="text">
-          <button type="submit">
-            Написати
-          </button>
-        </form>
+      <div class="chat-head__right">
+        <button class="chat-head__button" type="button">Вийти</button>
+        <button class="chat-head__button" type="button">Додати</button>
+        <button class="chat-head__button" type="button">Додати</button>
       </div>
+    </div>
+    <div class="chat-messages">
+
+    </div>
+    <div class="chat-send-message">
+      <form>
+        <input placeholder="Повідомлення" type="text">
+        <button type="submit">
+          Написати
+        </button>
+      </form>
     </div>
   } @else {
     <h2 class="no-chats">Виберіть чат</h2>
