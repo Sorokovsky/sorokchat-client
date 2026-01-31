@@ -4,10 +4,13 @@ import {GetChatsByMe, injectGetChatsByMe} from '@/injections/get-chats-by-me.que
 import {Chat} from '@/contracts/chat.contract';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {map} from 'rxjs';
+import {ChatHeaderComponent} from '@/components/common/chat-header/chat-header.component';
 
 @Component({
   selector: 'app-chat',
-  imports: [],
+  imports: [
+    ChatHeaderComponent
+  ],
   templateUrl: './chat.page.html',
   styleUrl: './chat.page.sass',
 })
