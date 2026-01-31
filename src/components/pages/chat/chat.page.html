@@ -5,14 +5,7 @@
     <div class="chat-messages">
 
     </div>
-    <div class="chat-send-message">
-      <form>
-        <input placeholder="Повідомлення" type="text">
-        <button type="submit">
-          Написати
-        </button>
-      </form>
-    </div>
+    <app-chat-send-message [chat]="currentChat"></app-chat-send-message>
   } @else {
     <h2 class="no-chats">Виберіть чат</h2>
   }
