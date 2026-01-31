@@ -6,12 +6,14 @@ import {toSignal} from '@angular/core/rxjs-interop';
 import {map} from 'rxjs';
 import {ChatHeaderComponent} from '@/components/common/chat-header/chat-header.component';
 import {ChatSendMessageComponent} from '@/components/common/chat-send-message/chat-send-message.component';
+import {ChatMessagesComponent} from '@/components/common/chat-messages/chat-messages.component';
 
 @Component({
   selector: 'app-chat',
   imports: [
     ChatHeaderComponent,
-    ChatSendMessageComponent
+    ChatSendMessageComponent,
+    ChatMessagesComponent
   ],
   templateUrl: './chat.page.html',
   styleUrl: './chat.page.sass',

@@ -2,9 +2,7 @@
 <div class="chat">
   @if (currentChat) {
     <app-chat-header [chat]="currentChat"></app-chat-header>
-    <div class="chat-messages">
-
-    </div>
+    <app-chat-messages [chat]="currentChat"></app-chat-messages>
     <app-chat-send-message [chat]="currentChat"></app-chat-send-message>
   } @else {
     <h2 class="no-chats">Виберіть чат</h2>
