@@ -3,6 +3,7 @@ import {Message, MessageSchema} from '@/contracts/message.contract';
 import {NewMessage} from '@/contracts/new-message.contract';
 import {AesCryptoService} from '@/services/aes-crypto.service';
 import {HmacSigningService} from '@/services/hmac-signing.service';
+import {ZodSafeParseResult} from 'zod';
 
 @Injectable({
   providedIn: 'root',
@@ -48,9 +49,9 @@ export class MessagesService {
     const stringValue: string | null = localStorage.getItem(MessagesService.STORAGE_KEY);
     if (stringValue === null) return;
     const parsedValue: unknown = JSON.parse(stringValue);
-    if (MessageSchema.array().safeParse(parsedValue)) {
-      const messages: Message[] = parsedValue as Message[];
-      this._messages.set(messages);
+    const result: ZodSafeParseResult<Message[]> = MessageSchema.array().safeParse(parsedValue);
+    if (result.success) {
+      this._messages.set(result.data);
     }
   }
 }
