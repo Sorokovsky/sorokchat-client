@@ -4,11 +4,13 @@ import {MessagesService} from '@/services/messages.service';
 import {ChatMessage} from '@/components/common/chat-messages/chat-messages.type';
 import {Message} from '@/contracts/message.contract';
 import {User} from '@/contracts/user.contrcact';
-import {injectProfileQuery, ProfileQuery} from '@/injections/profile.query';
+import {MessageComponent} from '@/components/common/message/message.component';
 
 @Component({
   selector: 'app-chat-messages',
-  imports: [],
+  imports: [
+    MessageComponent
+  ],
   templateUrl: './chat-messages.component.html',
   styleUrl: './chat-messages.component.sass',
 })
@@ -32,9 +34,4 @@ export class ChatMessagesComponent {
         }
       });
   });
-  private readonly profile: ProfileQuery = injectProfileQuery();
-
-  protected isMyMessage(message: ChatMessage): boolean {
-    return message.author?.id === this.profile.data()?.id;
-  }
 }
