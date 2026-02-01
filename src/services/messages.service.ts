@@ -1,4 +1,4 @@
-import {Injectable, OnInit, signal, WritableSignal} from '@angular/core';
+import {Injectable, Signal, signal, WritableSignal} from '@angular/core';
 import {Message, MessageSchema} from '@/contracts/message.contract';
 import {NewMessage} from '@/contracts/new-message.contract';
 import {AesCryptoService} from '@/services/aes-crypto.service';
@@ -7,26 +7,18 @@ import {HmacSigningService} from '@/services/hmac-signing.service';
 @Injectable({
   providedIn: 'root',
 })
-export class MessagesService implements OnInit {
+export class MessagesService {
   private static readonly STORAGE_KEY: string = 'messages';
 
-  private readonly messages: WritableSignal<Message[]> = signal<Message[]>([]);
+  private readonly _messages: WritableSignal<Message[]> = signal<Message[]>([]);
   private readonly secretKey: string = "secretKey";
+  public messages: Signal<Message[]> = this._messages.asReadonly();
 
   constructor(
     private readonly cryptoService: AesCryptoService,
     private readonly signingService: HmacSigningService,
   ) {
-  }
-
-  public ngOnInit(): void {
-    const stringValue: string | null = localStorage.getItem(MessagesService.STORAGE_KEY);
-    if (stringValue === null) return;
-    const parsedValue: unknown = JSON.parse(stringValue);
-    if (MessageSchema.array().safeParse(parsedValue)) {
-      const messages: Message[] = parsedValue as Message[];
-      this.messages.set(messages);
-    }
+    this.loadFromLocalStorage();
   }
 
   public sendMessage(newMessage: NewMessage, chatId: number, authorId: number): void {
@@ -34,8 +26,8 @@ export class MessagesService implements OnInit {
   }
 
   private updateMessages(message: Message): void {
-    this.messages.update((oldMessages: Message[]): Message[] => [...oldMessages, message]);
-    localStorage.setItem(MessagesService.STORAGE_KEY, JSON.stringify(this.messages()));
+    this._messages.update((oldMessages: Message[]): Message[] => [...oldMessages, message]);
+    localStorage.setItem(MessagesService.STORAGE_KEY, JSON.stringify(this._messages()));
   }
 
   private buildMessage(newMessage: NewMessage, chatId: number, authorId: number): Message {
@@ -49,6 +41,16 @@ export class MessagesService implements OnInit {
       mac,
       createdAt: now,
       updatedAt: now,
+    }
+  }
+
+  private loadFromLocalStorage(): void {
+    const stringValue: string | null = localStorage.getItem(MessagesService.STORAGE_KEY);
+    if (stringValue === null) return;
+    const parsedValue: unknown = JSON.parse(stringValue);
+    if (MessageSchema.array().safeParse(parsedValue)) {
+      const messages: Message[] = parsedValue as Message[];
+      this._messages.set(messages);
     }
   }
 }
