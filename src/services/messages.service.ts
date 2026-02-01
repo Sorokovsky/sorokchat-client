@@ -30,10 +30,19 @@ export class MessagesService implements OnInit {
   }
 
   public sendMessage(newMessage: NewMessage, chatId: number, authorId: number): void {
+    this.updateMessages(this.buildMessage(newMessage, chatId, authorId));
+  }
+
+  private updateMessages(message: Message): void {
+    this.messages.update((oldMessages: Message[]): Message[] => [...oldMessages, message]);
+    localStorage.setItem(MessagesService.STORAGE_KEY, JSON.stringify(this.messages()));
+  }
+
+  private buildMessage(newMessage: NewMessage, chatId: number, authorId: number): Message {
     const encryptedMessage: string = this.cryptoService.encrypt(newMessage.text, this.secretKey);
     const mac: string = this.signingService.sign(encryptedMessage, this.secretKey);
     const now = new Date();
-    const message: Message = {
+    return {
       text: encryptedMessage,
       chatId,
       authorId,
@@ -41,7 +50,5 @@ export class MessagesService implements OnInit {
       createdAt: now,
       updatedAt: now,
     }
-    this.messages.update((oldMessages: Message[]): Message[] => [...oldMessages, message]);
-    localStorage.setItem(MessagesService.STORAGE_KEY, JSON.stringify(this.messages()));
   }
 }
