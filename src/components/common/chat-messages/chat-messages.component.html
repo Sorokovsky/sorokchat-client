@@ -2,7 +2,7 @@
   <ul>
     @for (message of messages(); track message) {
       <li [class]="`message${isMyMessage(message) ? ' _my-message': ''}`">
-        <span class="message__text">{{ message.text }}</span>
+        <span class="message__text">{{ message.text || "Повідомлення пошкоджено" }}</span>
         <span>{{ message.suggested ? "✔️" : "❌" }}</span>
       </li>
     }
