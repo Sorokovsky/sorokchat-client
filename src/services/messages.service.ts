@@ -63,6 +63,8 @@ export class MessagesService {
     const result: ZodSafeParseResult<Message[]> = MessageSchema.array().safeParse(parsedValue);
     if (result.success) {
       this._messages.set(result.data);
+    } else {
+      console.error(result.error);
     }
   }
 }

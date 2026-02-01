@@ -1,3 +1,9 @@
 <div class="chat-messages">
-  Повідомлення
+  <ul>
+    @for (message of messages(); track message) {
+      <li class="message">
+        <span class="message__text">{{ message.text }}</span>
+      </li>
+    }
+  </ul>
 </div>
