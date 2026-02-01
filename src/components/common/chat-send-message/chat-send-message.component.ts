@@ -8,5 +8,6 @@ import {Chat} from '@/contracts/chat.contract';
   styleUrl: './chat-send-message.component.sass',
 })
 export class ChatSendMessageComponent {
-  public chat: InputSignal<Chat> = input.required<Chat>();
+  public readonly chat: InputSignal<Chat> = input.required<Chat>();
+  //protected readonly profile: ProfileQuery = injectProfileQuery();
 }

@@ -1,13 +1,12 @@
-<app-header/>
-@if (profile.isFetching()) {
+@if (profile.isLoading()) {
   <app-page-loader/>
-} @else {
-  <div class="page">
-    @if (isAuthenticated()) {
-      <app-chats-sidebar/>
-    }
-    <main class="main">
-      <router-outlet/>
-    </main>
-  </div>
 }
+<app-header/>
+<div class="page">
+  @if (isAuthenticated()) {
+    <app-chats-sidebar/>
+  }
+  <main class="main">
+    <router-outlet/>
+  </main>
+</div>

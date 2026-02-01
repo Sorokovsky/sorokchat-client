@@ -10,4 +10,4 @@ export const MessageSchema = NewMessageSchema.extend(BaseSchema.shape).omit({
   chatId: zod.number({message: "Ідентифікатор чату має бути числом."}),
 });
 
-export type MessagePayload = zod.infer<typeof MessageSchema>;
+export type Message = zod.infer<typeof MessageSchema>;

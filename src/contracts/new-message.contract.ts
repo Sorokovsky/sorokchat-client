@@ -4,4 +4,4 @@ export const NewMessageSchema = zod.object({
   text: zod.string(),
 });
 
-export type NewMessagePayload = zod.infer<typeof NewMessageSchema>;
+export type NewMessage = zod.infer<typeof NewMessageSchema>;

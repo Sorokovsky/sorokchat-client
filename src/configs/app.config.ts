@@ -18,7 +18,15 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideHttpClient(withInterceptors([localeInterceptor, authenticationInterceptor, apiErrorInterceptor])),
-    provideTanStackQuery(new QueryClient()),
+    provideTanStackQuery(new QueryClient({
+      defaultOptions: {
+        queries: {
+          staleTime: 5 * 60 * 1000,
+          refetchOnMount: false,
+          refetchOnWindowFocus: false
+        }
+      }
+    })),
     provideToastr()
   ]
 };
