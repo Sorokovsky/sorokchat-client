@@ -13,6 +13,9 @@ import {injectProfileQuery, ProfileQuery} from '@/injections/profile.query';
   styleUrl: './chat-messages.component.sass',
 })
 export class ChatMessagesComponent {
+  constructor(private readonly messagesService: MessagesService) {
+  }
+
   public chat: InputSignal<Chat> = input.required<Chat>();
   protected readonly messages: Signal<ChatMessage[]> = computed<ChatMessage[]>((): ChatMessage[] => {
     return this.messagesService.messages()
@@ -27,7 +30,4 @@ export class ChatMessagesComponent {
       });
   });
   private readonly profile: ProfileQuery = injectProfileQuery();
-
-  constructor(private readonly messagesService: MessagesService) {
-  }
 }
