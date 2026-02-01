@@ -26,6 +26,17 @@ export class MessagesService {
     this.updateMessages(this.buildMessage(newMessage, chatId, authorId));
   }
 
+  public decryptMessage(message: Message): Message {
+    return {
+      ...message,
+      text: this.cryptoService.decrypt(message.text, this.secretKey)
+    };
+  }
+
+  public verifyMessage(message: Message): boolean {
+    return this.signingService.verify(message.text, this.secretKey, message.mac);
+  }
+
   private updateMessages(message: Message): void {
     this._messages.update((oldMessages: Message[]): Message[] => [...oldMessages, message]);
     localStorage.setItem(MessagesService.STORAGE_KEY, JSON.stringify(this._messages()));
