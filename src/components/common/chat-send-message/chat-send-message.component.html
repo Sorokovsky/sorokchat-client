@@ -1,6 +1,6 @@
 <div class="chat-send-message">
-  <form>
-    <input placeholder="Повідомлення" type="text">
+  <form (ngSubmit)="sendMessage()" [formGroup]="formGroup">
+    <input formControlName="text" placeholder="Повідомлення" type="text">
     <button type="submit">
       Написати
     </button>

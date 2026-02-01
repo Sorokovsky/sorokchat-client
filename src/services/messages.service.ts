@@ -1,7 +1,8 @@
-import {AES, HmacSHA256} from "crypto-js";
 import {Injectable, OnInit, signal, WritableSignal} from '@angular/core';
 import {Message, MessageSchema} from '@/contracts/message.contract';
 import {NewMessage} from '@/contracts/new-message.contract';
+import {AesCryptoService} from '@/services/aes-crypto.service';
+import {HmacSigningService} from '@/services/hmac-signing.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,12 @@ export class MessagesService implements OnInit {
 
   private readonly messages: WritableSignal<Message[]> = signal<Message[]>([]);
   private readonly secretKey: string = "secretKey";
+
+  constructor(
+    private readonly cryptoService: AesCryptoService,
+    private readonly signingService: HmacSigningService,
+  ) {
+  }
 
   public ngOnInit(): void {
     const stringValue: string | null = localStorage.getItem(MessagesService.STORAGE_KEY);
@@ -23,8 +30,8 @@ export class MessagesService implements OnInit {
   }
 
   public sendMessage(newMessage: NewMessage, chatId: number, authorId: number): void {
-    const encryptedMessage: string = AES.encrypt(newMessage.text, this.secretKey).toString();
-    const mac: string = HmacSHA256(encryptedMessage, this.secretKey).toString();
+    const encryptedMessage: string = this.cryptoService.encrypt(newMessage.text, this.secretKey);
+    const mac: string = this.signingService.sign(encryptedMessage, this.secretKey);
     const now = new Date();
     const message: Message = {
       text: encryptedMessage,
