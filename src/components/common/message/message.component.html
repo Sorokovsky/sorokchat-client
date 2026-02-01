@@ -8,6 +8,8 @@
       <span class="message__text">{{ chatMessage.text || "Повідомлення пошкоджено" }}</span>
       <span>{{ chatMessage.suggested ? "✔️" : "❌" }}</span>
     </div>
-    <div class="message-bottom"></div>
+    <div class="message__bottom">
+      <data value="">{{ chatMessage.updatedAt.toLocaleTimeString() }}</data>
+    </div>
   </div>
 </li>
