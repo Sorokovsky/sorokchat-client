@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Client, IFrame, IMessage} from '@stomp/stompjs';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {LocalAccessStorageService} from '@/services/local-access-storage.service';
-import SockJS from 'sockjs-client';
 
 type MessageSubject = {
   [topic: string]: Subject<any>;
@@ -28,9 +27,6 @@ export class WebSocketService {
       reconnectDelay: 5000,
       heartbeatIncoming: 400,
       heartbeatOutgoing: 4000,
-      webSocketFactory(): WebSocket {
-        return new SockJS("http://localhost:8080/ws");
-      }
     });
     this.client.onConnect = (): void => {
       console.log("WebSocket Connected");
