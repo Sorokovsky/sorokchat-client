@@ -4,7 +4,7 @@ import {NewMessage} from '@/contracts/new-message.contract';
 import {AesCryptoService} from '@/services/aes-crypto.service';
 import {HmacSigningService} from '@/services/hmac-signing.service';
 import {ZodSafeParseResult} from 'zod';
-import {WebSocketService} from '@/services/web-socket.service';
+import {GetChatsByMe, injectGetChatsByMe} from '@/injections/get-chats-by-me.query';
 
 @Injectable({
   providedIn: 'root',
@@ -14,15 +14,14 @@ export class MessagesService {
 
   private readonly _messages: WritableSignal<Message[]> = signal<Message[]>([]);
   private readonly secretKey: string = "secretKey";
+  private readonly chats: GetChatsByMe = injectGetChatsByMe();
   public messages: Signal<Message[]> = this._messages.asReadonly();
 
   constructor(
     private readonly cryptoService: AesCryptoService,
     private readonly signingService: HmacSigningService,
-    private readonly webSocketService: WebSocketService,
   ) {
     this.loadFromLocalStorage();
-    this.webSocketService.connect();
   }
 
   public sendMessage(newMessage: NewMessage, chatId: number, authorId: number): void {

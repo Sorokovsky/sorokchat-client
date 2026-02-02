@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Client, IFrame, IMessage} from '@stomp/stompjs';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {BehaviorSubject, filter, first, Observable, Subject, switchMap} from 'rxjs';
 import {LocalAccessStorageService} from '@/services/local-access-storage.service';
 import SockJS from 'sockjs-client';
 
@@ -55,7 +55,9 @@ export class WebSocketService {
         Authorization: 'Bearer ' + token,
       };
     }
-    this.client.activate();
+    if (!this.client.active) {
+      this.client.activate();
+    }
   }
 
   public disconnect(): void {
@@ -67,22 +69,27 @@ export class WebSocketService {
   }
 
   public subscribe<T>(destination: string): Observable<T> {
-    if (!this.messageSubject[destination]) {
-      this.messageSubject[destination] = new Subject<T>();
-    }
-    const subject: Subject<T> = this.messageSubject[destination];
-    if (!this.client.connected) {
-      this.connect();
-    }
-
-    this.client.subscribe(
-      destination,
-      (message: IMessage): void => {
-        const body = JSON.parse(message.body);
-        subject.next(body);
-      },
-      {id: `subscription-${destination}`}
-    );
+    const subject: Subject<T> = new Subject<T>();
+    this.connected.pipe(
+      filter((connected: boolean): boolean => connected),
+      first(),
+      switchMap((): Observable<T> => {
+        console.log("Websocket connected and subscribed to ", destination);
+        this.client.subscribe(
+          destination,
+          (message: IMessage): void => {
+            try {
+              const body: T = JSON.parse(message.body);
+              subject.next(body);
+            } catch (error) {
+              console.log("Websocket parsing error: ", error)
+            }
+          },
+          {id: `sub-${destination}`}
+        );
+        return subject.asObservable();
+      }),
+    ).subscribe();
     return subject.asObservable();
   }
 
