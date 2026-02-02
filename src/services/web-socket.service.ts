@@ -12,7 +12,7 @@ type MessageSubject = {
 })
 export class WebSocketService {
   protected connected: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  private client: Client;
+  private readonly client: Client;
   private messageSubject: MessageSubject = {};
 
   constructor(private readonly accessTokenStorage: LocalAccessStorageService) {
