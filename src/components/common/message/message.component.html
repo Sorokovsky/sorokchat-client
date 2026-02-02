@@ -9,7 +9,7 @@
       <span>{{ chatMessage.suggested ? "✔️" : "❌" }}</span>
     </div>
     <div class="message__bottom">
-      <data value="">{{ chatMessage.updatedAt.toLocaleTimeString() }}</data>
+      <data value="">{{ formattedDate() }}</data>
     </div>
   </div>
 </li>

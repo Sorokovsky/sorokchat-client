@@ -29,7 +29,7 @@ export class ChatSendMessageComponent {
   protected sendMessage(): void {
     if (this.formGroup.valid) {
       const newMessage: Message = this.formGroup.value;
-      this.messagesService.sendMessage(newMessage, this.chat().id, this.profile.data()!.id);
+      this.messagesService.sendMessage(newMessage, this.chat().id);
       this.formGroup.reset();
     } else {
       this.formGroup.markAllAsTouched();

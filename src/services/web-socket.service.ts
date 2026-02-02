@@ -4,17 +4,12 @@ import {BehaviorSubject, filter, first, Observable, Subject, switchMap} from 'rx
 import {LocalAccessStorageService} from '@/services/local-access-storage.service';
 import SockJS from 'sockjs-client';
 
-type MessageSubject = {
-  [topic: string]: Subject<any>;
-}
-
 @Injectable({
   providedIn: 'root',
 })
 export class WebSocketService {
   protected connected: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private readonly client: Client;
-  private messageSubject: MessageSubject = {};
 
   constructor(private readonly accessTokenStorage: LocalAccessStorageService) {
     this.client = new Client({
@@ -96,7 +91,7 @@ export class WebSocketService {
   public send<T>(destination: string, payload: T): void {
     if (this.client && this.client.connected) {
       this.client.publish({
-        destination: `/app${destination}`,
+        destination: destination,
         body: JSON.stringify(payload),
       })
     }
