@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Client, IFrame, IMessage} from '@stomp/stompjs';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {LocalAccessStorageService} from '@/services/local-access-storage.service';
+import SockJS from 'sockjs-client';
 
 type MessageSubject = {
   [topic: string]: Subject<any>;
@@ -20,6 +21,9 @@ export class WebSocketService {
       brokerURL: 'ws://localhost:8080/ws',
       connectHeaders: {
         Authorization: 'Bearer ' + this.accessTokenStorage.getAccessKey() || ""
+      },
+      webSocketFactory(): WebSocket {
+        return new SockJS("http://localhost:8080/ws");
       },
       debug(message: string): void {
         console.log(message);
