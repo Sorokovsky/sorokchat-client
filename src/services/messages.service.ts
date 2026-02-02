@@ -4,6 +4,7 @@ import {NewMessage} from '@/contracts/new-message.contract';
 import {AesCryptoService} from '@/services/aes-crypto.service';
 import {HmacSigningService} from '@/services/hmac-signing.service';
 import {ZodSafeParseResult} from 'zod';
+import {WebSocketService} from '@/services/web-socket.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +19,10 @@ export class MessagesService {
   constructor(
     private readonly cryptoService: AesCryptoService,
     private readonly signingService: HmacSigningService,
+    private readonly webSocketService: WebSocketService,
   ) {
     this.loadFromLocalStorage();
+    this.webSocketService.connect();
   }
 
   public sendMessage(newMessage: NewMessage, chatId: number, authorId: number): void {

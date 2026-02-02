@@ -10,5 +10,10 @@
 </head>
 <body>
 <app-main-layout></app-main-layout>
+<script>
+  if (typeof global === 'undefined') {
+    window.global = window;
+  }
+</script>
 </body>
 </html>
