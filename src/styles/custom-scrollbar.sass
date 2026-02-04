@@ -1,0 +1,26 @@
+@import "variables.sass"
+
+$scrollbar-thumb: #888
+$scrollbar-track: $primary-background-color
+
+@mixin custom-scrollbar
+  // Для Firefox (стандарт)
+  *
+    scrollbar-width: thin
+    scrollbar-color: $scrollbar-thumb $scrollbar-track
+
+  // Для Chrome, Edge та Safari
+  &::-webkit-scrollbar
+    width: 8px
+    height: 8px
+
+  &::-webkit-scrollbar-track
+    background: $scrollbar-track
+
+  &::-webkit-scrollbar-thumb
+    background: $scrollbar-thumb
+    border-radius: 10px
+    border: 2px solid $scrollbar-track
+
+  &::-webkit-scrollbar-thumb:hover
+    background: #555

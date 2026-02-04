@@ -1,4 +1,5 @@
 @import "../../../styles/variables.sass"
+@import "../../../styles/custom-scrollbar.sass"
 :host
   display: contents
 
@@ -7,3 +8,4 @@
   height: 100%
   overflow-y: scroll
   flex: 0 0 300rem
+  @include custom-scrollbar()
