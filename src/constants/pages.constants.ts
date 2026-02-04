@@ -1,8 +1,4 @@
-import {LoginPage} from '@/components/pages/login/login.page';
-import {Type} from '@angular/core';
-import {LogoutPage} from '@/components/pages/logout/logout.page';
-import {RegisterPage} from '@/components/pages/register/register.page';
-import {ChatPage} from '@/components/pages/chat/chat.page';
+import {type Type} from '@angular/core';
 
 export const AccessRule = {
   SECURED: "SECURED",
@@ -19,38 +15,4 @@ export type Page = {
   accessRule: AccessRule;
 };
 
-export const REGISTER_PAGE: Page = {
-  title: "Реєстрація",
-  path: "register",
-  accessRule: AccessRule.ANONYMOUS,
-  component: RegisterPage
-};
-
-export const LOGIN_PAGE: Page = {
-  title: "Вхід",
-  path: "login",
-  component: LoginPage,
-  accessRule: AccessRule.ANONYMOUS
-};
-
-export const LOGOUT_PAGE: Page = {
-  title: "Вихід",
-  path: "logout",
-  component: LogoutPage,
-  accessRule: AccessRule.SECURED
-};
-
-export const NON_CHAT_PAGE: Page = {
-  title: "Чат",
-  path: "chat",
-  component: ChatPage,
-  accessRule: AccessRule.SECURED
-}
-
-export const CHAT_PAGE: Page = {
-  ...NON_CHAT_PAGE,
-  path: `${NON_CHAT_PAGE.path}/:chatId`
-}
-
-export const HEADER_PAGES: Page[] = [REGISTER_PAGE, LOGIN_PAGE, LOGOUT_PAGE];
-export const ALL_PAGES: Page[] = Array.from(new Set([...HEADER_PAGES, NON_CHAT_PAGE, CHAT_PAGE]));
+export const ALL_PAGES: Page[] = Array.from(new Set([]));

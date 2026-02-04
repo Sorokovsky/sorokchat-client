@@ -1,5 +1,11 @@
-import {HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest, HttpResponse} from '@angular/common/http';
-import {map, Observable} from 'rxjs';
+import {
+  type HttpEvent,
+  type HttpHandlerFn,
+  type HttpInterceptorFn,
+  type HttpRequest,
+  HttpResponse
+} from '@angular/common/http';
+import {map, type Observable} from 'rxjs';
 import {LocalAccessStorageService} from '@/services/local-access-storage.service';
 import {inject} from '@angular/core';
 import {RemoteAccessTokenService} from '@/services/remote-access-token.service';

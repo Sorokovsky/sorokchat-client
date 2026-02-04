@@ -1,5 +1,5 @@
-import {z as zod, ZodSafeParseResult} from 'zod';
-import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
+import {z as zod, type ZodSafeParseResult} from 'zod';
+import {type AbstractControl, type ValidationErrors, type ValidatorFn} from '@angular/forms';
 
 export function zodValidator(schema: zod.Schema): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {

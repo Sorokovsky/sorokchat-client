@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpHeaders as Headers, HttpRequest, HttpResponse} from '@angular/common/http';
+import {HttpHeaders as Headers, type HttpRequest, type HttpResponse} from '@angular/common/http';
 import {HttpHeaders} from '@/constants/http-headers.constants'
 import {Prefixes} from '@/constants/prefixes.constants';
 

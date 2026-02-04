@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Chat} from '@/contracts/chat.contract';
+import {type Chat} from '@/contracts/chat.contract';
 import {lastValueFrom} from 'rxjs';
 import {ENDPOINTS} from '@/constants/endpoints.constants';
 

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {SigningService} from '@/services/signing.service';
+import {type SigningService} from '@/services/signing.service';
 import {HmacSHA256} from "crypto-js";
 
 @Injectable({

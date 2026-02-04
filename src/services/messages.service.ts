@@ -1,13 +1,13 @@
-import {Injectable, Signal, signal, WritableSignal} from '@angular/core';
-import {Message, MessageSchema} from '@/contracts/message.contract';
-import {NewMessage} from '@/contracts/new-message.contract';
+import {Injectable, type Signal, signal, type WritableSignal} from '@angular/core';
+import {type Message, MessageSchema} from '@/contracts/message.contract';
+import {type NewMessage} from '@/contracts/new-message.contract';
 import {AesCryptoService} from '@/services/aes-crypto.service';
 import {HmacSigningService} from '@/services/hmac-signing.service';
-import {ZodSafeParseResult} from 'zod';
+import {type ZodSafeParseResult} from 'zod';
 import {WebSocketService} from '@/services/web-socket.service';
-import {SendMessage} from '@/contracts/send-message.contract';
-import {GetChatsByMe, injectGetChatsByMe} from '@/injections/get-chats-by-me.query';
-import {Chat} from '@/contracts/chat.contract';
+import {type SendMessage} from '@/contracts/send-message.contract';
+import {type GetChatsByMe, injectGetChatsByMe} from '@/injections/get-chats-by-me.query';
+import {type Chat} from '@/contracts/chat.contract';
 
 @Injectable({
   providedIn: 'root',

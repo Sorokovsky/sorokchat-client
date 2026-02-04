@@ -1,6 +1,12 @@
-import {HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest} from '@angular/common/http';
-import {catchError, Observable, throwError} from 'rxjs';
-import {ProblemDetail} from '@/contracts/problem-detail.contract';
+import {
+  HttpErrorResponse,
+  type HttpEvent,
+  type HttpHandlerFn,
+  type HttpInterceptorFn,
+  type HttpRequest
+} from '@angular/common/http';
+import {catchError, type Observable, throwError} from 'rxjs';
+import {type ProblemDetail} from '@/contracts/problem-detail.contract';
 
 export const apiErrorInterceptor: HttpInterceptorFn = (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
   return next(request)

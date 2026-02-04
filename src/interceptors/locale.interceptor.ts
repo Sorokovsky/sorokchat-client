@@ -1,5 +1,5 @@
-import {HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {type HttpEvent, type HttpHandlerFn, type HttpInterceptorFn, type HttpRequest} from '@angular/common/http';
+import {type Observable} from 'rxjs';
 import {inject, LOCALE_ID} from '@angular/core';
 import {HttpHeaders} from '@/constants/http-headers.constants';
 

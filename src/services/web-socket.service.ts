@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Client, IFrame, IMessage} from '@stomp/stompjs';
-import {BehaviorSubject, filter, first, Observable, Subject, switchMap} from 'rxjs';
+import {Client, type IFrame, type IMessage} from '@stomp/stompjs';
+import {BehaviorSubject, filter, first, type Observable, Subject, switchMap} from 'rxjs';
 import {LocalAccessStorageService} from '@/services/local-access-storage.service';
 import SockJS from 'sockjs-client';
 

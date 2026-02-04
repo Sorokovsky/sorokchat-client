@@ -1,5 +1,5 @@
-import {AccessRule, Page} from '@/constants/pages.constants';
-import {User} from '@/contracts/user.contrcact';
+import {AccessRule, type Page} from '@/constants/pages.constants';
+import {type User} from '@/contracts/user.contrcact';
 
 export function hasAccess(page: Page, user: User | undefined): boolean {
   const isAuthenticated: boolean = user !== undefined;

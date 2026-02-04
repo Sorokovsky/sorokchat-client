@@ -1,7 +1,7 @@
 import {AuthorizationService} from '@/services/authorization.service';
 import {inject} from '@angular/core';
 import {QueryKeys} from '@/constants/query-keys.constants';
-import {BaseMutation, injectBaseMutation} from '@/injections/base-mutation.injection';
+import {type BaseMutation, injectBaseMutation} from '@/injections/base-mutation.injection';
 
 export type LogoutMutation = BaseMutation<void, void>;
 

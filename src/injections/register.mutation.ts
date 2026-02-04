@@ -1,9 +1,9 @@
 import {inject} from '@angular/core';
 import {AuthorizationService} from '@/services/authorization.service';
-import {RegisterPayload} from '@/contracts/register-payload.contract';
-import {User} from '@/contracts/user.contrcact';
+import {type RegisterPayload} from '@/contracts/register-payload.contract';
+import {type User} from '@/contracts/user.contrcact';
 import {QueryKeys} from '@/constants/query-keys.constants';
-import {BaseMutation, injectBaseMutation} from '@/injections/base-mutation.injection';
+import {type BaseMutation, injectBaseMutation} from '@/injections/base-mutation.injection';
 
 export type RegisterMutation = BaseMutation<RegisterPayload, User>;
 

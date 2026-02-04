@@ -1,6 +1,11 @@
 import {inject} from "@angular/core";
-import {CreateMutationResult, injectMutation, mutationOptions, QueryClient} from '@tanstack/angular-query-experimental';
-import {ProblemDetail} from '@/contracts/problem-detail.contract';
+import {
+  type CreateMutationResult,
+  injectMutation,
+  mutationOptions,
+  QueryClient
+} from '@tanstack/angular-query-experimental';
+import {type ProblemDetail} from '@/contracts/problem-detail.contract';
 import {ToastrService} from "ngx-toastr";
 
 export type BaseMutation<TInput, TOutput> = CreateMutationResult<TOutput, ProblemDetail, TInput, TOutput>;

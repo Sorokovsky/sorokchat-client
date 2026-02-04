@@ -1,5 +1,5 @@
-import {computed, Signal} from '@angular/core';
-import {injectProfileQuery, ProfileQuery} from '@/injections/profile.query';
+import {computed, type Signal} from '@angular/core';
+import {injectProfileQuery, type ProfileQuery} from '@/injections/profile.query';
 
 export function injectIsAuthenticated(): Signal<boolean> {
   const profile: ProfileQuery = injectProfileQuery();

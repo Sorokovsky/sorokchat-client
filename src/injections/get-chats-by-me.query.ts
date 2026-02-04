@@ -1,6 +1,6 @@
-import {BaseQuery, injectBaseQuery} from '@/injections/base-query.injection';
+import {type BaseQuery, injectBaseQuery} from '@/injections/base-query.injection';
 import {QueryKeys} from '@/constants/query-keys.constants';
-import {Chat} from '@/contracts/chat.contract';
+import {type Chat} from '@/contracts/chat.contract';
 import {ChatsService} from '@/services/chats.service';
 import {inject} from '@angular/core';
 

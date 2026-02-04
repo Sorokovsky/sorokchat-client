@@ -1,5 +1,5 @@
-import {CreateQueryResult, injectQuery, queryOptions} from '@tanstack/angular-query-experimental';
-import {ProblemDetail} from '@/contracts/problem-detail.contract';
+import {type CreateQueryResult, injectQuery, queryOptions} from '@tanstack/angular-query-experimental';
+import {type ProblemDetail} from '@/contracts/problem-detail.contract';
 
 export type BaseQuery<T> = CreateQueryResult<T, ProblemDetail>;
 

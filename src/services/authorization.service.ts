@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {RegisterPayload} from '@/contracts/register-payload.contract';
+import {type RegisterPayload} from '@/contracts/register-payload.contract';
 import {lastValueFrom} from 'rxjs';
 import {ENDPOINTS} from '@/constants/endpoints.constants';
-import {User} from '@/contracts/user.contrcact';
-import {LoginPayload} from '@/contracts/login-payload';
+import {type User} from '@/contracts/user.contrcact';
+import {type LoginPayload} from '@/contracts/login-payload';
 import {LocalAccessStorageService} from '@/services/local-access-storage.service';
 
 @Injectable({
