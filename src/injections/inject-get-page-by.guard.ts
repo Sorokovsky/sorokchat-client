@@ -1,4 +1,4 @@
-import {type Page} from '@/constants/pages.constants';
+import {type Page} from '@/types';
 import {injectProfileQuery, type ProfileQuery} from '@/injections/profile.query';
 import {hasAccess} from '@/utils/has-access.util';
 import {computed, type Signal} from '@angular/core';
