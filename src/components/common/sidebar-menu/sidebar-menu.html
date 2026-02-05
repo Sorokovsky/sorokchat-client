@@ -1,0 +1,14 @@
+<nav class="sidebar__menu">
+  <ul>
+    @for (item of menu(); track item.path) {
+      <li>
+        <a [class]="`${isActive(item) && '_active'}`" [routerLink]="item.path">
+          <lucide-icon
+            [img]="item.icon"
+            class="sidebar__icon"
+          ></lucide-icon>
+        </a>
+      </li>
+    }
+  </ul>
+</nav>
