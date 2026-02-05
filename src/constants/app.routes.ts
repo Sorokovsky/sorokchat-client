@@ -12,11 +12,11 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayout,
-    children: [CHAT_PAGE, CHATS_PAGE]
+    children: [CHAT_PAGE, CHATS_PAGE],
   },
   {
     path: '',
     component: AuthorizationLayout,
-    children: [REGISTER_PAGE, LOGIN_PAGE]
+    children: [REGISTER_PAGE, LOGIN_PAGE],
   }
 ];
