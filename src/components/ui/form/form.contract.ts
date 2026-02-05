@@ -1,4 +1,5 @@
 import {type InputType} from '@/components/ui/form/input-type.contract';
+import {type AutoComplete} from '@/components/ui/form/autocomplete.contract';
 
 export type Field = {
   name: string;
@@ -6,4 +7,5 @@ export type Field = {
   type: InputType;
   label: string;
   placeholder?: string;
+  autocomplete: AutoComplete
 };

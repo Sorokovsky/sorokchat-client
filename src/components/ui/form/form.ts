@@ -21,6 +21,7 @@ export class Form {
   public submitText: InputSignal<string> = input.required<string>();
   public schema: InputSignal<zod.Schema> = input.required<zod.Schema>();
   public onSubmit: OutputEmitterRef<unknown> = output<unknown>();
+  public isDisabled: InputSignal<boolean> = input<boolean>(false);
   protected readonly form: Signal<FormGroup> = computed((): FormGroup => {
     return this.formBuilder.group(this.collectControls(), {validators: [zodValidator(this.schema())]});
   });
