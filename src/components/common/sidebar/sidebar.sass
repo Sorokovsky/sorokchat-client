@@ -1,5 +1,6 @@
 @use "variables" as *
 @use "custom-scrollbar" as *
+@use "border" as *
 
 :host
   display: contents
@@ -10,3 +11,4 @@
   overflow-y: scroll
   flex: 0 0 400rem
   @include custom-scrollbar()
+  @include border()
