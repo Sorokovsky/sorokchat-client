@@ -1,3 +1,27 @@
-<form>
-
+@let currentForm = form();
+<form
+  (ngSubmit)="onSend()"
+  [formGroup]="currentForm"
+  class="form"
+>
+  <h1 class="form__title">{{ title() }}</h1>
+  <div class="form__fields">
+    @for (field of fields(); track field.name) {
+      <div class="form__field">
+        <label [for]="field.name" class="form__label">{{ field.label }}</label>
+        <input
+          [defaultValue]="field.defaultValue || ''"
+          [formControlName]="field.name"
+          [name]="field.name"
+          [placeholder]="field.placeholder || ''"
+          [type]="field.type"
+        />
+        <div class="form__errors">
+          @for (error of getErrors(field.name); track error) {
+            <span class="form__error">{{ error }}</span>
+          }
+        </div>
+      </div>
+    }
+  </div>
 </form>

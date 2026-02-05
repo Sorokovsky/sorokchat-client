@@ -1,14 +1,17 @@
 import {Component, computed, input, type InputSignal, output, type OutputEmitterRef, type Signal} from '@angular/core';
 import {type Field} from '@/components/ui/form/form.contract';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors} from '@angular/forms';
 import {z as zod} from "zod";
 import {zodValidator} from '@/validators/zod.validator';
 
-type Controlls = Record<string, string[]>;
+type Controls = Record<string, string[]>;
 
 @Component({
   selector: 'app-form',
-  imports: [],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule
+  ],
   templateUrl: './form.html',
   styleUrl: './form.sass',
 })
@@ -18,14 +21,14 @@ export class Form {
   public submitText: InputSignal<string> = input.required<string>();
   public schema: InputSignal<zod.Schema> = input.required<zod.Schema>();
   public onSubmit: OutputEmitterRef<unknown> = output<unknown>();
-  private readonly form: Signal<FormGroup> = computed((): FormGroup => {
+  protected readonly form: Signal<FormGroup> = computed((): FormGroup => {
     return this.formBuilder.group(this.collectControls(), {validators: [zodValidator(this.schema())]});
   });
 
   constructor(private readonly formBuilder: FormBuilder) {
   }
 
-  private onSend(): void {
+  protected onSend(): void {
     const formGroup: FormGroup = this.form();
     formGroup.markAllAsTouched();
     if (formGroup.valid) {
@@ -33,8 +36,14 @@ export class Form {
     }
   }
 
-  private collectControls(): Controlls {
-    const controls: Controlls = {};
+  protected getErrors(name: string): string[] {
+    const errors: ValidationErrors | null = this.form().errors;
+    if (errors === null) return [];
+    return [errors[name]];
+  }
+
+  private collectControls(): Controls {
+    const controls: Controls = {};
     for (const field of this.fields()) {
       controls[field.name] = [field.defaultValue || ""];
     }
