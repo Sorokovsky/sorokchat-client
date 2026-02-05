@@ -1,6 +1,6 @@
-const API_URL: string = "/";
+const API_URL: string = "/api";
 
-const AUTHORIZATION_PATH: string = `/${API_URL}/authorization`;
+const AUTHORIZATION_PATH: string = `${API_URL}/authorization`;
 
 const CHATS_PATH: string = `${API_URL}/chats`;
 

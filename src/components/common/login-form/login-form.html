@@ -3,4 +3,6 @@
   [schema]="schema"
   [submitText]="submitText"
   [title]="title"
+  (onSubmit)="login($event)"
+  [isDisabled]="loginMutation.isPending()"
 />

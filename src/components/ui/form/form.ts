@@ -20,7 +20,7 @@ export class Form {
   public title: InputSignal<string> = input.required<string>();
   public submitText: InputSignal<string> = input.required<string>();
   public schema: InputSignal<zod.Schema> = input.required<zod.Schema>();
-  public onSubmit: OutputEmitterRef<unknown> = output<unknown>();
+  public onSubmit: OutputEmitterRef<any> = output<any>();
   public isDisabled: InputSignal<boolean> = input<boolean>(false);
   protected readonly form: Signal<FormGroup> = computed((): FormGroup => {
     return this.formBuilder.group(this.collectControls(), {validators: [zodValidator(this.schema())]});
@@ -33,7 +33,7 @@ export class Form {
     const formGroup: FormGroup = this.form();
     formGroup.markAllAsTouched();
     if (formGroup.valid) {
-      this.onSubmit.emit(formGroup);
+      this.onSubmit.emit(formGroup.value);
     }
   }
 
