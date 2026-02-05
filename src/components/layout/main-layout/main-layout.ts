@@ -1,8 +1,5 @@
-import {Component, type Signal} from '@angular/core';
+import {Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import {injectAuthenticationGuard} from '@/injections/authentication.guard';
-import {injectProfileQuery, type ProfileQuery} from '@/injections/profile.query';
-import {injectIsAuthenticated} from '@/injections/is-authenticated.injection';
 import {Sidebar} from '@/components/common/sidebar/sidebar';
 
 @Component({
@@ -15,10 +12,4 @@ import {Sidebar} from '@/components/common/sidebar/sidebar';
   styleUrl: './main-layout.sass',
 })
 export class MainLayout {
-  protected readonly profile: ProfileQuery = injectProfileQuery();
-  protected readonly isAuthenticated: Signal<boolean> = injectIsAuthenticated();
-
-  constructor() {
-    injectAuthenticationGuard();
-  }
 }
