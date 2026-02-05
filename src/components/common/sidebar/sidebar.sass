@@ -1,5 +1,6 @@
-@import "../../../styles/variables.sass"
-@import "../../../styles/custom-scrollbar.sass"
+@use "variables" as *
+@use "custom-scrollbar" as *
+
 :host
   display: contents
 
@@ -7,5 +8,5 @@
   background-color: $sidebar-background-color
   height: 100%
   overflow-y: scroll
-  flex: 0 0 300rem
+  flex: 0 0 400rem
   @include custom-scrollbar()
