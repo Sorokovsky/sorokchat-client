@@ -8,6 +8,7 @@ import {toSignal} from '@angular/core/rxjs-interop';
 import {hasAccess} from '@/utils/has-access.util';
 import {type Page} from '@/types';
 import {getDefaultPageByAccess} from '@/utils/get-default-page-by-access';
+import {removeDynamicRoute} from '@/utils/replace-dynamic-route.util';
 
 export function injectAuthenticationGuard(): EffectRef {
   const router: Router = inject(Router);
@@ -25,7 +26,8 @@ export function injectAuthenticationGuard(): EffectRef {
     const currentUrl: string = urlSignal();
     const user: User | undefined = profile.data();
     const currentPath: string = currentUrl.replace(/^\//, "");
-    const page: Page | undefined = ALL_PAGES.find((page: Page): boolean => page.path === currentPath);
+    const page: Page | undefined = ALL_PAGES
+      .find((page: Page): boolean => currentPath.includes(removeDynamicRoute(page.path)));
     if (page === undefined) return;
     const haveAccess: boolean = hasAccess(page, user);
     if (haveAccess) return;

@@ -4,6 +4,7 @@ import {NavigationEnd, Router, RouterLink} from '@angular/router';
 import {type Page} from '@/types';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {filter, map} from 'rxjs';
+import {removeDynamicRoute} from '@/utils/replace-dynamic-route.util';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -31,6 +32,10 @@ export class SidebarMenu {
   public isActive(page: Page): boolean {
     const currentUrl: string = this.url();
     const currentPath: string = currentUrl.replace(/^\//, "");
-    return page.path === currentPath;
+    return removeDynamicRoute(page.path) === currentPath;
+  }
+
+  public getPath(page: Page): string {
+    return removeDynamicRoute(page.path);
   }
 }
