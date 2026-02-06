@@ -1,0 +1,12 @@
+@let chat = currentChat();
+<div class="chat-head">
+  <div class="chat-head__preview">
+    <app-avatar [alt]="chat.description" [value]="chat.name[0]" type="named"/>
+    <span class="chat-head__name">{{ chat.name }}</span>
+  </div>
+  <div class="chat-head__actions">
+    <button class="chat-head__action" type="button">
+      <lucide-icon [img]="infoIcon"/>
+    </button>
+  </div>
+</div>

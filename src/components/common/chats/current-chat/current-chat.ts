@@ -1,0 +1,15 @@
+import {Component, input, type InputSignal} from '@angular/core';
+import {type Chat} from '@/contracts/chats/chat.contract';
+import {ChatHead} from '@/components/common/chats/chat-head/chat-head';
+
+@Component({
+  selector: 'app-current-chat',
+  imports: [
+    ChatHead
+  ],
+  templateUrl: './current-chat.html',
+  styleUrl: './current-chat.sass',
+})
+export class CurrentChat {
+  public readonly currentChat: InputSignal<Chat> = input.required<Chat>();
+}

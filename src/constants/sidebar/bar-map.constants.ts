@@ -1,9 +1,9 @@
 import {type Type} from '@angular/core';
 import {removeDynamicRoute} from "@/utils/replace-dynamic-route.util";
 import {CHATS_PAGE, FRIENDS_PAGE, SETTINGS_PAGE} from '@/constants/routing/pages.constants';
-import {ChatsBar} from '@/components/common/chats/chats-bar/chats-bar';
-import {FriendsBar} from '@/components/common/friends/friends-bar/friends-bar';
-import {SettingsBar} from '@/components/common/settings/settings-bar/settings-bar';
+import {ChatsBar} from '@/components/layout/sidebar/chats/chats-bar/chats-bar';
+import {FriendsBar} from '@/components/layout/sidebar/friends/friends-bar/friends-bar';
+import {SettingsBar} from '@/components/layout/sidebar/settings/settings-bar/settings-bar';
 
 export const SIDEBAR_BAR_MAP: Record<string, Type<unknown>> = {
   [removeDynamicRoute(CHATS_PAGE.path)]: ChatsBar,
