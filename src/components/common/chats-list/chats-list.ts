@@ -4,6 +4,8 @@ import {RouterLink} from '@angular/router';
 import {removeDynamicRoute} from '@/utils/replace-dynamic-route.util';
 import {CHATS_PAGE} from '@/constants/pages.constants';
 import {Avatar} from '@/components/ui/avatar/avatar';
+import {cutText} from '@/utils/cut-text.util';
+import {MAX_DESCRIPTION_LENGTH} from '@/constants/chats.constants';
 
 @Component({
   selector: 'app-chats-list',
@@ -20,5 +22,9 @@ export class ChatsList {
 
   protected getChatLink(chat: Chat): string {
     return `${this.rootPath}/${chat.id}`;
+  }
+
+  protected getChatDescription(chat: Chat): string {
+    return cutText(chat.description, MAX_DESCRIPTION_LENGTH);
   }
 }
