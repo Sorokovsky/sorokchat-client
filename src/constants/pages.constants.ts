@@ -23,7 +23,7 @@ export const LOGIN_PAGE: Page = {
 export const CHATS_PAGE: Page = {
   title: "Чати",
   accessRule: AccessRule.SECURED,
-  path: "chats/:chatId?",
+  path: "chats/:chatId",
   component: ChatsPage,
   icon: MessageSquare
 };
@@ -31,7 +31,7 @@ export const CHATS_PAGE: Page = {
 export const SETTINGS_PAGE: Page = {
   title: "Налаштування",
   accessRule: AccessRule.SECURED,
-  path: "settings/:settingId?",
+  path: "settings/:settingId",
   component: SettingsPage,
   icon: Settings
 };
@@ -39,7 +39,7 @@ export const SETTINGS_PAGE: Page = {
 export const FRIENDS_PAGE: Page = {
   title: "Друзі",
   accessRule: AccessRule.SECURED,
-  path: "friends/:friendId?",
+  path: "friends/:friendId",
   component: FriendsPage,
   icon: HandshakeIcon
 };
