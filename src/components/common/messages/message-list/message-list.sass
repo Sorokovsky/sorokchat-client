@@ -1,7 +1,11 @@
+@use "custom-scrollbar" as *
 :host
   display: contents
 
 .message-list
+  overflow-y: scroll
+  @include custom-scrollbar()
+  padding-right: 15rem
   ul
     display: flex
     flex-direction: column

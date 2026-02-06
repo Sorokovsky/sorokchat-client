@@ -1,14 +1,14 @@
 @use "variables" as *
 
 $scrollbar-thumb: #888
-$scrollbar-track: $primary-background-color
+$scrollbar-track: $icon-hover-color
 
 @mixin custom-scrollbar
   *
     scrollbar-width: thin
     scrollbar-color: $scrollbar-thumb $scrollbar-track
   &::-webkit-scrollbar
-    width: 1rem
+    width: 5rem
     height: 1rem
 
   &::-webkit-scrollbar-track
@@ -16,8 +16,8 @@ $scrollbar-track: $primary-background-color
 
   &::-webkit-scrollbar-thumb
     background: $scrollbar-thumb
-    border-radius: 10px
-    border: 2px solid $scrollbar-track
+    border-radius: 10rem
+    border: 1rem solid $scrollbar-track
 
   &::-webkit-scrollbar-thumb:hover
     background: #555
