@@ -1,1 +1,6 @@
-<p>{{ chatId() }}</p>
+@let chat = currentChat();
+@if (chat === null) {
+  <app-no-chat/>
+} @else {
+  {{ chat.id }}
+}
