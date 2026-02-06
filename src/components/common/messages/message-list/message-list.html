@@ -1,7 +1,7 @@
 @let chatMessages = messages();
 <div class="message-list">
   <ul>
-    @for (message of chatMessages; track message.mac) {
+    @for (message of chatMessages; track message.text) {
       <app-message-item [currentMessage]="message"/>
     }
   </ul>

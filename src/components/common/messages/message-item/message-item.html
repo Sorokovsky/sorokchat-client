@@ -1,1 +1,10 @@
-<p>message-item works!</p>
+@let message = currentMessage();
+<li [class]="`message${isMe() ? ' _me' : ''}`">
+  <div class="message__author">
+    <app-avatar [alt]="authorInitials()" [value]="authorInitials()" type="named"/>
+  </div>
+  <div class="message__details">
+    <span class="message__text">{{ message.text }}</span>
+    <time [attr.datetime]="message.updatedAt.toISOString()" class="message__time">{{ formattedDate() }}</time>
+  </div>
+</li>

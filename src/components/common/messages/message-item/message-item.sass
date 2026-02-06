@@ -1,0 +1,27 @@
+@use "variables" as *
+:host
+  display: contents
+
+.message
+  display: flex
+  align-items: center
+  gap: 15rem
+
+  &._me
+    align-self: flex-end
+    flex-direction: row-reverse
+
+  &__details
+    display: flex
+    flex-direction: column
+    gap: 8rem
+    background-color: $sidebar-background-color
+    padding: 10rem 15rem
+    border-radius: 10rem
+
+  &__text
+    font-size: 20rem
+
+  &__time
+    font-size: 14rem
+    color: $icon-color
