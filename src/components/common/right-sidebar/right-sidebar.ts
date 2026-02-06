@@ -19,17 +19,14 @@ export class RightSidebar {
   private readonly currentPathSegment: Signal<string> = toSignal(
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      map((): string => {
-        const url: string = this.router.url;
-        const segments: string[] = url.split("/").filter(Boolean);
-        return segments[segments.length - 1] || "default";
-      })
+      map((): string => this.router.url)
     ),
     {initialValue: "default"}
   );
 
   protected readonly barComponent: Signal<Type<unknown>> = computed((): Type<unknown> => {
-    const key: string = this.currentPathSegment();
+    const path: string = this.currentPathSegment();
+    const key: string = path.split('/').filter(Boolean)[0];
     return this.mappings[key];
   });
 }

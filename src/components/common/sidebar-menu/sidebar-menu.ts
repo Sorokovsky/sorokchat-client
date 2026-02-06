@@ -32,7 +32,7 @@ export class SidebarMenu {
   public isActive(page: Page): boolean {
     const currentUrl: string = this.url();
     const currentPath: string = currentUrl.replace(/^\//, "");
-    return removeDynamicRoute(page.path) === currentPath;
+    return currentPath.includes(removeDynamicRoute(page.path));
   }
 
   public getPath(page: Page): string {
