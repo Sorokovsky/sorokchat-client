@@ -1,10 +1,9 @@
 import {Component, input, type InputSignal, type Signal} from '@angular/core';
 import {LucideAngularModule} from "lucide-angular";
-import {NavigationEnd, Router, RouterLink} from '@angular/router';
+import {RouterLink} from '@angular/router';
 import {type Page} from '@/types';
-import {toSignal} from '@angular/core/rxjs-interop';
-import {filter, map} from 'rxjs';
 import {removeDynamicRoute} from '@/utils/replace-dynamic-route.util';
+import {injectCurrentPath} from '@/injections/current-path.injection';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -17,22 +16,10 @@ import {removeDynamicRoute} from '@/utils/replace-dynamic-route.util';
 })
 export class SidebarMenu {
   public readonly menu: InputSignal<Page[]> = input.required<Page[]>();
-  private readonly url: Signal<string>;
-
-  constructor(private readonly router: Router) {
-    this.url = toSignal(
-      this.router.events.pipe(
-        filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-        map((): string => this.router.url)
-      ),
-      {initialValue: router.url}
-    );
-  }
+  private readonly path: Signal<string> = injectCurrentPath();
 
   public isActive(page: Page): boolean {
-    const currentUrl: string = this.url();
-    const currentPath: string = currentUrl.replace(/^\//, "");
-    return currentPath.includes(removeDynamicRoute(page.path));
+    return this.path().includes(removeDynamicRoute(page.path));
   }
 
   public getPath(page: Page): string {

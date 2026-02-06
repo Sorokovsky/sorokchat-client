@@ -1,25 +1,18 @@
-import {NavigationEnd, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {effect, type EffectRef, inject, type Signal} from '@angular/core';
 import {type User} from '@/contracts/user.contrcact';
 import {injectProfileQuery, type ProfileQuery} from '@/injections/profile.query';
 import {ALL_PAGES} from '@/constants/pages.constants';
-import {filter, map} from 'rxjs';
-import {toSignal} from '@angular/core/rxjs-interop';
 import {hasAccess} from '@/utils/has-access.util';
 import {type Page} from '@/types';
 import {getDefaultPageByAccess} from '@/utils/get-default-page-by-access';
 import {removeDynamicRoute} from '@/utils/replace-dynamic-route.util';
+import {injectCurrentPath} from '@/injections/current-path.injection';
 
 export function injectAuthenticationGuard(): EffectRef {
   const router: Router = inject(Router);
   const profile: ProfileQuery = injectProfileQuery();
-  const urlSignal: Signal<string> = toSignal(
-    router.events.pipe(
-      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      map((): string => router.url)
-    ),
-    {initialValue: router.url}
-  );
+  const urlSignal: Signal<string> = injectCurrentPath();
 
   return effect((): void => {
     if (profile.isLoading()) return;
