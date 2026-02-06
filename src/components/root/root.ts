@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import {injectAuthenticationGuard} from '@/injections/authentication.guard';
+import {injectAuthenticationGuard} from '@/injections/authorization/authentication.guard';
 
 @Component({
   selector: 'app-root',

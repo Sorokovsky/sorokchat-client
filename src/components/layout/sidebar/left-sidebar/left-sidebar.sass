@@ -1,0 +1,12 @@
+@use "../../../../styles/border" as *
+:host
+  display: contents
+
+.sidebar
+  &__left
+    @include border()
+    flex: 0 0 80rem
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    gap: 30rem

@@ -1,0 +1,30 @@
+@use "../../../../styles/variables" as *
+:host
+  display: contents
+
+.chats
+  &__item
+    padding: 10rem
+    border-radius: 10rem
+    display: flex
+    align-items: center
+    gap: 5rem
+    justify-content: space-between
+    transition: .3s all ease
+
+    &:hover, &._active
+      background-color: $icon-hover-color
+
+
+  &__right
+    display: flex
+    flex-direction: column
+    gap: 2rem
+    align-items: flex-end
+
+  &__name
+    font-size: 20rem
+
+  &__description
+    font-size: 18rem
+    color: $icon-color

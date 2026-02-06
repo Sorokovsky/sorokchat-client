@@ -1,0 +1,25 @@
+import {Component, computed, input, type InputSignal, type Signal} from '@angular/core';
+import {Avatar} from "@/components/ui/avatar/avatar";
+import {type Chat} from '@/contracts/chats/chat.contract';
+import {RouterLink, RouterLinkActive} from '@angular/router';
+import {CHATS_PAGE} from '@/constants/routing/pages.constants';
+import {removeDynamicRoute} from '@/utils/replace-dynamic-route.util';
+import {cutText} from '@/utils/cut-text.util';
+import {MAX_DESCRIPTION_LENGTH} from '@/constants/chats/chats.constants';
+
+@Component({
+  selector: 'app-chat-card',
+  imports: [
+    Avatar,
+    RouterLink,
+    RouterLinkActive
+  ],
+  templateUrl: './chat-card.html',
+  styleUrl: './chat-card.sass',
+})
+export class ChatCard {
+  public readonly chat: InputSignal<Chat> = input.required<Chat>();
+  protected description: Signal<string> = computed((): string => cutText(this.chat().description, MAX_DESCRIPTION_LENGTH));
+  private readonly rootPath: string = removeDynamicRoute(CHATS_PAGE.path);
+  protected link: Signal<string> = computed((): string => `${this.rootPath}/${this.chat().id}`);
+}

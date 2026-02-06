@@ -1,5 +1,5 @@
 import {AccessRule, type Page} from '@/types';
-import {type User} from '@/contracts/user.contrcact';
+import {type User} from '@/contracts/user/user.contrcact';
 
 export function hasAccess(page: Page, user: User | undefined): boolean {
   const isAuthenticated: boolean = user !== undefined;

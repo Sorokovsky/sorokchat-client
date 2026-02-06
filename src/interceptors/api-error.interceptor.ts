@@ -6,7 +6,7 @@ import {
   type HttpRequest
 } from '@angular/common/http';
 import {catchError, type Observable, throwError} from 'rxjs';
-import {type ProblemDetail} from '@/contracts/problem-detail.contract';
+import {type ProblemDetail} from '@/contracts/utils/problem-detail.contract';
 
 export const apiErrorInterceptor: HttpInterceptorFn = (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
   return next(request)

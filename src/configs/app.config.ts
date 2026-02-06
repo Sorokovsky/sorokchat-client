@@ -2,7 +2,7 @@ import {type ApplicationConfig, LOCALE_ID, provideBrowserGlobalErrorListeners} f
 import {provideRouter} from '@angular/router';
 import {provideToastr} from "ngx-toastr";
 
-import {routes} from '@/constants/app.routes';
+import {routes} from '@/constants/routing/app.routes';
 import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import {authenticationInterceptor} from '@/interceptors/authentication.interceptor';
 import {provideTanStackQuery, QueryClient} from '@tanstack/angular-query-experimental';

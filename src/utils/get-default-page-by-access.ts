@@ -1,5 +1,5 @@
 import {type AccessRule, type AccessSettings, type Page} from '@/types';
-import {ACCESS_SETTINGS} from '@/constants/access-settings.constants';
+import {ACCESS_SETTINGS} from '@/constants/authorization/access-settings.constants';
 
 export function getDefaultPageByAccess(accessRule: AccessRule, settings: AccessSettings[] = ACCESS_SETTINGS): Page {
   const page: Page | undefined = settings
