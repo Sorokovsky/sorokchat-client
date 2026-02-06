@@ -1,0 +1,8 @@
+@let chatMessages = messages();
+<div class="message-list">
+  <ul>
+    @for (message of chatMessages; track message.mac) {
+      <app-message-item [currentMessage]="message"/>
+    }
+  </ul>
+</div>

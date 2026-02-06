@@ -1,0 +1,15 @@
+<div class="send-message">
+  <form
+    (ngSubmit)="onSend()"
+    [formGroup]="form"
+    class="send-message__form">
+    <input
+      class="send-message__input"
+      formControlName="text"
+      type="text"
+    >
+    <button class="send-message__button" type="submit">
+      <lucide-icon [img]="icon"/>
+    </button>
+  </form>
+</div>
