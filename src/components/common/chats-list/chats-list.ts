@@ -3,11 +3,13 @@ import {type Chat} from '@/contracts/chat.contract';
 import {RouterLink} from '@angular/router';
 import {removeDynamicRoute} from '@/utils/replace-dynamic-route.util';
 import {CHATS_PAGE} from '@/constants/pages.constants';
+import {Avatar} from '@/components/ui/avatar/avatar';
 
 @Component({
   selector: 'app-chats-list',
   imports: [
-    RouterLink
+    RouterLink,
+    Avatar
   ],
   templateUrl: './chats-list.html',
   styleUrl: './chats-list.sass',

@@ -1,0 +1,8 @@
+<span class="avatar">
+  @if (type() == 'named') {
+    <span>{{ value() }}</span>
+
+  } @else if (type() == 'image') {
+    <img [ngSrc]="value()" alt="" fill/>
+  }
+</span>

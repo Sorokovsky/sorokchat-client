@@ -3,7 +3,12 @@
     @for (chat of chats(); track chat.id) {
       <li>
         <a [routerLink]="getChatLink(chat)" class="chats__item">
-          {{ chat.name }}
+          <div class="chats__left">
+            <app-avatar [alt]="chat.name" [value]="chat.name[0]" type="named"/>
+          </div>
+          <div class="chats__right">
+            <span class="chats__name">{{ chat.name }}</span>
+          </div>
         </a>
       </li>
     }
