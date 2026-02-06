@@ -44,4 +44,4 @@ export const FRIENDS_PAGE: Page = {
   icon: HandshakeIcon
 };
 
-export const ALL_PAGES: Page[] = [LOGIN_PAGE, REGISTER_PAGE, CHATS_PAGE, SETTINGS_PAGE, FRIENDS_PAGE];
+export const ALL_PAGES = [LOGIN_PAGE, REGISTER_PAGE, CHATS_PAGE, SETTINGS_PAGE, FRIENDS_PAGE] as const;
