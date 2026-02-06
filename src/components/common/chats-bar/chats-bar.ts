@@ -1,11 +1,13 @@
 import {Component} from '@angular/core';
 import {ChatsList} from '@/components/common/chats-list/chats-list';
 import {type GetChatsByMe, injectGetChatsByMe} from '@/injections/get-chats-by-me.query';
+import {ChatsBarTop} from '@/components/common/chats-bar-top/chats-bar-top';
 
 @Component({
   selector: 'app-chats-bar',
   imports: [
-    ChatsList
+    ChatsList,
+    ChatsBarTop
   ],
   templateUrl: './chats-bar.html',
   styleUrl: './chats-bar.sass',
