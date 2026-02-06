@@ -1,0 +1,11 @@
+<div class="chats">
+  <ul class="chats__list">
+    @for (chat of chats(); track chat.id) {
+      <li>
+        <a [routerLink]="getChatLink(chat)" class="chats__item">
+          {{ chat.name }}
+        </a>
+      </li>
+    }
+  </ul>
+</div>
