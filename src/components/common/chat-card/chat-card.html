@@ -1,0 +1,17 @@
+@let currentChat = chat();
+<li>
+  <a
+    [routerLinkActiveOptions]="{exact: true}"
+    [routerLink]="link()"
+    class="chats__item"
+    routerLinkActive="_active"
+  >
+    <div class="chats__left">
+      <app-avatar [alt]="currentChat.name" [value]="currentChat.name[0]" type="named"/>
+    </div>
+    <div class="chats__right">
+      <span class="chats__name">{{ currentChat.name }}</span>
+      <span class="chats__description">{{ description() }}</span>
+    </div>
+  </a>
+</li>

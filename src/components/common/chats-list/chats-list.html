@@ -1,17 +1,7 @@
 <div class="chats">
   <ul class="chats__list">
     @for (chat of chats(); track chat.id) {
-      <li>
-        <a [routerLink]="getChatLink(chat)" class="chats__item">
-          <div class="chats__left">
-            <app-avatar [alt]="chat.name" [value]="chat.name[0]" type="named"/>
-          </div>
-          <div class="chats__right">
-            <span class="chats__name">{{ chat.name }}</span>
-            <span class="chats__description">{{ getChatDescription(chat) }}</span>
-          </div>
-        </a>
-      </li>
+      <app-chat-card [chat]="chat"/>
     }
   </ul>
 </div>
