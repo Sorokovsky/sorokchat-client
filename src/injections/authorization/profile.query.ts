@@ -1,5 +1,5 @@
 import {QueryKeys} from '@/constants/external/query-keys.constants';
-import {AuthorizationService} from '@/services/authorization/authorization.service';
+import {AuthorizationService} from '@/entity/authorization/api/authorization.service';
 import {inject} from '@angular/core';
 import {type User} from '@/contracts/user/user.contrcact';
 import {type BaseQuery, injectBaseQuery} from '@/shared/api/base-query.injection';

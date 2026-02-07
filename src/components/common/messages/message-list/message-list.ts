@@ -1,6 +1,6 @@
 import {Component, computed, inject, input, type InputSignal, type Signal} from '@angular/core';
 import {type Chat} from '@/contracts/chats/chat.contract';
-import {MessagesService} from '@/services/messages/messages.service';
+import {MessagesService} from '@/entity/message/api/messages.service';
 import {type Message} from '@/contracts/messages/message.contract';
 import {MessageItem} from '@/components/common/messages/message-item/message-item';
 import {type ChatMessage} from '@/entity/message/models/chat-message.type';

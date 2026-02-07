@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {type CryptoService} from '@/services/cryptology/crypto.service';
+import {type CryptoService} from '@/shared/api';
 import {AES, enc} from "crypto-js";
 
 @Injectable({

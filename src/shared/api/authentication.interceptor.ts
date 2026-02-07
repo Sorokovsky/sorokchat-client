@@ -6,9 +6,9 @@ import {
   HttpResponse
 } from '@angular/common/http';
 import {map, type Observable} from 'rxjs';
-import {LocalAccessStorageService} from '@/services/utils/local-access-storage.service';
+import {LocalAccessStorageService} from './local-access-storage.service';
 import {inject} from '@angular/core';
-import {RemoteAccessTokenService} from '@/services/utils/remote-access-token.service';
+import {RemoteAccessTokenService} from './remote-access-token.service';
 
 export const authenticationInterceptor: HttpInterceptorFn = (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
   const localAccessStorageService: LocalAccessStorageService = inject(LocalAccessStorageService);

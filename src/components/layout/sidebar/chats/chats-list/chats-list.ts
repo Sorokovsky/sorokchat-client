@@ -3,7 +3,7 @@ import {type Chat} from '@/contracts/chats/chat.contract';
 import {ChatCard} from '@/components/layout/sidebar/chats/chat-card/chat-card';
 
 @Component({
-  selector: 'app-chats-list',
+  selector: 'app-chat-list',
   imports: [
     ChatCard
   ],

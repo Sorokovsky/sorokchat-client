@@ -5,7 +5,7 @@ import {lastValueFrom} from 'rxjs';
 import {ENDPOINTS} from '@/constants/external/endpoints.constants';
 import {type User} from '@/contracts/user/user.contrcact';
 import {type LoginPayload} from '@/contracts/authorization/login-payload';
-import {LocalAccessStorageService} from '@/services/utils/local-access-storage.service';
+import {LocalAccessStorageService} from '@/shared/api/local-access-storage.service';
 
 @Injectable({
   providedIn: 'root'

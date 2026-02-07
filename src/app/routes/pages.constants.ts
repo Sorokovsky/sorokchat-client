@@ -23,7 +23,7 @@ export const LOGIN_PAGE: Page = {
 export const CHATS_PAGE: Page = {
   title: "Чати",
   accessRule: AccessRule.SECURED,
-  path: "chats/:chatId",
+  path: "chat/:chatId",
   component: ChatsPage,
   icon: MessageSquare
 };

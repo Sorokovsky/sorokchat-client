@@ -5,7 +5,7 @@ import {NoChat} from '@/components/common/chats/no-chat/no-chat';
 import {CurrentChat} from '@/components/common/chats/current-chat/current-chat';
 
 @Component({
-  selector: 'app-chats-page',
+  selector: 'app-chat-page',
   imports: [
     NoChat,
     CurrentChat

@@ -5,7 +5,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {zodValidator} from '@/shared/models/zod.validator';
 import {z as zod} from "zod";
 import {NewMessageSchema} from '@/contracts/messages/new-message.contract';
-import {MessagesService} from '@/services/messages/messages.service';
+import {MessagesService} from '@/entity/message/api/messages.service';
 
 @Component({
   selector: 'app-send-message',

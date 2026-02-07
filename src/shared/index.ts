@@ -26,5 +26,9 @@ export {
 export {
   injectBaseQuery,
   injectBaseMutation,
-  interceptors
+  interceptors,
+  type SigningService,
+  type CryptoService,
+  AesCryptoService,
+  HmacSigningService
 } from "./api";

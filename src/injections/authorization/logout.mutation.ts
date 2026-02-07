@@ -1,4 +1,4 @@
-import {AuthorizationService} from '@/services/authorization/authorization.service';
+import {AuthorizationService} from '@/entity/authorization/api/authorization.service';
 import {inject} from '@angular/core';
 import {QueryKeys} from '@/constants/external/query-keys.constants';
 import {type BaseMutation, injectBaseMutation} from '@/shared/api/base-mutation.injection';

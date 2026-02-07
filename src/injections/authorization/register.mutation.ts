@@ -1,5 +1,5 @@
 import {inject} from '@angular/core';
-import {AuthorizationService} from '@/services/authorization/authorization.service';
+import {AuthorizationService} from '@/entity/authorization/api/authorization.service';
 import {type RegisterPayload} from '@/contracts/authorization/register-payload.contract';
 import {type User} from '@/contracts/user/user.contrcact';
 import {QueryKeys} from '@/constants/external/query-keys.constants';
