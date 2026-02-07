@@ -5,7 +5,7 @@ import {RouterLink, RouterLinkActive} from '@angular/router';
 import {CHATS_PAGE} from '@/app/routes/pages.constants';
 import {removeDynamicRoute} from '@/shared/util/replace-dynamic-route.util';
 import {cutText} from '@/shared/util/cut-text.util';
-import {MAX_DESCRIPTION_LENGTH} from '@/constants/chats/chats.constants';
+import {MAX_DESCRIPTION_LENGTH} from '@/widgets/sidebar/model/chats.constants';
 
 @Component({
   selector: 'app-chat-card',

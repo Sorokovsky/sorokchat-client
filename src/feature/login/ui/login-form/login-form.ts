@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Form} from '@/shared/ui/form/form';
-import {LOGIN_FIELDS} from '@/constants/authorization/login-form.constants';
+import {LOGIN_FIELDS} from '@/feature/login/models/login-form.constants';
 import {type Field} from '@/shared/models/form.type';
 import {type LoginPayload, LoginPayloadSchema} from '@/contracts/authorization/login-payload';
 import {z as zod} from "zod";

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {SidebarMenu} from "@/components/layout/sidebar/sidebar-menu/sidebar-menu";
-import {SIDEBAR_BOTTOM_MENU, SIDEBAR_TOP_MENU} from '@/constants/sidebar/sidebar-menu.constants';
+import {SidebarMenu} from "@/widgets/sidebar/ui/sidebar-menu/sidebar-menu";
+import {SIDEBAR_BOTTOM_MENU, SIDEBAR_TOP_MENU} from '@/widgets/sidebar/model/sidebar-menu.constants';
 import {type Page} from '@/shared';
 import {LucideAngularModule} from 'lucide-angular';
 

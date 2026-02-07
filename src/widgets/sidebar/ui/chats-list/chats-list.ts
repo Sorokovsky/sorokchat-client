@@ -1,6 +1,6 @@
 import {Component, input, type InputSignal} from '@angular/core';
 import {type Chat} from '@/contracts/chats/chat.contract';
-import {ChatCard} from '@/components/layout/sidebar/chats/chat-card/chat-card';
+import {ChatCard} from '@/widgets/sidebar/ui/chat-card/chat-card';
 
 @Component({
   selector: 'app-chat-list',
