@@ -16,8 +16,11 @@ export {
   type AutoComplete,
   type Field,
   type InputType,
+  type ProblemDetail,
   QueryKeys,
-  ENDPOINTS
+  ENDPOINTS,
+  BaseSchema,
+  ProblemDetailSchema
 } from "./models";
 
 export {

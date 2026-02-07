@@ -1,4 +1,4 @@
-import {type User} from '@/contracts/user/user.contrcact';
+import {type User} from '@/entity/user/model/user.contrcact';
 
 export type ChatMessage = {
   text: string;

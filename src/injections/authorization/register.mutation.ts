@@ -1,7 +1,7 @@
 import {inject} from '@angular/core';
 import {AuthorizationService} from '@/entity/authorization/api/authorization.service';
-import {type RegisterPayload} from '@/contracts/authorization/register-payload.contract';
-import {type User} from '@/contracts/user/user.contrcact';
+import {type RegisterPayload} from '@/feature/register/model/register-payload.contract';
+import {type User} from '@/entity/user/model/user.contrcact';
 import {QueryKeys} from '@/shared/models/query-keys.constants';
 import {type BaseMutation, injectBaseMutation} from '@/shared/api/base-mutation.injection';
 

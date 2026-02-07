@@ -1,5 +1,5 @@
 import {Component, input, type InputSignal} from '@angular/core';
-import {type Chat} from '@/contracts/chats/chat.contract';
+import {type Chat} from '@/entity/chat/model/chat.contract';
 import {ChatCard} from '@/widgets/sidebar/ui/chat-card/chat-card';
 
 @Component({

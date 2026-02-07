@@ -1,10 +1,10 @@
 import {Component, computed, inject, input, type InputSignal, type Signal} from '@angular/core';
-import {type Chat} from '@/contracts/chats/chat.contract';
+import {type Chat} from '@/entity/chat/model/chat.contract';
 import {MessagesService} from '@/entity/message/api/messages.service';
-import {type Message} from '@/contracts/messages/message.contract';
+import {type Message} from '@/entity/message/models/message.contract';
 import {MessageItem} from '@/entity/message/ui/message-item/message-item';
 import {type ChatMessage} from '@/entity/message/models/chat-message.type';
-import {type User} from '@/contracts/user/user.contrcact';
+import {type User} from '@/entity/user/model/user.contrcact';
 
 @Component({
   selector: 'app-message-list',

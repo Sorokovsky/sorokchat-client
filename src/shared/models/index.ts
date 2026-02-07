@@ -11,3 +11,5 @@ export {HttpHeaders} from "./http-headers.constants";
 export {Prefixes} from "./prefixes.constants";
 export {StorageKeys} from "./storage-keys";
 export {QueryKeys} from "./query-keys.constants";
+export {BaseSchema} from "./base.contract";
+export {ProblemDetailSchema, type ProblemDetail} from "./problem-detail.contract";

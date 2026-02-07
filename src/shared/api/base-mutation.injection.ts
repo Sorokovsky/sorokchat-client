@@ -5,7 +5,7 @@ import {
   mutationOptions,
   QueryClient
 } from '@tanstack/angular-query-experimental';
-import {type ProblemDetail} from '@/contracts/utils/problem-detail.contract';
+import {type ProblemDetail} from '@/shared/models/problem-detail.contract';
 import {ToastrService} from "ngx-toastr";
 
 export type BaseMutation<TInput, TOutput> = CreateMutationResult<TOutput, ProblemDetail, TInput, TOutput>;

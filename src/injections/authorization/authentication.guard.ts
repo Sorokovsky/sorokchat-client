@@ -1,6 +1,6 @@
 import {Router} from '@angular/router';
 import {effect, type EffectRef, inject, type Signal} from '@angular/core';
-import {type User} from '@/contracts/user/user.contrcact';
+import {type User} from '@/entity/user/model/user.contrcact';
 import {injectProfileQuery, type ProfileQuery} from '@/injections/authorization/profile.query';
 import {ALL_PAGES} from '@/app/routes/pages.constants';
 import {getDefaultPageByAccess, hasAccess, type Page, removeDynamicRoute} from '@/shared';

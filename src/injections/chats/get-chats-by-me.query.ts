@@ -1,6 +1,6 @@
 import {type BaseQuery, injectBaseQuery} from '@/shared/api/base-query.injection';
 import {QueryKeys} from '@/shared/models/query-keys.constants';
-import {type Chat} from '@/contracts/chats/chat.contract';
+import {type Chat} from '@/entity/chat/model/chat.contract';
 import {ChatsService} from '@/entity/chat/api/chats.service';
 import {inject} from '@angular/core';
 

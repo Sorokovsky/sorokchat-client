@@ -1,5 +1,5 @@
 import {Component, input, type InputSignal} from '@angular/core';
-import {type Chat} from '@/contracts/chats/chat.contract';
+import {type Chat} from '@/entity/chat/model/chat.contract';
 import {ChatHead} from '@/entity/chat/ui/chat-head/chat-head';
 import {MessageList} from '@/entity/message/ui/message-list/message-list';
 import {SendMessage} from '@/feature/send-message/ui/send-message/send-message';

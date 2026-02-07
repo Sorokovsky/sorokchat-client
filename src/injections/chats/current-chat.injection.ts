@@ -1,5 +1,5 @@
 import {computed, type Signal} from '@angular/core';
-import {type Chat} from '@/contracts/chats/chat.contract';
+import {type Chat} from '@/entity/chat/model/chat.contract';
 import {injectRouteParameter} from '@/injections/utils/route-parameter.injection';
 import {type GetChatsByMe, injectGetChatsByMe} from '@/injections/chats/get-chats-by-me.query';
 
