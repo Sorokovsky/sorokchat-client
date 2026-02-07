@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Form} from '@/shared/ui/form/form';
 import {LOGIN_FIELDS} from '@/constants/authorization/login-form.constants';
-import {type Field} from '@/shared/ui/form/form.contract';
+import {type Field} from '@/shared/models/form.type';
 import {type LoginPayload, LoginPayloadSchema} from '@/contracts/authorization/login-payload';
 import {z as zod} from "zod";
 import {injectLoginMutation, type LoginMutation} from '@/injections/authorization/login.mutation';

@@ -1,5 +1,5 @@
 import {Component, input, type InputSignal} from '@angular/core';
-import {type AvatarType} from '@/types/avatar.type';
+import {type AvatarType} from '@/shared/models';
 import {NgOptimizedImage} from '@angular/common';
 
 @Component({

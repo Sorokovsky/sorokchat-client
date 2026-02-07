@@ -1,2 +1,2 @@
-export * from "./form/form";
-export * from "./avatar/avatar";
+export {Form} from "./form/form";
+export {Avatar} from "./avatar/avatar";

@@ -1,8 +1,7 @@
 import {Component, computed, input, type InputSignal, output, type OutputEmitterRef, type Signal} from '@angular/core';
-import {type Field} from '@/shared/ui/form/form.contract';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors} from '@angular/forms';
 import {z as zod} from "zod";
-import {zodValidator} from '@/shared/models/zod.validator';
+import {type Field, zodValidator} from '@/shared/models';
 
 type Controls = Record<string, string[]>;
 

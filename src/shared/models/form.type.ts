@@ -1,5 +1,4 @@
-import {type InputType} from '@/shared/ui/form/input-type.contract';
-import {type AutoComplete} from '@/shared/ui/form/autocomplete.contract';
+import {type AutoComplete, type InputType} from '@/shared/models';
 
 export type Field = {
   name: string;

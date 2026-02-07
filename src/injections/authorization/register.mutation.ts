@@ -3,7 +3,7 @@ import {AuthorizationService} from '@/services/authorization/authorization.servi
 import {type RegisterPayload} from '@/contracts/authorization/register-payload.contract';
 import {type User} from '@/contracts/user/user.contrcact';
 import {QueryKeys} from '@/constants/external/query-keys.constants';
-import {type BaseMutation, injectBaseMutation} from '@/injections/utils/base-mutation.injection';
+import {type BaseMutation, injectBaseMutation} from '@/shared/api/base-mutation.injection';
 
 export type RegisterMutation = BaseMutation<RegisterPayload, User>;
 

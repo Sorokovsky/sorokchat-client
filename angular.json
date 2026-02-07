@@ -22,7 +22,7 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "src/shared/styles",
-                "src/app/libs"
+                "src/app/lib"
               ]
             },
             "assets": [
