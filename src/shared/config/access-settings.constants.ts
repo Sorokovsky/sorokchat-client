@@ -1,4 +1,4 @@
-import {AccessRule, type AccessSettings, removeDynamicRoute} from '@/shared';
+import {AccessRule, AccessSettings} from '@/shared/models';
 import {CHATS_PAGE, LOGIN_PAGE} from '@/app/routes';
 
 const SECURED_SETTING: AccessSettings = {
@@ -8,7 +8,7 @@ const SECURED_SETTING: AccessSettings = {
 
 const ANONYMOUS_SETTING: AccessSettings = {
   accessRule: AccessRule.ANONYMOUS,
-  defaultPage: {...CHATS_PAGE, path: removeDynamicRoute(CHATS_PAGE.path)}
+  defaultPage: CHATS_PAGE
 };
 
 export const ACCESS_SETTINGS: AccessSettings[] = [SECURED_SETTING, ANONYMOUS_SETTING];

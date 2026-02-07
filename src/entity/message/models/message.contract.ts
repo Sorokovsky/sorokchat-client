@@ -1,10 +1,10 @@
 import {z as zod} from 'zod';
-import {NewMessageSchema} from '@/entity/message';
+import {NewMessageSchema} from './new-message.contract';
 import {BaseSchema} from '@/shared';
 
-export const MessageSchema = NewMessageSchema.extend(BaseSchema.shape).omit({
-  id: true
-}).extend({
+export const MessageSchema = BaseSchema.omit({id: true})
+  .merge(NewMessageSchema)
+  .extend({
   mac: zod.string({message: "Мак підпис має бути рядком."}),
   authorId: zod.number({message: "Ідентифікатор користувача має бути числом."}),
   chatId: zod.number({message: "Ідентифікатор чату має бути числом."}),
