@@ -3,8 +3,8 @@ import {Avatar} from "@/shared/ui/avatar/avatar";
 import {type Chat} from '@/contracts/chats/chat.contract';
 import {RouterLink, RouterLinkActive} from '@angular/router';
 import {CHATS_PAGE} from '@/app/routes/pages.constants';
-import {removeDynamicRoute} from '@/shared/utils/replace-dynamic-route.util';
-import {cutText} from '@/shared/utils/cut-text.util';
+import {removeDynamicRoute} from '@/shared/util/replace-dynamic-route.util';
+import {cutText} from '@/shared/util/cut-text.util';
 import {MAX_DESCRIPTION_LENGTH} from '@/constants/chats/chats.constants';
 
 @Component({

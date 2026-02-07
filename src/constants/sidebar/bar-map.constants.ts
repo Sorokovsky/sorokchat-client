@@ -1,5 +1,5 @@
 import {type Type} from '@angular/core';
-import {removeDynamicRoute} from "@/shared/utils/replace-dynamic-route.util";
+import {removeDynamicRoute} from "@/shared/util/replace-dynamic-route.util";
 import {CHATS_PAGE, FRIENDS_PAGE, SETTINGS_PAGE} from '@/app/routes/pages.constants';
 import {ChatsBar} from '@/components/layout/sidebar/chats/chats-bar/chats-bar';
 import {FriendsBar} from '@/components/layout/sidebar/friends/friends-bar/friends-bar';

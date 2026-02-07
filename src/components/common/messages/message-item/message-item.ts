@@ -10,9 +10,9 @@ import {
   type WritableSignal
 } from '@angular/core';
 import {Avatar} from '@/shared/ui/avatar/avatar';
-import {getUserInitials} from '@/shared/utils/get-user-initials.util';
+import {getUserInitials} from '@/shared/util/get-user-initials.util';
 import {type ChatMessage} from '@/types/chat-message.type';
-import {formatDate} from '@/shared/utils/format-date.util';
+import {formatDate} from '@/shared/util/format-date.util';
 import {injectProfileQuery, type ProfileQuery} from '@/injections/authorization/profile.query';
 
 @Component({

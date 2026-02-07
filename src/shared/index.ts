@@ -1,3 +1,3 @@
-export * from "./utils";
+export * from "./util";
 export * from "./models";
 export * from "./ui";
