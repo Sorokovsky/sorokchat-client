@@ -1,8 +1,8 @@
 import {Component, input, type InputSignal} from '@angular/core';
 import {type Chat} from '@/contracts/chats/chat.contract';
-import {ChatHead} from '@/components/common/chats/chat-head/chat-head';
-import {MessageList} from '@/components/common/messages/message-list/message-list';
-import {SendMessage} from '@/components/common/messages/send-message/send-message';
+import {ChatHead} from '@/entity/chat/ui/chat-head/chat-head';
+import {MessageList} from '@/entity/message/ui/message-list/message-list';
+import {SendMessage} from '@/feature/send-message/ui/send-message/send-message';
 
 @Component({
   selector: 'app-current-chat',

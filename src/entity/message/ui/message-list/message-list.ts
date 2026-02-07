@@ -2,7 +2,7 @@ import {Component, computed, inject, input, type InputSignal, type Signal} from 
 import {type Chat} from '@/contracts/chats/chat.contract';
 import {MessagesService} from '@/entity/message/api/messages.service';
 import {type Message} from '@/contracts/messages/message.contract';
-import {MessageItem} from '@/components/common/messages/message-item/message-item';
+import {MessageItem} from '@/entity/message/ui/message-item/message-item';
 import {type ChatMessage} from '@/entity/message/models/chat-message.type';
 import {type User} from '@/contracts/user/user.contrcact';
 
