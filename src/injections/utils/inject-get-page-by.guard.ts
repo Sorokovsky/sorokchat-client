@@ -1,6 +1,5 @@
-import {type Page} from '@/types';
+import {hasAccess, type Page} from '@/shared';
 import {injectProfileQuery, type ProfileQuery} from '@/injections/authorization/profile.query';
-import {hasAccess} from '@/shared/util/has-access.util';
 import {computed, type Signal} from '@angular/core';
 
 export function injectGetPageByAccessRule(pages: Page[]): Signal<Page[]> {

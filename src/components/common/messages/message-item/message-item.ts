@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import {Avatar} from '@/shared/ui/avatar/avatar';
 import {getUserInitials} from '@/shared/util/get-user-initials.util';
-import {type ChatMessage} from '@/types/chat-message.type';
+import {type ChatMessage} from '@/entity/message/models/chat-message.type';
 import {formatDate} from '@/shared/util/format-date.util';
 import {injectProfileQuery, type ProfileQuery} from '@/injections/authorization/profile.query';
 

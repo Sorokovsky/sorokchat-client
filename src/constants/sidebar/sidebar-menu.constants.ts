@@ -1,4 +1,4 @@
-import {type Page} from '@/types';
+import {type Page} from '@/shared';
 import {CHATS_PAGE, FRIENDS_PAGE, SETTINGS_PAGE} from '@/app/routes/pages.constants';
 
 export const SIDEBAR_TOP_MENU: Page[] = [CHATS_PAGE, FRIENDS_PAGE];

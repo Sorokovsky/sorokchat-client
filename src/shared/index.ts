@@ -10,7 +10,7 @@ export {
 
 export {
   type Page,
-  type AccessRule,
+  AccessRule,
   type AccessSettings,
   type AvatarType,
   type AutoComplete,

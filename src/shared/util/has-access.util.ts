@@ -1,4 +1,4 @@
-import {AccessRule, type Page} from '@/types';
+import {AccessRule, type Page} from "@/shared/models";
 import {type User} from '@/contracts/user/user.contrcact';
 
 export function hasAccess(page: Page, user: User | undefined): boolean {

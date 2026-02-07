@@ -1,4 +1,4 @@
-import {AccessRule, type Page} from '@/types';
+import {AccessRule, type Page} from '@/shared';
 import {LoginPage} from '@/pages/authorization/ui/login-page/login-page';
 import {RegisterPage} from '@/pages/authorization/ui/register-page/register-page';
 import {ChatsPage} from '@/pages/chats/ui/chats-page/chats-page';

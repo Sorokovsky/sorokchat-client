@@ -1,8 +1,7 @@
 import {Component, input, type InputSignal} from '@angular/core';
 import {LucideAngularModule} from "lucide-angular";
 import {RouterLink, RouterLinkActive} from '@angular/router';
-import {type Page} from '@/types';
-import {removeDynamicRoute} from '@/shared/util/replace-dynamic-route.util';
+import {type Page, removeDynamicRoute} from '@/shared';
 
 @Component({
   selector: 'app-sidebar-menu',
