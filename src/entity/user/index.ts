@@ -1,1 +1,1 @@
-export {UserSchema, type User, RegisterPayloadSchema, type RegisterPayload} from "./model";
+export {UserSchema, type User} from "./model";

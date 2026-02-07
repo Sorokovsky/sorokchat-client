@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import {Avatar, formatDate, getUserInitials} from '@/shared';
 import {type ChatMessage} from '@/entity/message';
-import {injectProfileQuery, type ProfileQuery} from '@/entity/chat';
+import {injectProfileQuery, type ProfileQuery} from '@/entity/authorization';
 
 @Component({
   selector: 'app-message-item',

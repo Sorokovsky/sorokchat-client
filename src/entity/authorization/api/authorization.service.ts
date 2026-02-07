@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {type RegisterPayload} from '@/feature';
 import {lastValueFrom} from 'rxjs';
 import {type User} from '@/entity/user';
 import {ENDPOINTS, LocalAccessStorageService} from '@/shared';
-import {LoginPayload} from '@/entity/authorization';
+import {type LoginPayload, type RegisterPayload} from '@/entity/authorization';
 
 @Injectable({
   providedIn: 'root'

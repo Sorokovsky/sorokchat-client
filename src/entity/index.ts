@@ -15,6 +15,8 @@ export {
   LoginPayloadSchema,
   type ProfileQuery,
   injectProfileQuery,
+  RegisterPayloadSchema,
+  type RegisterPayload
 } from "./authorization";
 export {
   ChatsService,
@@ -27,4 +29,4 @@ export {
   injectGetChatsByMe,
   injectCurrentChat,
 } from "./chat";
-export {UserSchema, type User, RegisterPayloadSchema, type RegisterPayload} from "./user";
+export {UserSchema, type User} from "./user";
