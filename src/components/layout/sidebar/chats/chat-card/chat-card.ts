@@ -1,10 +1,10 @@
 import {Component, computed, input, type InputSignal, type Signal} from '@angular/core';
-import {Avatar} from "@/components/ui/avatar/avatar";
+import {Avatar} from "@/shared/ui/avatar/avatar";
 import {type Chat} from '@/contracts/chats/chat.contract';
 import {RouterLink, RouterLinkActive} from '@angular/router';
-import {CHATS_PAGE} from '@/constants/routing/pages.constants';
-import {removeDynamicRoute} from '@/utils/replace-dynamic-route.util';
-import {cutText} from '@/utils/cut-text.util';
+import {CHATS_PAGE} from '@/app/routes/pages.constants';
+import {removeDynamicRoute} from '@/shared/utils/replace-dynamic-route.util';
+import {cutText} from '@/shared/utils/cut-text.util';
 import {MAX_DESCRIPTION_LENGTH} from '@/constants/chats/chats.constants';
 
 @Component({

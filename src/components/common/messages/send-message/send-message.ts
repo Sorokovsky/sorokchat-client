@@ -2,7 +2,7 @@ import {Component, inject, input, type InputSignal} from '@angular/core';
 import {type Chat} from '@/contracts/chats/chat.contract';
 import {LucideAngularModule, type LucideIconData, SendIcon} from 'lucide-angular';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {zodValidator} from '@/validators/zod.validator';
+import {zodValidator} from '@/shared/models/zod.validator';
 import {z as zod} from "zod";
 import {NewMessageSchema} from '@/contracts/messages/new-message.contract';
 import {MessagesService} from '@/services/messages/messages.service';

@@ -3,7 +3,7 @@ import {type Chat} from '@/contracts/chats/chat.contract';
 import {MessagesService} from '@/services/messages/messages.service';
 import {type Message} from '@/contracts/messages/message.contract';
 import {MessageItem} from '@/components/common/messages/message-item/message-item';
-import {type ChatMessage} from '@/types/chst-message.type';
+import {type ChatMessage} from '@/types/chat-message.type';
 import {type User} from '@/contracts/user/user.contrcact';
 
 @Component({

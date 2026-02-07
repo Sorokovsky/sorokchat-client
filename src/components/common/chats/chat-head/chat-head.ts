@@ -1,6 +1,6 @@
 import {Component, input, type InputSignal} from '@angular/core';
 import {type Chat} from '@/contracts/chats/chat.contract';
-import {Avatar} from '@/components/ui/avatar/avatar';
+import {Avatar} from '@/shared/ui/avatar/avatar';
 import {EllipsisIcon, LucideAngularModule, type LucideIconData} from 'lucide-angular';
 
 @Component({

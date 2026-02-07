@@ -1,4 +1,4 @@
-import {type Field} from '@/components/ui/form/form.contract';
+import {type Field} from '@/shared/ui/form/form.contract';
 
 export const LOGIN_FIELDS: Field[] = [
   {
