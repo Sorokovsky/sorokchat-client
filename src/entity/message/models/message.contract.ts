@@ -1,5 +1,5 @@
 import {z as zod} from 'zod';
-import {NewMessageSchema} from './new-message.contract';
+import {NewMessageSchema} from '@/entity/message/models';
 import {BaseSchema} from '@/shared';
 
 export const MessageSchema = BaseSchema.omit({id: true})
