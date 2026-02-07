@@ -4,10 +4,8 @@ import {provideToastr} from "ngx-toastr";
 
 import {routes} from '@/app/routes';
 import {provideHttpClient, withInterceptors} from '@angular/common/http';
-import {authenticationInterceptor} from '@/interceptors/authentication.interceptor';
 import {provideTanStackQuery, QueryClient} from '@tanstack/angular-query-experimental';
-import {apiErrorInterceptor} from '@/interceptors/api-error.interceptor';
-import {localeInterceptor} from '@/interceptors/locale.interceptor';
+import {interceptors} from '@/shared';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,7 +15,7 @@ export const appConfig: ApplicationConfig = {
     },
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([localeInterceptor, authenticationInterceptor, apiErrorInterceptor])),
+    provideHttpClient(withInterceptors(interceptors)),
     provideTanStackQuery(new QueryClient({
       defaultOptions: {
         queries: {
