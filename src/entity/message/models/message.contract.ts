@@ -1,6 +1,6 @@
 import {z as zod} from 'zod';
-import {NewMessageSchema} from '@/feature/send-message/model/new-message.contract';
-import {BaseSchema} from '@/shared/models/base.contract';
+import {NewMessageSchema} from '@/entity/message';
+import {BaseSchema} from '@/shared';
 
 export const MessageSchema = NewMessageSchema.extend(BaseSchema.shape).omit({
   id: true

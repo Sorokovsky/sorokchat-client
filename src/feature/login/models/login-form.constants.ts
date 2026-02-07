@@ -1,4 +1,4 @@
-import {type Field} from '@/shared/models/form.type';
+import {type Field} from '@/shared';
 
 export const LOGIN_FIELDS: Field[] = [
   {

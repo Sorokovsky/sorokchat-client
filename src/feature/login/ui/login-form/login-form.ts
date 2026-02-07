@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
-import {Form} from '@/shared/ui/form/form';
-import {LOGIN_FIELDS} from '@/feature/login/models/login-form.constants';
-import {type Field} from '@/shared/models/form.type';
-import {type LoginPayload, LoginPayloadSchema} from '@/feature/login/models/login-payload';
+import {type Field, Form} from '@/shared';
+import {LOGIN_FIELDS} from '@/feature/login/models';
+import {injectLoginMutation, type LoginMutation} from "@/feature/login/api";
+import {type LoginPayload, LoginPayloadSchema} from '@/entity';
 import {z as zod} from "zod";
-import {injectLoginMutation, type LoginMutation} from '@/feature/login/api/login.mutation';
 
 @Component({
   selector: 'app-login-form',

@@ -1,11 +1,9 @@
 import {Component, computed, input, type InputSignal, type Signal} from '@angular/core';
-import {Avatar} from "@/shared/ui/avatar/avatar";
-import {type Chat} from '@/entity/chat/model/chat.contract';
+import {Avatar, cutText, removeDynamicRoute} from "@/shared";
+import {type Chat} from '@/entity';
 import {RouterLink, RouterLinkActive} from '@angular/router';
-import {CHATS_PAGE} from '@/app/routes/pages.constants';
-import {removeDynamicRoute} from '@/shared/util/replace-dynamic-route.util';
-import {cutText} from '@/shared/util/cut-text.util';
-import {MAX_DESCRIPTION_LENGTH} from '@/widgets/sidebar/model/chats.constants';
+import {CHATS_PAGE} from '@/app/routes';
+import {MAX_DESCRIPTION_LENGTH} from '@/widgets/sidebar/model';
 
 @Component({
   selector: 'app-chat-card',

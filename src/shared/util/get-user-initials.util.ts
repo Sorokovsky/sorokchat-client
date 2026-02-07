@@ -1,4 +1,4 @@
-import {type User} from '@/entity/user/model/user.contrcact';
+import {type User} from '@/entity';
 
 export function getUserInitials(user: User | null): string {
   if (user === null) return "👻";

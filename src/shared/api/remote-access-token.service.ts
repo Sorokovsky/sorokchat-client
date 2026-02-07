@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpHeaders as Headers, type HttpRequest, type HttpResponse} from '@angular/common/http';
-import {HttpHeaders} from '@/shared/models/http-headers.constants'
-import {Prefixes} from '@/shared/models/prefixes.constants';
+import {HttpHeaders, Prefixes} from '@/shared/models'
 
 @Injectable({
   providedIn: 'root',

@@ -1,5 +1,4 @@
-import {type AccessRule} from '@/shared/models/access-rule.type';
-import {type Page} from '@/shared/models/page.type';
+import {type AccessRule, type Page} from '@/shared/models';
 
 export type AccessSettings = {
   accessRule: AccessRule,

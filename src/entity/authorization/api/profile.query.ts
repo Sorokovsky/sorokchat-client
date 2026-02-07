@@ -1,8 +1,7 @@
-import {QueryKeys} from '@/shared/models/query-keys.constants';
-import {AuthorizationService} from '@/entity/authorization/api/authorization.service';
+import {type BaseQuery, injectBaseQuery, QueryKeys} from '@/shared';
+import {AuthorizationService} from '@/entity/authorization';
 import {inject} from '@angular/core';
-import {type User} from '@/entity/user/model/user.contrcact';
-import {type BaseQuery, injectBaseQuery} from '@/shared/api/base-query.injection';
+import {type User} from '@/entity/user';
 
 export type ProfileQuery = BaseQuery<User>;
 

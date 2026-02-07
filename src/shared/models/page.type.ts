@@ -1,5 +1,5 @@
 import {type Type} from '@angular/core';
-import {type AccessRule} from '@/shared/models/access-rule.type';
+import {type AccessRule} from '@/shared/models';
 import {type LucideIconData} from 'lucide-angular';
 
 export type Page = {

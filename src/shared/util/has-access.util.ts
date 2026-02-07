@@ -1,5 +1,5 @@
 import {AccessRule, type Page} from "@/shared/models";
-import {type User} from '@/entity/user/model/user.contrcact';
+import {type User} from '@/entity';
 
 export function hasAccess(page: Page, user: User | undefined): boolean {
   const isAuthenticated: boolean = user !== undefined;

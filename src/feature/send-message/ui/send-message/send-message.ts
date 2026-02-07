@@ -1,11 +1,9 @@
 import {Component, inject, input, type InputSignal} from '@angular/core';
-import {type Chat} from '@/entity/chat/model/chat.contract';
+import {type Chat, MessagesService, NewMessageSchema} from '@/entity';
 import {LucideAngularModule, type LucideIconData, SendIcon} from 'lucide-angular';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {zodValidator} from '@/shared/models/zod.validator';
+import {zodValidator} from '@/shared';
 import {z as zod} from "zod";
-import {NewMessageSchema} from '@/feature/send-message/model/new-message.contract';
-import {MessagesService} from '@/entity/message/api/messages.service';
 
 @Component({
   selector: 'app-send-message',

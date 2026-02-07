@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {type GetChatsByMe, injectGetChatsByMe} from '@/entity/chat/api/get-chats-by-me.query';
+import {type GetChatsByMe, injectGetChatsByMe} from '@/entity';
 import {ChatsBarTop} from '@/widgets/sidebar/ui/chats-bar-top/chats-bar-top';
 import {ChatsList} from '@/widgets/sidebar/ui/chats-list/chats-list';
 

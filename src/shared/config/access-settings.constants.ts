@@ -1,5 +1,5 @@
 import {AccessRule, type AccessSettings, removeDynamicRoute} from '@/shared';
-import {CHATS_PAGE, LOGIN_PAGE} from '@/app/routes/pages.constants';
+import {CHATS_PAGE, LOGIN_PAGE} from '@/app/routes';
 
 const SECURED_SETTING: AccessSettings = {
   accessRule: AccessRule.SECURED,

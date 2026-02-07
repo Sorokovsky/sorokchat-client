@@ -23,7 +23,8 @@ export {
   QueryKeys,
   ENDPOINTS,
   BaseSchema,
-  ProblemDetailSchema
+  ProblemDetailSchema,
+  zodValidator
 } from "./models";
 
 export {
@@ -37,8 +38,13 @@ export {
   interceptors,
   type SigningService,
   type CryptoService,
+  type BaseQuery,
+  type BaseMutation,
   AesCryptoService,
-  HmacSigningService
+  HmacSigningService,
+  LocalAccessStorageService,
+  RemoteAccessTokenService,
+  WebSocketService
 } from "./api";
 
 export {

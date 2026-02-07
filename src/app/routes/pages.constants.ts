@@ -1,10 +1,6 @@
 import {AccessRule, type Page} from '@/shared';
-import {LoginPage} from '@/pages/authorization/ui/login-page/login-page';
-import {RegisterPage} from '@/pages/authorization/ui/register-page/register-page';
-import {ChatsPage} from '@/pages/chats/ui/chats-page/chats-page';
-import {HandshakeIcon, MessageSquare, Settings} from 'lucide-angular';
-import {SettingsPage} from '@/pages/settings/ui/settings-page/settings-page';
-import {FriendsPage} from '@/pages/friends/ui/friends-page/friends-page';
+import {ChatsPage, FriendsPage, LoginPage, RegisterPage, SettingsPage} from "@/pages";
+import {HandshakeIcon, MessageSquare, Settings} from "lucide-angular";
 
 export const REGISTER_PAGE: Page = {
   title: "Реєстрація",

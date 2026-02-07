@@ -1,4 +1,4 @@
-export * from "./chats";
-export * from "./friends";
-export * from "./settings";
-export * from "./authorization";
+export {ChatsPage} from "./chats";
+export {FriendsPage} from "./friends";
+export {SettingsPage} from "./settings";
+export {RegisterPage, LoginPage} from "./authorization";

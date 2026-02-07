@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Client, type IFrame, type IMessage} from '@stomp/stompjs';
 import {BehaviorSubject, filter, first, type Observable, Subject, switchMap} from 'rxjs';
-import {LocalAccessStorageService} from '@/shared/api/local-access-storage.service';
+import {LocalAccessStorageService} from '@/shared/api';
 import SockJS from 'sockjs-client';
 
 @Injectable({

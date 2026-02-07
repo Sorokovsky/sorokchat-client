@@ -1,8 +1,6 @@
 import {Component, type Signal} from '@angular/core';
-import {type Chat} from '@/entity/chat/model/chat.contract';
-import {injectCurrentChat} from '@/entity/chat/api/current-chat.injection';
-import {NoChat} from '@/widgets/current-chat/ui/no-chat/no-chat';
-import {CurrentChat} from '@/widgets/current-chat/ui/current-chat/current-chat';
+import {type Chat, injectCurrentChat} from '@/entity';
+import {CurrentChat, NoChat} from '@/widgets';
 
 @Component({
   selector: 'app-chat-page',

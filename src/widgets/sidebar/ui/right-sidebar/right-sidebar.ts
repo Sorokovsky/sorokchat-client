@@ -1,7 +1,7 @@
 import {Component, computed, type Signal, type Type} from '@angular/core';
 import {SIDEBAR_BAR_MAP} from '@/widgets/sidebar/model/bar-map.constants';
 import {NgComponentOutlet} from '@angular/common';
-import {injectCurrentPath} from '@/shared/util/current-path.injection';
+import {injectCurrentPath} from '@/shared';
 
 @Component({
   selector: 'app-right-sidebar',

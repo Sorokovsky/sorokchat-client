@@ -1,13 +1,8 @@
 import {Injectable, type Signal, signal, type WritableSignal} from '@angular/core';
-import {type Message, MessageSchema} from '@/entity/message/models/message.contract';
-import {type NewMessage} from '@/feature/send-message/model/new-message.contract';
-import {AesCryptoService} from '@/shared/api/aes-crypto.service';
-import {HmacSigningService} from '@/shared/api/hmac-signing.service';
+import {type Message, MessageSchema, type NewMessage, type SendMessage} from '@/entity/message';
+import {AesCryptoService, HmacSigningService, WebSocketService} from '@/shared';
 import {type ZodSafeParseResult} from 'zod';
-import {WebSocketService} from '@/shared/api/web-socket.service';
-import {type SendMessage} from '@/feature/send-message/model/send-message.contract';
-import {type GetChatsByMe, injectGetChatsByMe} from '@/entity/chat/api/get-chats-by-me.query';
-import {type Chat} from '@/entity/chat/model/chat.contract';
+import {type Chat, type GetChatsByMe, injectGetChatsByMe} from '@/entity/chat';
 
 @Injectable({
   providedIn: 'root',

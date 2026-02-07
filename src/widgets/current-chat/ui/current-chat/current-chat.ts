@@ -1,8 +1,6 @@
 import {Component, input, type InputSignal} from '@angular/core';
-import {type Chat} from '@/entity/chat/model/chat.contract';
-import {ChatHead} from '@/entity/chat/ui/chat-head/chat-head';
-import {MessageList} from '@/entity/message/ui/message-list/message-list';
-import {SendMessage} from '@/feature/send-message/ui/send-message/send-message';
+import {type Chat, ChatHead, MessageList} from '@/entity';
+import {SendMessage} from '@/feature';
 
 @Component({
   selector: 'app-current-chat',

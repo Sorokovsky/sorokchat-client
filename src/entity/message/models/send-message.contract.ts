@@ -1,4 +1,4 @@
-import {MessageSchema} from '@/entity/message/models/message.contract';
+import {MessageSchema} from '@/entity/message';
 import {z as zod} from 'zod';
 
 export const SendMessageSchema = MessageSchema.pick({

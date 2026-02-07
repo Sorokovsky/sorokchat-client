@@ -9,11 +9,9 @@ import {
   type Signal,
   type WritableSignal
 } from '@angular/core';
-import {Avatar} from '@/shared/ui/avatar/avatar';
-import {getUserInitials} from '@/shared/util/get-user-initials.util';
-import {type ChatMessage} from '@/entity/message/models/chat-message.type';
-import {formatDate} from '@/shared/util/format-date.util';
-import {injectProfileQuery, type ProfileQuery} from '@/entity/chat/api/profile.query';
+import {Avatar, formatDate, getUserInitials} from '@/shared';
+import {type ChatMessage} from '@/entity/message';
+import {injectProfileQuery, type ProfileQuery} from '@/entity/chat';
 
 @Component({
   selector: 'app-message-item',

@@ -1,5 +1,5 @@
 import {z as zod} from 'zod';
-import {LoginPayloadSchema} from '@/feature/login/models/login-payload';
+import {LoginPayloadSchema} from '@/entity/authorization/model';
 
 export const RegisterPayloadSchema = LoginPayloadSchema.extend({
   firstName: zod.string(),

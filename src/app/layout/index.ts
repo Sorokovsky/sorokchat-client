@@ -1,2 +1,2 @@
-export * from "./main-layout/main-layout";
-export * from "./authorization-layout/authorization-layout"
+export {MainLayout} from "./main-layout/main-layout";
+export {AuthorizationLayout} from "./authorization-layout/authorization-layout"

@@ -1,6 +1,6 @@
 import {z as zod} from 'zod';
-import {RegisterPayloadSchema} from '@/feature/register/model/register-payload.contract';
-import {BaseSchema} from '@/shared/models/base.contract';
+import {RegisterPayloadSchema} from '@/entity/user/model';
+import {BaseSchema} from '@/shared';
 
 export const UserSchema = BaseSchema.extend(RegisterPayloadSchema.shape);
 

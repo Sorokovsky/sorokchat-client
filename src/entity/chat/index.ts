@@ -7,4 +7,4 @@ export {
   injectProfileQuery
 } from "./api";
 export {ChatHead} from "./ui";
-export {ChatSchema, type Chat} from "./model";
+export {ChatSchema, type Chat, CreateChatSchema, type CreateChat} from "./model";

@@ -1,5 +1,5 @@
 import {type CreateQueryResult, injectQuery, queryOptions} from '@tanstack/angular-query-experimental';
-import {type ProblemDetail} from '@/shared/models/problem-detail.contract';
+import {type ProblemDetail} from '@/shared/models';
 
 export type BaseQuery<T> = CreateQueryResult<T, ProblemDetail>;
 

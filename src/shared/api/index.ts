@@ -1,7 +1,13 @@
 export {interceptors} from "./interceptors";
-export {injectBaseMutation} from "./base-mutation.injection";
-export {injectBaseQuery} from "./base-query.injection";
+export {injectBaseMutation, type BaseMutation} from "./base-mutation.injection";
+export {injectBaseQuery, type BaseQuery} from "./base-query.injection";
 export {type SigningService} from "./signing.service";
 export {HmacSigningService} from "./hmac-signing.service";
 export {type CryptoService} from "./crypto.service";
 export {AesCryptoService} from "./aes-crypto.service";
+export {LocalAccessStorageService} from "./local-access-storage.service";
+export {RemoteAccessTokenService} from "./remote-access-token.service";
+export {WebSocketService} from "./web-socket.service";
+export {localeInterceptor} from "./locale.interceptor";
+export {authenticationInterceptor} from "./authentication.interceptor";
+export {apiErrorInterceptor} from "./api-error.interceptor";
