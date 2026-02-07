@@ -1,10 +1,10 @@
 import {Router} from '@angular/router';
 import {effect, type EffectRef, inject, type Signal} from '@angular/core';
 import {type User} from '@/entity/user/model/user.contrcact';
-import {injectProfileQuery, type ProfileQuery} from '@/injections/authorization/profile.query';
+import {injectProfileQuery, type ProfileQuery} from '@/entity/chat/api/profile.query';
 import {ALL_PAGES} from '@/app/routes/pages.constants';
 import {getDefaultPageByAccess, hasAccess, type Page, removeDynamicRoute} from '@/shared';
-import {injectCurrentPath} from '@/injections/utils/current-path.injection';
+import {injectCurrentPath} from '@/shared/util/current-path.injection';
 
 export function injectAuthenticationGuard(): EffectRef {
   const router: Router = inject(Router);

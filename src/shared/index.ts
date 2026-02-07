@@ -5,7 +5,10 @@ export {
   getUserInitials,
   getDefaultPageByAccess,
   hasAccess,
-  removeDynamicRoute
+  removeDynamicRoute,
+  injectCurrentPath,
+  injectGetPageByAccessRule,
+  injectRouteParameter
 } from "./util";
 
 export {

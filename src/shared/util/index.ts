@@ -5,3 +5,6 @@ export {getDefaultPageByAccess} from "./get-default-page-by-access";
 export {hasAccess} from "./has-access.util";
 export {getUserInitials} from "./get-user-initials.util";
 export {removeDynamicRoute} from "./replace-dynamic-route.util";
+export {injectCurrentPath} from "./current-path.injection";
+export {injectGetPageByAccessRule} from "./inject-get-page-by.guard";
+export {injectRouteParameter} from "./route-parameter.injection";

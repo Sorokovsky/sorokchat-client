@@ -6,7 +6,7 @@ import {HmacSigningService} from '@/shared/api/hmac-signing.service';
 import {type ZodSafeParseResult} from 'zod';
 import {WebSocketService} from '@/shared/api/web-socket.service';
 import {type SendMessage} from '@/feature/send-message/model/send-message.contract';
-import {type GetChatsByMe, injectGetChatsByMe} from '@/injections/chats/get-chats-by-me.query';
+import {type GetChatsByMe, injectGetChatsByMe} from '@/entity/chat/api/get-chats-by-me.query';
 import {type Chat} from '@/entity/chat/model/chat.contract';
 
 @Injectable({

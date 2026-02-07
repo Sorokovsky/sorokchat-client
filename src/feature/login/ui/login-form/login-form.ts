@@ -4,7 +4,7 @@ import {LOGIN_FIELDS} from '@/feature/login/models/login-form.constants';
 import {type Field} from '@/shared/models/form.type';
 import {type LoginPayload, LoginPayloadSchema} from '@/feature/login/models/login-payload';
 import {z as zod} from "zod";
-import {injectLoginMutation, type LoginMutation} from '@/injections/authorization/login.mutation';
+import {injectLoginMutation, type LoginMutation} from '@/feature/login/api/login.mutation';
 
 @Component({
   selector: 'app-login-form',
