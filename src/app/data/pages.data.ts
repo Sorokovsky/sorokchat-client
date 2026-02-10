@@ -1,4 +1,4 @@
-import {REGISTER_PAGE} from "@/pages/register/data/page.data";
+import {REGISTER_PAGE} from "@/pages";
 import type {Page} from "@/shared";
 
 export const ANONYMOUS_PAGES: Page[] = [REGISTER_PAGE];
