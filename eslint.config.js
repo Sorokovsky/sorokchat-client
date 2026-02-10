@@ -15,7 +15,7 @@ module.exports = tseslint.config(
     },
     languageOptions: {
       parserOptions: {
-        project: ['./tsconfig.json'],
+        projectService: true,
       },
     },
     settings: {
@@ -39,8 +39,23 @@ module.exports = tseslint.config(
       require('eslint-config-prettier'), // Prettier має бути останнім
     ],
     rules: {
-      '@/quotes': ['error', 'double', { avoidEscape: true }],
-      // Правила FSD: заборона імпорту з вищих шарів у нижчі
+      '@/quotes': [
+        'error',
+        'double',
+        {
+          avoidEscape: true,
+          allowTemplateLiterals: true,
+        },
+      ],
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        {
+          prefer: 'type-imports',
+          fixStyle: 'separate-type-imports',
+          disallowTypeAnnotations: false,
+        },
+      ],
+      'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
       'boundaries/element-types': [
         'error',
         {
