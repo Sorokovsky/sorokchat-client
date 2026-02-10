@@ -46,13 +46,13 @@ module.exports = tseslint.config(
             {
               target: './src/features/**',
               from: './src/features',
-              except: ['**/index.ts', '**/index.tsx'],
+              except: ['**/index.ts', '**/index.tsx', '**/@x/**', '**/@x/index.ts'],
               message: 'Імпортуйте з features тільки через public API (index.ts / index.tsx)',
             },
             {
               target: './src/entities/**',
               from: './src/entities',
-              except: ['**/index.ts', '**/index.tsx'],
+              except: ['**/index.ts', '**/index.tsx', '**/@x/**', '**/@x/index.ts'],
               message: 'Імпортуйте з entities тільки через public API (index.ts / index.tsx)',
             },
             {
