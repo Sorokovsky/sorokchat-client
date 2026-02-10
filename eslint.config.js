@@ -36,9 +36,46 @@ module.exports = tseslint.config(
       ...tseslint.configs.recommended,
       ...tseslint.configs.stylistic,
       ...angular.configs.tsRecommended,
-      require('eslint-config-prettier'), // Prettier має бути останнім
+      require('eslint-config-prettier'),
     ],
     rules: {
+      'import/no-restricted-paths': [
+        'error',
+        {
+          zones: [
+            {
+              target: './src/features/**',
+              from: './src/features',
+              except: ['**/index.ts', '**/index.tsx'],
+              message: 'Імпортуйте з features тільки через public API (index.ts / index.tsx)',
+            },
+            {
+              target: './src/entities/**',
+              from: './src/entities',
+              except: ['**/index.ts', '**/index.tsx'],
+              message: 'Імпортуйте з entities тільки через public API (index.ts / index.tsx)',
+            },
+            {
+              target: './src/widgets/**',
+              from: './src/widgets',
+              except: ['**/index.ts', '**/index.tsx'],
+              message: 'Імпортуйте з widgets тільки через public API (index.ts / index.tsx)',
+            },
+            {
+              target: './src/pages/**',
+              from: './src/pages',
+              except: ['**/index.ts', '**/index.tsx'],
+              message: 'Імпортуйте з pages тільки через public API (index.ts / index.tsx)',
+            },
+            {
+              target: './src/shared/**',
+              from: './src/shared',
+              except: ['**/index.ts', '**/index.tsx'],
+            },
+          ],
+        },
+      ],
+
       '@typescript-eslint/consistent-type-imports': [
         'error',
         {
@@ -47,25 +84,30 @@ module.exports = tseslint.config(
           disallowTypeAnnotations: false,
         },
       ],
+
       'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+
       'boundaries/element-types': [
         'error',
         {
-          default: 'allow',
-          message: '${importType} is not allowed to import ${targetType}',
+          default: 'disallow',
+          message: '${importType} → ${targetType} заборонено (FSD rule)',
           rules: [
-            { from: 'shared', disallow: ['app', 'pages', 'widgets', 'features', 'entities'] },
-            { from: 'entities', disallow: ['app', 'pages', 'widgets', 'features'] },
-            { from: 'features', disallow: ['app', 'pages', 'widgets'] },
-            { from: 'widgets', disallow: ['app', 'pages'] },
-            { from: 'pages', disallow: ['app'] },
+            { from: 'shared', allow: ['shared'] },
+            { from: 'entities', allow: ['entities', 'shared'] },
+            { from: 'features', allow: ['entities', 'shared'] },
+            { from: 'widgets', allow: ['features', 'entities', 'shared'] },
+            { from: 'pages', allow: ['widgets', 'features', 'entities', 'shared'] },
+            { from: 'app', allow: ['*'] },
           ],
         },
       ],
+
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
     },
   },
+
   {
     files: ['**/*.html'],
     extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
