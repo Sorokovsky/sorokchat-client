@@ -42,104 +42,85 @@ module.exports = tseslint.config(
             require('eslint-config-prettier'),
         ],
         rules: {
-            // ========== FSD RULES - СТРОГИЙ STEIGER ==========
-            // 1. Заборона реекспортів між модулями одного шару
-            // 2. Тільки Public API через index.ts
-
+            // ========== FSD RULES ==========
             'import/no-restricted-paths': [
                 'error',
                 {
                     zones: [
-                        // ========== ЗАБОРОНА РЕЕКСПОРТІВ ВСЕРЕДИНІ ШАРУ ==========
-                        // Features: повна заборона імпортів між різними features (окрім index.ts)
+                        // ========== ЗАБОРОНА ІМПОРТІВ МІЖ РІЗНИМИ МОДУЛЯМИ ОДНОГО ШАРУ ==========
+                        // Features: заборона між різними features
                         {
-                            target: './src/features/**/*',
-                            from: './src/features',
-                            except: [
-                                './src/features/**/index.ts',
-                                './src/features/**/index.tsx',
-                            ],
-                            message: 'Між різними features заборонено будь-які імпорти (окрім public API через index.ts)',
+                            target: './src/features/*/*',
+                            from: './src/features/*',
+                            except: ['./src/features/*/index.ts'],
+                            message: 'Між різними features можна імпортувати тільки через index.ts',
                         },
-                        // Entities: повна заборона імпортів між різними entities
+                        // Entities: заборона між різними entities
                         {
-                            target: './src/entities/**/*',
-                            from: './src/entities',
-                            except: [
-                                './src/entities/**/index.ts',
-                                './src/entities/**/index.tsx',
-                            ],
-                            message: 'Між різними entities заборонено будь-які імпорти (окрім public API через index.ts)',
+                            target: './src/entities/*/*',
+                            from: './src/entities/*',
+                            except: ['./src/entities/*/index.ts'],
+                            message: 'Між різними entities можна імпортувати тільки через index.ts',
                         },
-                        // Widgets: повна заборона імпортів між різними widgets
+                        // Widgets: заборона між різними widgets
                         {
-                            target: './src/widgets/**/*',
-                            from: './src/widgets',
-                            except: [
-                                './src/widgets/**/index.ts',
-                                './src/widgets/**/index.tsx',
-                            ],
-                            message: 'Між різними widgets заборонено будь-які імпорти (окрім public API через index.ts)',
+                            target: './src/widgets/*/*',
+                            from: './src/widgets/*',
+                            except: ['./src/widgets/*/index.ts'],
+                            message: 'Між різними widgets можна імпортувати тільки через index.ts',
                         },
-                        // Pages: повна заборона імпортів між різними pages
+                        // Pages: заборона між різними pages
                         {
-                            target: './src/pages/**/*',
-                            from: './src/pages',
-                            except: [
-                                './src/pages/**/index.ts',
-                                './src/pages/**/index.tsx',
-                            ],
-                            message: 'Між різними pages заборонено будь-які імпорти (окрім public API через index.ts)',
+                            target: './src/pages/*/*',
+                            from: './src/pages/*',
+                            except: ['./src/pages/*/index.ts'],
+                            message: 'Між різними pages можна імпортувати тільки через index.ts',
                         },
-                        // Shared: повна заборона імпортів між різними shared модулями
+                        // Shared: заборона між різними shared модулями
                         {
-                            target: './src/shared/**/*',
-                            from: './src/shared',
-                            except: [
-                                './src/shared/**/index.ts',
-                                './src/shared/**/index.tsx',
-                            ],
-                            message: 'Між різними shared модулями заборонено будь-які імпорти (окрім public API через index.ts)',
+                            target: './src/shared/*/*',
+                            from: './src/shared/*',
+                            except: ['./src/shared/index.ts'],
+                            message: 'Між різними shared модулями можна імпортувати тільки через кореневий index.ts',
                         },
 
-                        // ========== ЗАБОРОНА РЕЕКСПОРТІВ МІЖ ШАРАМИ ==========
+                        // ========== МІЖШАРОВІ ЗАБОРОНИ ==========
                         // Заборона імпортів з вищих шарів у нижчі
                         {
                             target: './src/entities/**/*',
                             from: './src/features',
-                            message: 'Entities не можуть імпортувати з features (FSD rule)',
+                            message: 'Entities не можуть імпортувати з features',
                         },
                         {
                             target: './src/entities/**/*',
                             from: './src/widgets',
-                            message: 'Entities не можуть імпортувати з widgets (FSD rule)',
+                            message: 'Entities не можуть імпортувати з widgets',
                         },
                         {
                             target: './src/entities/**/*',
                             from: './src/pages',
-                            message: 'Entities не можуть імпортувати з pages (FSD rule)',
+                            message: 'Entities не можуть імпортувати з pages',
                         },
                         {
                             target: './src/entities/**/*',
                             from: './src/app',
-                            message: 'Entities не можуть імпортувати з app (FSD rule)',
+                            message: 'Entities не можуть імпортувати з app',
                         },
                     ],
                 },
             ],
 
-            // ========== ДОДАТКОВА ПЕРЕВІРКА РЕЕКСПОРТІВ ==========
-            'import/no-re-export': ['error', { allowExportAll: false }],
-
-            'no-restricted-syntax': [
+            // ========== ДОДАТКОВА ПЕРЕВІРКА ДЛЯ SHARED ==========
+            'no-restricted-imports': [
                 'error',
                 {
-                    selector: 'ExportAllDeclaration',
-                    message: 'Заборонено використовувати export * (реекспорт)',
-                },
-                {
-                    selector: 'ExportNamedDeclaration[source]',
-                    message: 'Заборонено реекспорти між модулями. Використовуйте прямі імпорти через Public API',
+                    patterns: [
+                        {
+                            // Заборона імпортів з піддиректорій shared
+                            group: ['@/shared/*/*'],
+                            message: 'Імпортуйте з shared тільки через @/shared (кореневий)',
+                        },
+                    ],
                 },
             ],
 
@@ -148,7 +129,7 @@ module.exports = tseslint.config(
                 'error',
                 {
                     default: 'disallow',
-                    message: '${importType} → ${targetType} заборонено (FSD rule)',
+                    message: '${importType} → ${targetType} заборонено',
                     rules: [
                         {
                             from: 'shared',
@@ -222,29 +203,13 @@ module.exports = tseslint.config(
         ],
     },
 
-    // ========== ВИНЯТКИ ДЛЯ PUBLIC API ФАЙЛІВ ==========
-    {
-        files: [
-            'src/**/index.ts',
-            'src/**/index.tsx',
-            'src/**/public-api.ts',
-            'src/**/api.ts'
-        ],
-        rules: {
-            'import/no-restricted-paths': 'off',
-            'no-restricted-syntax': 'off',
-            'import/no-re-export': 'off',
-        },
-    },
-
     // ========== ВИНЯТКИ ДЛЯ ТЕСТІВ ==========
     {
         files: ['**/*.test.ts', '**/*.spec.ts', '**/*.test.tsx', '**/*.spec.tsx'],
         rules: {
             'import/no-restricted-paths': 'off',
             'boundaries/element-types': 'off',
-            'no-restricted-syntax': 'off',
-            'import/no-re-export': 'off',
+            'no-restricted-imports': 'off',
         },
     },
 );
