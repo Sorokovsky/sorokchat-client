@@ -20,6 +20,9 @@
             "browser": "src/app/entrypoint/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "ngxEnv": {
+              "prefix": "NG_APP_"
+            },
             "assets": [
               {
                 "glob": "**/*",

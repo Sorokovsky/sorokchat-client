@@ -2,6 +2,7 @@
 declare interface Env {
   readonly NODE_ENV: string;
   readonly NG_APP_API_URL: string;
+  [key: string]: unknown;
 }
 
 // Choose how to access the environment variables.
