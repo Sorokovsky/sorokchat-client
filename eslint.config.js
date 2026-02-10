@@ -39,14 +39,6 @@ module.exports = tseslint.config(
       require('eslint-config-prettier'), // Prettier має бути останнім
     ],
     rules: {
-      '@/quotes': [
-        'error',
-        'double',
-        {
-          avoidEscape: true,
-          allowTemplateLiterals: true,
-        },
-      ],
       '@typescript-eslint/consistent-type-imports': [
         'error',
         {
