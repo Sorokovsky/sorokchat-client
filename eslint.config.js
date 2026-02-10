@@ -76,6 +76,28 @@ module.exports = tseslint.config(
         },
       ],
 
+      'import/no-restricted-paths': [
+        'off',
+        {
+          zones: {
+            targets: [
+              './src/shared/**/index.ts',
+              './src/shared/**/index.tsx',
+              './src/features/**/index.ts',
+              './src/features/**/index.tsx',
+              './src/entities/**/index.ts',
+              './src/entities/**/index.tsx',
+              './src/widgets/**/index.ts',
+              './src/widgets/**/index.tsx',
+              './src/pages/**/index.ts',
+              './src/pages/**/index.tsx',
+              './src/app/**/index.ts',
+              './src/app/**/index.tsx',
+            ],
+          },
+        },
+      ],
+
       '@typescript-eslint/consistent-type-imports': [
         'error',
         {
