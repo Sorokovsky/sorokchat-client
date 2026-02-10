@@ -2687,6 +2687,36 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/angular-query-experimental@npm:^5.90.25":
+  version: 5.90.25
+  resolution: "@tanstack/angular-query-experimental@npm:5.90.25"
+  dependencies:
+    "@tanstack/query-core": "npm:5.90.20"
+    "@tanstack/query-devtools": "npm:5.93.0"
+  peerDependencies:
+    "@angular/common": ">=16.0.0"
+    "@angular/core": ">=16.0.0"
+  dependenciesMeta:
+    "@tanstack/query-devtools":
+      optional: true
+  checksum: 10c0/f3cb0aaa9b3f5284068f0337cecd1493e5da4a0ae588d1c1fe8b9748ae12336d13965d82bd58cfae752f624b2d2d4e8dca68dcaafd4034b7f28aeb31bfa1badc
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-core@npm:5.90.20":
+  version: 5.90.20
+  resolution: "@tanstack/query-core@npm:5.90.20"
+  checksum: 10c0/70637dfcecd5ed9d810629aa27f1632af8a4bcd083e75cf29408d058c32f8234704a3231ec280e2c4016ea0485b16124fdf70ab97793b5a7b670f43f7659e9fe
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-devtools@npm:5.93.0":
+  version: 5.93.0
+  resolution: "@tanstack/query-devtools@npm:5.93.0"
+  checksum: 10c0/0024cef103f48c50f3932f6bfe5d77b4fde25be49d43486f8ef7ec7108d2c1bd999ebc7a46309f0504bf081daa7217b36637e9436d67f9a1599c89a385d078ee
+  languageName: node
+  linkType: hard
+
 "@tufjs/canonical-json@npm:2.0.0":
   version: 2.0.0
   resolution: "@tufjs/canonical-json@npm:2.0.0"
@@ -8185,6 +8215,7 @@ __metadata:
     "@angular/router": "npm:^20.3.0"
     "@eslint/js": "npm:^9.39.1"
     "@feature-sliced/eslint-config": "npm:^0.1.1"
+    "@tanstack/angular-query-experimental": "npm:^5.90.25"
     "@types/jasmine": "npm:~5.1.0"
     angular-eslint: "npm:21.0.1"
     eslint: "npm:^9.39.1"

@@ -1,1 +1,1 @@
-export { BaseSchema } from './models';
+export { type BaseQuery, BaseSchema } from './models';
