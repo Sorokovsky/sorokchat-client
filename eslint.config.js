@@ -147,7 +147,7 @@ module.exports = tseslint.config(
           ],
         },
       ],
-
+      '@typescript-eslint/no-inferrable-types': ['off'],
       // ========== TYPE IMPORTS ==========
       '@typescript-eslint/consistent-type-imports': [
         'error',
