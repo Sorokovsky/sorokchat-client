@@ -42,84 +42,72 @@ module.exports = tseslint.config(
       require('eslint-config-prettier'),
     ],
     rules: {
-      // ========== FSD RULES ==========
+      // ========== СПРОЩЕНІ FSD ПРАВИЛА ==========
       'import/no-restricted-paths': [
         'error',
         {
           zones: [
-            // ========== ЗАБОРОНА ІМПОРТІВ МІЖ РІЗНИМИ МОДУЛЯМИ ОДНОГО ШАРУ ==========
-            // Features: заборона між різними features
+            // ========== ГЛОВНЕ ПРАВИЛО: МІЖ СЛАЙСАМИ ТІЛЬКИ ЧЕРЕЗ @x/ ==========
             {
-              target: './src/features/*/*',
-              from: './src/features/*',
-              except: ['./src/features/*/index.ts'],
-              message: 'Між різними features можна імпортувати тільки через index.ts',
-            },
-            // Entities: заборона між різними entities
-            {
-              target: './src/entities/*/*',
+              target: './src/entities/**/*',
               from: './src/entities/*',
-              except: ['./src/entities/*/index.ts'],
-              message: 'Між різними entities можна імпортувати тільки через index.ts',
-            },
-            // Widgets: заборона між різними widgets
-            {
-              target: './src/widgets/*/*',
-              from: './src/widgets/*',
-              except: ['./src/widgets/*/index.ts'],
-              message: 'Між різними widgets можна імпортувати тільки через index.ts',
-            },
-            // Pages: заборона між різними pages
-            {
-              target: './src/pages/*/*',
-              from: './src/pages/*',
-              except: ['./src/pages/*/index.ts'],
-              message: 'Між різними pages можна імпортувати тільки через index.ts',
-            },
-            // Shared: заборона між різними shared модулями
-            {
-              target: './src/shared/*/*',
-              from: './src/shared/*',
-              except: ['./src/shared/index.ts'],
+              except: [
+                // Дозволити імпорти всередині одного слайса
+                './src/entities/*/**',
+                // Дозволити шляхи з @x/
+                './src/entities/*/@x/**',
+                './src/entities/**/@x/**',
+              ],
               message:
-                'Між різними shared модулями можна імпортувати тільки через кореневий index.ts',
+                'Між різними слайсами entities можна імпортувати ТІЛЬКИ через @x/ директорію',
             },
 
-            // ========== МІЖШАРОВІ ЗАБОРОНИ ==========
-            // Заборона імпортів з вищих шарів у нижчі
+            // Аналогічно для features
+            {
+              target: './src/features/**/*',
+              from: './src/features/*',
+              except: ['./src/features/*/**', './src/features/*/@x/**', './src/features/**/@x/**'],
+              message:
+                'Між різними слайсами features можна імпортувати ТІЛЬКИ через @x/ директорію',
+            },
+
+            // ========== МІЖШАРОВІ ПРАВИЛА ==========
+            // Features → Entities (тільки через index.ts)
+            {
+              target: './src/features/**/*',
+              from: './src/entities/*',
+              except: ['./src/entities/*/index.ts'],
+              message: 'Features можуть імпортувати з Entities тільки через index.ts',
+            },
+
+            // Заборона зворотних імпортів
             {
               target: './src/entities/**/*',
               from: './src/features',
-              message: 'Entities не можуть імпортувати з features',
-            },
-            {
-              target: './src/entities/**/*',
-              from: './src/widgets',
-              message: 'Entities не можуть імпортувати з widgets',
-            },
-            {
-              target: './src/entities/**/*',
-              from: './src/pages',
-              message: 'Entities не можуть імпортувати з pages',
-            },
-            {
-              target: './src/entities/**/*',
-              from: './src/app',
-              message: 'Entities не можуть імпортувати з app',
+              message: 'Entities не можуть імпортувати з Features',
             },
           ],
         },
       ],
 
-      // ========== ДОДАТКОВА ПЕРЕВІРКА ДЛЯ SHARED ==========
+      // ========== ДОДАТКОВА ПЕРЕВІРКА ЧЕРЕЗ no-restricted-imports ==========
       'no-restricted-imports': [
         'error',
         {
           patterns: [
+            // Заборонити імпорти між слайсами без @x/
             {
-              // Заборона імпортів з піддиректорій shared
-              group: ['@/shared/*/*'],
-              message: 'Імпортуйте з shared тільки через @/shared (кореневий)',
+              group: ['@/entities/*/!(@x)/**'],
+              message: 'Між слайсами entities можна імпортувати ТІЛЬКИ через @x/',
+            },
+            {
+              group: ['@/features/*/!(@x)/**'],
+              message: 'Між слайсами features можна імпортувати ТІЛЬКИ через @x/',
+            },
+            // Заборонити імпорти з shared піддиректорій
+            {
+              group: ['@/shared/*/**'],
+              message: 'Імпортуйте з shared тільки через @/shared',
             },
           ],
         },
@@ -201,13 +189,13 @@ module.exports = tseslint.config(
     extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
   },
 
-  // ========== ВИНЯТКИ ДЛЯ ТЕСТІВ ==========
+  // ========== ВИНЯТКИ ==========
   {
     files: ['**/*.test.ts', '**/*.spec.ts', '**/*.test.tsx', '**/*.spec.tsx'],
     rules: {
       'import/no-restricted-paths': 'off',
-      'boundaries/element-types': 'off',
       'no-restricted-imports': 'off',
+      'boundaries/element-types': 'off',
     },
   },
 );
