@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@use "variables" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 1px;
+}
+
+body {
+  font-size: 16rem;
+  background-color: $primary-background;
+}
