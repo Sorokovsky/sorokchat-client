@@ -1,4 +1,5 @@
 export {
+  type GetProfileQuery,
   type LoginPayload,
   LoginSchema,
   type RegisterPayload,

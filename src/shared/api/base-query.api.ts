@@ -1,16 +1,18 @@
-import type { CreateQueryOptions, QueryFunction } from '@tanstack/angular-query-experimental';
+import type { CreateQueryOptions } from '@tanstack/angular-query-experimental';
 import { injectQuery } from '@tanstack/angular-query-experimental';
 
-import type { BaseQuery } from '../models';
+import type { BaseQuery, ProblemDetails } from '../models';
 
-export function injectBaseQuery<TInput, TOutput, TError = Error>(
+export function injectBaseQuery<TOutput>(
   keys: string[],
-  queryFunction: QueryFunction<TInput, string[], TOutput>,
-): BaseQuery<TOutput, TError> {
+  queryFunction: () => Promise<TOutput> | TOutput,
+  retry: boolean | number = false,
+): BaseQuery<TOutput> {
   return injectQuery(
-    (): CreateQueryOptions<TInput, TError, TOutput, string[]> => ({
+    (): CreateQueryOptions<TOutput, ProblemDetails, TOutput, string[]> => ({
       queryKey: keys,
       queryFn: queryFunction,
+      retry: retry,
     }),
   );
 }

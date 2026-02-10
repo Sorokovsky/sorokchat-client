@@ -1,7 +1,9 @@
 import type { CreateMutationResult } from '@tanstack/angular-query-experimental';
 
-export type BaseMutation<TData, TError, TVariables> = CreateMutationResult<
+import type { ProblemDetails } from '@/shared';
+
+export type BaseMutation<TData, TVariables> = CreateMutationResult<
   TData,
-  TError,
+  ProblemDetails,
   TVariables
 >;

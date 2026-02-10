@@ -1,3 +1,5 @@
 import type { CreateQueryResult } from '@tanstack/angular-query-experimental';
 
-export type BaseQuery<TData, TError> = CreateQueryResult<TData, TError>;
+import type { ProblemDetails } from '@/shared';
+
+export type BaseQuery<TData> = CreateQueryResult<TData, ProblemDetails>;
