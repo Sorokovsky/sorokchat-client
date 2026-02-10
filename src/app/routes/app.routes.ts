@@ -1,7 +1,6 @@
 import type { Routes } from '@angular/router';
 
-import { ANONYMOUS_PAGES } from '@/app/config';
-
+import { ANONYMOUS_PAGES } from '../data';
 import { AuthorizationLayout, MainLayout } from '../layouts';
 
 export const routes: Routes = [
@@ -12,6 +11,6 @@ export const routes: Routes = [
   {
     path: '',
     component: AuthorizationLayout,
-    children: ANONYMOUS_PAGES,
+    children: [...ANONYMOUS_PAGES],
   },
 ];
