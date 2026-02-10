@@ -1,4 +1,4 @@
-export { AuthorizationService } from './api';
+export { AuthorizationService, injectIsAuthenticated } from './api';
 export {
   type GetProfileQuery,
   type LoginPayload,
