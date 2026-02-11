@@ -1,1 +1,2 @@
-export { REGISTER_PAGE, RegisterPage } from './register';
+export { REGISTER_PAGE } from './register';
+export { CHATS_PAGE } from './chats';
