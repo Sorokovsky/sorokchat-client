@@ -8,9 +8,12 @@
 
 html {
   font-size: 1px;
+  min-height: 100%;
 }
 
 body {
   font-size: 16rem;
   background-color: $primary-background;
+  height: 100%;
+  min-height: 100vh;
 }

@@ -8,4 +8,5 @@ export {
   type ProblemDetails,
   ProblemDetailsSchema,
 } from './models';
+export { Loader } from './ui';
 export { injectCurrentPage, removeDynamicPath } from './util';

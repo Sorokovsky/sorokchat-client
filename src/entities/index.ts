@@ -1,5 +1,6 @@
 export {
   type GetProfileQuery,
+  injectGetProfile,
   injectIsAuthenticated,
   type LoginPayload,
   LoginSchema,
