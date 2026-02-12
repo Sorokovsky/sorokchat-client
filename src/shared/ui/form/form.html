@@ -1,4 +1,4 @@
-<form [formGroup]="form()" class="form">
+<form (ngSubmit)="onSubmit()" [formGroup]="form()" class="form">
     @for (field of fields(); track field.name) {
         <div class="form__field">
             <label [for]="field.name" class="form__label">{{ field.label }}</label>
