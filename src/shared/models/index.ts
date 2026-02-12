@@ -6,6 +6,7 @@ export { type BaseMutation } from './base-mutation.schema';
 export { type BaseQuery } from './base-query.schema';
 export { type ButtonType } from './button-type.types';
 export { type Field } from './field.types';
+export { type HeadingTag } from './heading-tag.types';
 export { type InputType } from './input-type.types';
 export { type Page } from './page.schema';
 export { type ProblemDetails, ProblemDetailsSchema } from './problem-details.schema';

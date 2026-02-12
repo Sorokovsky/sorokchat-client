@@ -9,6 +9,7 @@ export {
   BaseSchema,
   type ButtonType,
   type Field,
+  type HeadingTag,
   type InputType,
   type Page,
   type ProblemDetails,

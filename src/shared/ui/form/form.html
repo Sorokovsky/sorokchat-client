@@ -1,5 +1,5 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form()" class="form">
-    <app-heading>Реєстрація</app-heading>
+    <app-heading [text]="title()"/>
     @for (field of fields(); track field.name) {
         <app-form-field [control]="getControl(field.name)" [error]="getError(field.name)" [field]="field"/>
     }
