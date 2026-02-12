@@ -38,4 +38,8 @@
       color: $primary-text-color;
     }
   }
+
+  &__error {
+    color: $error-text-color;
+  }
 }

@@ -14,7 +14,7 @@
             />
             @let error = getError(field.name);
             @if (error) {
-                <span class="error">{{ error }}</span>
+                <span class="form__error">* {{ error }}</span>
             }
         </div>
     }
