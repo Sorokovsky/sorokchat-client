@@ -2,7 +2,7 @@
     <h1 class="form__title">{{ title() }}</h1>
     @for (field of fields(); track field.name) {
         <div class="form__field">
-            <label [for]="field.name" class="form__label">{{ field.label }}</label>
+            <app-label [inputId]="field.name">{{ field.label }}</app-label>
             <app-input
                     [autocomplete]="field.autocomplete"
                     [placeholder]="field.placeholder"
