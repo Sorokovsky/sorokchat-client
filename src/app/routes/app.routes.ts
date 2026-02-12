@@ -9,15 +9,13 @@ import { AuthorizationLayout, MainLayout } from '../layouts';
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: '/' + removeDynamicPath(CHATS_PAGE.path),
+    pathMatch: 'full',
+  },
+  {
+    path: '',
     component: MainLayout,
-    children: [
-      {
-        path: '',
-        redirectTo: removeDynamicPath(CHATS_PAGE.path),
-        pathMatch: 'full',
-      },
-      ...SECURED_PAGES,
-    ],
+    children: SECURED_PAGES,
   },
   {
     path: '',
