@@ -2,6 +2,8 @@ import type { EffectRef, Signal } from '@angular/core';
 import { effect, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
+import type { GetProfileQuery } from '@/entities';
+import { injectGetProfile } from '@/entities';
 import type { AccessSetting, Page } from '@/shared';
 import { injectCurrentPage, removeDynamicPath } from '@/shared';
 
@@ -11,8 +13,10 @@ import { injectHasAccess } from '../util';
 export function injectAuthenticationGuard(): EffectRef {
   const currentPage: Signal<Page | null> = injectCurrentPage(ALL_PAGES);
   const hasAccess: Signal<boolean> = injectHasAccess(currentPage);
+  const profile: GetProfileQuery = injectGetProfile();
   const router: Router = inject(Router);
   return effect((): void => {
+    if (profile.isLoading()) return;
     if (hasAccess()) return;
     const page: Page | null = currentPage();
     if (!page) throw new Error('Page not found');
