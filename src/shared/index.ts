@@ -7,11 +7,12 @@ export {
   type BaseMutation,
   type BaseQuery,
   BaseSchema,
+  type ButtonType,
   type Field,
   type InputType,
   type Page,
   type ProblemDetails,
   ProblemDetailsSchema,
 } from './models';
-export { Form, Loader } from './ui';
+export { Button, Form, Loader } from './ui';
 export { injectCurrentPage, removeDynamicPath, zodValidation } from './util';

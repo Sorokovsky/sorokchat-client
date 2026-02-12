@@ -4,6 +4,7 @@ export { type Autocomplete } from './autocomplete.types';
 export { BaseSchema } from './base.schema';
 export { type BaseMutation } from './base-mutation.schema';
 export { type BaseQuery } from './base-query.schema';
+export { type ButtonType } from './button-type.types';
 export { type Field } from './field.types';
 export { type InputType } from './input-type.types';
 export { type Page } from './page.schema';
