@@ -4,9 +4,9 @@ import type { FormGroup, ValidationErrors } from '@angular/forms';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import type { z as zod } from 'zod';
 
-import { Button, zodValidation } from '@/shared';
-
 import type { Field } from '../../models';
+import { zodValidation } from '../../util';
+import { Button } from '../button/button';
 
 @Component({
   selector: 'app-form',
