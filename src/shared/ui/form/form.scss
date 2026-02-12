@@ -29,16 +29,6 @@
     font-weight: bold;
   }
 
-  &__input {
-    width: 100%;
-    outline: none;
-
-    &, &::placeholder {
-      padding: 5rem 10rem;
-      color: $primary-text-color;
-    }
-  }
-
   &__error {
     color: $error-text-color;
   }

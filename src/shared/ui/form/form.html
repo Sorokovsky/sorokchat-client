@@ -3,14 +3,13 @@
     @for (field of fields(); track field.name) {
         <div class="form__field">
             <label [for]="field.name" class="form__label">{{ field.label }}</label>
-            <input
+            <app-input
                     [autocomplete]="field.autocomplete"
-                    [formControlName]="field.name"
-                    [id]="field.name"
-                    [name]="field.name"
                     [placeholder]="field.placeholder"
+                    [control]="getControl(field.name)"
                     [type]="field.type"
-                    class="form__input"
+                    [defaultValue]="field.defaultValue"
+                    [name]="field.name"
             />
             @let error = getError(field.name);
             @if (error) {

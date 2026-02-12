@@ -1,0 +1,15 @@
+@use "variables" as *;
+
+:host {
+  display: contents;
+}
+
+.input {
+  width: 100%;
+  outline: none;
+
+  &, &::placeholder {
+    padding: 5rem 10rem;
+    color: $primary-text-color;
+  }
+}

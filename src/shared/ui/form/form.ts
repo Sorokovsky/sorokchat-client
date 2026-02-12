@@ -1,16 +1,17 @@
 import type { InputSignal, OnInit, OutputEmitterRef, Signal, WritableSignal } from '@angular/core';
 import { Component, computed, inject, input, output, signal } from '@angular/core';
-import type { FormGroup, ValidationErrors } from '@angular/forms';
+import type { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import type { z as zod } from 'zod';
 
 import type { Field } from '../../models';
 import { zodValidation } from '../../util';
 import { Button } from '../button/button';
+import { UIInput } from '../input/ui-input';
 
 @Component({
   selector: 'app-form',
-  imports: [ReactiveFormsModule, Button],
+  imports: [ReactiveFormsModule, Button, UIInput],
   templateUrl: './form.html',
   styleUrl: './form.scss',
 })
@@ -52,6 +53,10 @@ export class Form<T> implements OnInit {
     if (errors === null) return null;
     if (name in errors) return errors[name].message;
     return null;
+  }
+
+  protected getControl(name: string): FormControl {
+    return this.form().get(name) as FormControl;
   }
 
   private collectInputs(fields: Field[]): Record<string, string[]> {
