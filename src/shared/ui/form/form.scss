@@ -1,3 +1,4 @@
+@use "variables" as *;
 :host {
   display: contents;
 }
@@ -7,6 +8,14 @@
   display: flex;
   flex-direction: column;
   gap: 20rem;
+  border: 1rem solid $border-color;
+  padding: 20rem 15rem;
+  border-radius: 20rem;
+
+  &__title {
+    text-align: center;
+    font-size: 32rem;
+  }
 
   &__field {
     width: 100%;

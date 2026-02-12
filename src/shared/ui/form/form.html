@@ -1,4 +1,5 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form()" class="form">
+    <h1 class="form__title">{{ title() }}</h1>
     @for (field of fields(); track field.name) {
         <div class="form__field">
             <label [for]="field.name" class="form__label">{{ field.label }}</label>
@@ -11,5 +12,5 @@
             />
         </div>
     }
-    <button type="submit">{{ submitText() }}</button>
+    <button class="form__button" type="submit">{{ submitText() }}</button>
 </form>
