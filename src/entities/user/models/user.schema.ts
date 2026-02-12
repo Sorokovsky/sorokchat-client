@@ -3,7 +3,7 @@ import { z as zod } from 'zod';
 import { BaseSchema } from '@/shared';
 
 const MIN_PASSWORD_LENGTH = 8;
-const MAX_PASSWORD_LENGTH = 8;
+const MAX_PASSWORD_LENGTH = 32;
 
 export const UserSchema = BaseSchema.extend({
   email: zod

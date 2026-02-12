@@ -1,1 +1,7 @@
-<app-form [fields]="fields" [schema]="schema" [submitText]="submitText" [title]="title"/>
+<app-form
+        (send)="register($event)"
+        [fields]="fields"
+        [schema]="schema"
+        [submitText]="submitText"
+        [title]="title"
+/>
