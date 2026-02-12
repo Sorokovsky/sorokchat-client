@@ -1,6 +1,6 @@
-import {CHATS_PAGE, REGISTER_PAGE} from "@/pages";
-import type {Page} from "@/shared";
-import {removeDynamicPath} from "@/shared";
+import { CHATS_PAGE, REGISTER_PAGE } from '@/pages';
+import type { Page } from '@/shared';
+import { removeDynamicPath } from '@/shared';
 
 export const ANONYMOUS_PAGES: Page[] = [REGISTER_PAGE];
 export const SECURED_PAGES: Page[] = [
