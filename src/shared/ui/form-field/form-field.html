@@ -1,0 +1,14 @@
+@let formField = field();
+<div class="form-field">
+    <app-label [inputId]="formField.name">{{ formField.label }}</app-label>
+    <app-input
+            [autocomplete]="formField.autocomplete"
+            [control]="control()"
+            [defaultValue]="formField.defaultValue"
+            [name]="formField.name"
+            [placeholder]="formField.placeholder"
+            [type]="formField.type"
+    />
+    <app-field-error [error]="error()"/>
+
+</div>

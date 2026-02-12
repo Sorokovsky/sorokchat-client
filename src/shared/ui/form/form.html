@@ -1,19 +1,7 @@
 <form (ngSubmit)="onSubmit()" [formGroup]="form()" class="form">
     <h1 class="form__title">{{ title() }}</h1>
     @for (field of fields(); track field.name) {
-        <div class="form__field">
-            <app-label [inputId]="field.name">{{ field.label }}</app-label>
-            <app-input
-                    [autocomplete]="field.autocomplete"
-                    [placeholder]="field.placeholder"
-                    [control]="getControl(field.name)"
-                    [type]="field.type"
-                    [defaultValue]="field.defaultValue"
-                    [name]="field.name"
-            />
-            <app-field-error [error]="getError(field.name)"/>
-
-        </div>
+        <app-form-field [control]="getControl(field.name)" [error]="getError(field.name)" [field]="field"/>
     }
     <app-button [isDisabled]="isDisabled()" class="form__button" type="submit">{{ submitText() }}</app-button>
 </form>

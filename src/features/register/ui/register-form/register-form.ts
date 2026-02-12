@@ -20,7 +20,7 @@ export class RegisterForm {
   protected readonly fields: Field[] = REGISTER_FIELDS;
   protected readonly title: string = 'Реєстрація';
   protected readonly submitText: string = 'Зареєструватися';
-  protected readonly schema: zod.Schema = RegisterSchema;
+  protected readonly schema: zod.ZodSchema<RegisterPayload> = RegisterSchema;
   private readonly mutation: RegisterMutation = injectRegister();
 
   protected register(payload: RegisterPayload): void {

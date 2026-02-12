@@ -7,13 +7,11 @@ import type { z as zod } from 'zod';
 import type { Field } from '../../models';
 import { zodValidation } from '../../util';
 import { Button } from '../button/button';
-import { FieldError } from '../field-error/field-error';
-import { UIInput } from '../input/ui-input';
-import { Label } from '../label/label';
+import { FormField } from '../form-field/form-field';
 
 @Component({
   selector: 'app-form',
-  imports: [ReactiveFormsModule, Button, UIInput, Label, FieldError],
+  imports: [ReactiveFormsModule, Button, FormField],
   templateUrl: './form.html',
   styleUrl: './form.scss',
 })
@@ -46,7 +44,7 @@ export class Form<T> implements OnInit {
 
   public onSubmit(): void {
     const form: FormGroup = this.form();
-    if (form.valid) this.send.emit(form.value);
+    if (form.valid) this.send.emit(form.value as T);
     else form.markAllAsTouched();
   }
 
