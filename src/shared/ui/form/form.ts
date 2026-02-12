@@ -1,5 +1,5 @@
-import type { InputSignal, OutputEmitterRef, Signal } from '@angular/core';
-import { Component, computed, inject, input, output } from '@angular/core';
+import type { InputSignal, OnInit, OutputEmitterRef, Signal, WritableSignal } from '@angular/core';
+import { Component, computed, inject, input, output, signal } from '@angular/core';
 import type { FormGroup, ValidationErrors } from '@angular/forms';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import type { z as zod } from 'zod';
@@ -14,8 +14,9 @@ import type { Field } from '../../models';
   templateUrl: './form.html',
   styleUrl: './form.scss',
 })
-export class Form<T> {
+export class Form<T> implements OnInit {
   private readonly builder: FormBuilder = inject(FormBuilder);
+  private readonly isInvalid: WritableSignal<boolean> = signal<boolean>(false);
   public readonly fields: InputSignal<Field[]> = input.required<Field[]>();
   public readonly title: InputSignal<string> = input.required<string>();
   public readonly submitText: InputSignal<string> = input.required<string>();
@@ -29,8 +30,16 @@ export class Form<T> {
   });
 
   protected readonly isDisabled: Signal<boolean> = computed((): boolean => {
-    return this.isLoading() || this.form().invalid;
+    return this.isLoading() || this.isInvalid();
   });
+
+  public ngOnInit(): void {
+    const form: FormGroup = this.form();
+    form.valueChanges.subscribe((): void => {
+      this.isInvalid.set(form.invalid);
+    });
+    this.isInvalid.set(form.invalid);
+  }
 
   public onSubmit(): void {
     const form: FormGroup = this.form();
