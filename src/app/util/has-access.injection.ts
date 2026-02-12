@@ -5,11 +5,12 @@ import { injectIsAuthenticated } from '@/entities';
 import type { Page } from '@/shared';
 import { AccessRule } from '@/shared';
 
-export function injectHasAccess(page: Page | null): Signal<boolean> {
-  if (page === null) throw new Error('Page cannot be found');
+export function injectHasAccess(page: Signal<Page | null>): Signal<boolean> {
   const isAuthenticated: Signal<boolean> = injectIsAuthenticated();
   return computed((): boolean => {
-    switch (page.accessRule) {
+    const currentPage: Page | null = page();
+    if (currentPage === null) throw new Error('Page cannot be found');
+    switch (currentPage.accessRule) {
       case AccessRule.PERMIT_ALL:
         return true;
       case AccessRule.DENY_ALL:
