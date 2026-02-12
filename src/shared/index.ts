@@ -2,8 +2,12 @@ export { Endpoints, QueryKeys } from './data';
 export {
   AccessRule,
   type AccessSetting,
+  type Autocomplete,
+  type BaseMutation,
   type BaseQuery,
   BaseSchema,
+  type Field,
+  type InputType,
   type Page,
   type ProblemDetails,
   ProblemDetailsSchema,
