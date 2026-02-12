@@ -1,4 +1,5 @@
 export {
+  AuthorizationService,
   type GetProfileQuery,
   injectGetProfile,
   injectIsAuthenticated,

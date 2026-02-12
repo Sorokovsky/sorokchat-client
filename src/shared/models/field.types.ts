@@ -6,5 +6,6 @@ export interface Field {
   type: InputType;
   placeholder: string;
   autocomplete: Autocomplete;
+  label: string;
   defaultValue?: string;
 }
