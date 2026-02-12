@@ -8,10 +8,11 @@ import type { Field } from '../../models';
 import { zodValidation } from '../../util';
 import { Button } from '../button/button';
 import { FormField } from '../form-field/form-field';
+import { Heading } from '../heading/heading';
 
 @Component({
   selector: 'app-form',
-  imports: [ReactiveFormsModule, Button, FormField],
+  imports: [ReactiveFormsModule, Button, FormField, Heading],
   templateUrl: './form.html',
   styleUrl: './form.scss',
 })
