@@ -2,7 +2,7 @@ import type { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/fo
 import type { z as zod, ZodSafeParseResult } from 'zod';
 import type { $ZodIssue } from 'zod/v4/core';
 
-export function zodValidation(schema: zod.Schema): ValidatorFn {
+export function zodValidation<T>(schema: zod.ZodSchema<T>): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const result: ZodSafeParseResult<unknown> = schema.safeParse(control.value);
     if (result.success) return null;

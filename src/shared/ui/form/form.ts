@@ -19,7 +19,7 @@ export class Form<T> {
   public readonly fields: InputSignal<Field[]> = input.required<Field[]>();
   public readonly title: InputSignal<string> = input.required<string>();
   public readonly submitText: InputSignal<string> = input.required<string>();
-  public readonly schema: InputSignal<zod.Schema> = input.required<zod.Schema>();
+  public readonly schema: InputSignal<zod.ZodSchema<T>> = input.required<zod.ZodSchema<T>>();
   public readonly isLoading: InputSignal<boolean> = input<boolean>(false);
   public readonly send: OutputEmitterRef<T> = output<T>();
   public form: Signal<FormGroup> = computed((): FormGroup => {
@@ -28,9 +28,13 @@ export class Form<T> {
     });
   });
 
+  protected readonly isDisabled: Signal<boolean> = computed((): boolean => {
+    return this.isLoading() || this.form().invalid;
+  });
+
   public onSubmit(): void {
     const form: FormGroup = this.form();
-    if (form.valid) this.send.emit(form.value as T);
+    if (form.valid) this.send.emit(form.value);
     else form.markAllAsTouched();
   }
 

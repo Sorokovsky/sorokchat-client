@@ -50,10 +50,10 @@
     cursor: pointer;
 
     &[type="submit"] {
-      background: $submit-background;
+      background-color: $submit-background;
 
       &:hover {
-        background: $submit-hover-background;
+        background-color: $submit-hover-background;
       }
     }
 
