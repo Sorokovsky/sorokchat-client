@@ -6,7 +6,9 @@ import { LoginSchema } from '@/entities';
 import type { Field } from '@/shared';
 import { Form } from '@/shared';
 
+import { injectLogin } from '../../api';
 import { LOGIN_FIELDS } from '../../data';
+import type { LoginMutation } from '../../models';
 
 @Component({
   selector: 'app-login-form',
@@ -19,8 +21,9 @@ export class LoginForm {
   protected readonly submitText: string = 'Увійти';
   protected readonly fields: Field[] = LOGIN_FIELDS;
   protected readonly schema: zod.ZodSchema<LoginPayload> = LoginSchema;
+  private readonly mutation: LoginMutation = injectLogin();
 
   public login(payload: LoginPayload): void {
-    console.log(payload);
+    this.mutation.mutate(payload);
   }
 }

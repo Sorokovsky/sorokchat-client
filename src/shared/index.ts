@@ -1,4 +1,4 @@
-export { injectBaseMutation, injectBaseQuery } from './api';
+export { injectBaseMutation, injectBaseQuery, INTERCEPTORS } from './api';
 export { Endpoints, QueryKeys } from './data';
 export {
   AccessRule,
