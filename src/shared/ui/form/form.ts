@@ -20,6 +20,7 @@ export class Form<T> {
   public readonly title: InputSignal<string> = input.required<string>();
   public readonly submitText: InputSignal<string> = input.required<string>();
   public readonly schema: InputSignal<zod.Schema> = input.required<zod.Schema>();
+  public readonly isLoading: InputSignal<boolean> = input<boolean>(false);
   public readonly send: OutputEmitterRef<T> = output<T>();
   public form: Signal<FormGroup> = computed((): FormGroup => {
     return this.builder.group(this.collectInputs(this.fields()), {
