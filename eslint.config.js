@@ -42,60 +42,22 @@ module.exports = tseslint.config(
       require('eslint-config-prettier'),
     ],
     rules: {
-      // ========== СПРОЩЕНІ FSD ПРАВИЛА ==========
-      'import/no-restricted-paths': [
-        'error',
-        {
-          zones: [
-            // ========== ГЛОВНЕ ПРАВИЛО: МІЖ СЛАЙСАМИ ТІЛЬКИ ЧЕРЕЗ @x/ ==========
-            {
-              target: './src/entities/**/*',
-              from: './src/entities/*',
-              except: [
-                // Дозволити імпорти всередині одного слайса
-                './src/entities/*/**',
-                // Дозволити шляхи з @x/
-                './src/entities/*/@x/**',
-                './src/entities/**/@x/**',
-              ],
-              message:
-                'Між різними слайсами entities можна імпортувати ТІЛЬКИ через @x/ директорію',
-            },
-
-            // Аналогічно для features
-            {
-              target: './src/features/**/*',
-              from: './src/features/*',
-              except: ['./src/features/*/**', './src/features/*/@x/**', './src/features/**/@x/**'],
-              message:
-                'Між різними слайсами features можна імпортувати ТІЛЬКИ через @x/ директорію',
-            },
-
-            // ========== МІЖШАРОВІ ПРАВИЛА ==========
-            // Features → Entities (тільки через index.ts)
-            {
-              target: './src/features/**/*',
-              from: './src/entities/*',
-              except: ['./src/entities/*/index.ts'],
-              message: 'Features можуть імпортувати з Entities тільки через index.ts',
-            },
-
-            // Заборона зворотних імпортів
-            {
-              target: './src/entities/**/*',
-              from: './src/features',
-              message: 'Entities не можуть імпортувати з Features',
-            },
-          ],
-        },
-      ],
-
-      // ========== ДОДАТКОВА ПЕРЕВІРКА ЧЕРЕЗ no-restricted-imports ==========
       'no-restricted-imports': [
         'error',
         {
           patterns: [
-            // Заборонити імпорти між слайсами без @x/
+            {
+              regex: '^@/entities/.+',
+              message: 'З entities імпортуйте ТІЛЬКИ через public API: @/entities',
+            },
+            {
+              regex: '^@/features/.+',
+              message: 'З features імпортуйте ТІЛЬКИ через public API: @/features',
+            },
+            {
+              group: ['@/shared/*/**'],
+              message: 'З shared імпортуйте тільки через @/shared (без підпапок)',
+            },
             {
               group: ['@/entities/*/!(@x)/**'],
               message: 'Між слайсами entities можна імпортувати ТІЛЬКИ через @x/',
@@ -104,7 +66,6 @@ module.exports = tseslint.config(
               group: ['@/features/*/!(@x)/**'],
               message: 'Між слайсами features можна імпортувати ТІЛЬКИ через @x/',
             },
-            // Заборонити імпорти з shared піддиректорій
             {
               group: ['@/shared/*/**'],
               message: 'Імпортуйте з shared тільки через @/shared',
@@ -112,8 +73,6 @@ module.exports = tseslint.config(
           ],
         },
       ],
-
-      // ========== FSD ARCHITECTURE BOUNDARIES ==========
       'boundaries/element-types': [
         'error',
         {
@@ -122,7 +81,7 @@ module.exports = tseslint.config(
           rules: [
             {
               from: 'shared',
-              allow: ['shared', 'app', 'pages', 'widgets', 'features', 'entities'],
+              allow: ['shared'],
             },
             {
               from: 'entities',
@@ -148,7 +107,6 @@ module.exports = tseslint.config(
         },
       ],
       '@typescript-eslint/no-inferrable-types': ['off'],
-      // ========== TYPE IMPORTS ==========
       '@typescript-eslint/consistent-type-imports': [
         'error',
         {
@@ -159,12 +117,8 @@ module.exports = tseslint.config(
       ],
 
       'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
-
-      // ========== IMPORT/EXPORT SORTING ==========
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
-
-      // ========== ANGULAR SPECIFIC ==========
       '@angular-eslint/directive-selector': [
         'error',
         {
@@ -188,8 +142,6 @@ module.exports = tseslint.config(
     files: ['**/*.html'],
     extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
   },
-
-  // ========== ВИНЯТКИ ==========
   {
     files: ['**/*.test.ts', '**/*.spec.ts', '**/*.test.tsx', '**/*.spec.tsx'],
     rules: {
