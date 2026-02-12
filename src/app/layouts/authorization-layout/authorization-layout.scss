@@ -1,0 +1,15 @@
+:host {
+  display: contents;
+}
+
+.authorization-layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  justify-content: center;
+  max-width: 800rem;
+  margin: 0 auto;
+  align-items: center;
+  padding: 15rem;
+}
