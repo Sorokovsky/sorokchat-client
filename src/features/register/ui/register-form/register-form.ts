@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import type { z as zod } from 'zod';
 
+import { RegisterSchema } from '@/entities';
 import type { Field } from '@/shared';
 import { Form } from '@/shared';
 
@@ -15,4 +17,5 @@ export class RegisterForm {
   protected readonly fields: Field[] = REGISTER_FIELDS;
   protected readonly title: string = 'Реєстрація';
   protected readonly submitText: string = 'Зареєструватися';
+  protected readonly schema: zod.Schema = RegisterSchema;
 }

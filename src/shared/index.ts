@@ -14,4 +14,4 @@ export {
   ProblemDetailsSchema,
 } from './models';
 export { Form, Loader } from './ui';
-export { injectCurrentPage, removeDynamicPath } from './util';
+export { injectCurrentPage, removeDynamicPath, zodValidation } from './util';
