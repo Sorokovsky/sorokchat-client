@@ -1,0 +1,9 @@
+@use "variables" as *;
+
+:host {
+  display: contents;
+}
+
+.field-error {
+  color: $error-text-color;
+}

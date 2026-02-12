@@ -11,10 +11,8 @@
                     [defaultValue]="field.defaultValue"
                     [name]="field.name"
             />
-            @let error = getError(field.name);
-            @if (error) {
-                <span class="form__error">* {{ error }}</span>
-            }
+            <app-field-error [error]="getError(field.name)"/>
+
         </div>
     }
     <app-button [isDisabled]="isDisabled()" class="form__button" type="submit">{{ submitText() }}</app-button>

@@ -7,12 +7,13 @@ import type { z as zod } from 'zod';
 import type { Field } from '../../models';
 import { zodValidation } from '../../util';
 import { Button } from '../button/button';
+import { FieldError } from '../field-error/field-error';
 import { UIInput } from '../input/ui-input';
 import { Label } from '../label/label';
 
 @Component({
   selector: 'app-form',
-  imports: [ReactiveFormsModule, Button, UIInput, Label],
+  imports: [ReactiveFormsModule, Button, UIInput, Label, FieldError],
   templateUrl: './form.html',
   styleUrl: './form.scss',
 })
