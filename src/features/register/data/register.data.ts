@@ -1,4 +1,4 @@
-import type {Field} from "@/shared";
+import type { Field } from '@/shared';
 
 export const REGISTER_FIELDS: Field[] = [
   {
