@@ -1,0 +1,8 @@
+@use "variables" as *;
+
+@mixin hover() {
+  transition: .3s all ease;
+  &:hover {
+    background-color: $primary-hover-background;
+  }
+}

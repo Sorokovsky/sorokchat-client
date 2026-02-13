@@ -1,16 +1,11 @@
 @use "variables" as *;
+@use "hover" as *;
 :host {
   overflow: hidden;
-  transition: .3s all ease;
   border-radius: 10rem;
-  * {
-    transition: .3s all ease;
-  }
-  &:hover {
-    background-color: $primary-hover-background;
-  }
+  @include hover();
   &._active {
-    * {
+    > * {
       color: $primary-text-color;
     }
   }
