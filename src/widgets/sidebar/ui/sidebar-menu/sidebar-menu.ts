@@ -20,6 +20,6 @@ export class SidebarMenu {
   }
 
   protected isActive(item: Page): boolean {
-    return this.getLink(item) === this.currentPath();
+    return this.currentPath().includes(this.getLink(item));
   }
 }
