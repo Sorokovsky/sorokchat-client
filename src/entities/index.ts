@@ -13,6 +13,7 @@ export {
   ChatSchema,
   ChatsService,
   type GetMyChats,
+  injectGetMyChats,
   type NewChat,
   NewChatSchema,
 } from './chat';

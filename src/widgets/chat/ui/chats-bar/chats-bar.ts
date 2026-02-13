@@ -1,6 +1,9 @@
 import type { InputSignal } from '@angular/core';
 import { Component, input } from '@angular/core';
 
+import type { GetMyChats } from '@/entities';
+import { injectGetMyChats } from '@/entities';
+
 import { ChatsBarHead } from '../chats-bar-head/chats-bar-head';
 
 @Component({
@@ -11,4 +14,5 @@ import { ChatsBarHead } from '../chats-bar-head/chats-bar-head';
 })
 export class ChatsBar {
   public readonly rootPath: InputSignal<string> = input.required<string>();
+  protected readonly myChats: GetMyChats = injectGetMyChats();
 }

@@ -1,0 +1,13 @@
+<nav class="chats-list">
+    <ul>
+        @for (chat of chats(); track chat.id) {
+            <li>
+                <a [routerLink]="getChatPath(chat)" class="chats-list__item">
+                    <span class="chats-list__left">
+
+                    </span>
+                </a>
+            </li>
+        }
+    </ul>
+</nav>
