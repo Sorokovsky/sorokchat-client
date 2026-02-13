@@ -3,5 +3,8 @@ export const QueryKeys = {
   REGISTER: 'register',
   LOGIN: 'login',
   LOGOUT: 'logout',
+  GET_MY_CHATS: 'get my chats',
+  CREATE_CHAT: 'create chat',
+  DELETE_CHAT: 'delete chat',
 } as const;
 export type QueryKeys = (typeof QueryKeys)[keyof typeof QueryKeys];

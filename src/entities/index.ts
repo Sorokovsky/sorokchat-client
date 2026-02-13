@@ -8,5 +8,12 @@ export {
   type RegisterPayload,
   RegisterSchema,
 } from './authorization';
-export { type Chat, ChatSchema, ChatsService, type NewChat, NewChatSchema } from './chat';
+export {
+  type Chat,
+  ChatSchema,
+  ChatsService,
+  type GetMyChats,
+  type NewChat,
+  NewChatSchema,
+} from './chat';
 export { type User, UserSchema } from './user';
