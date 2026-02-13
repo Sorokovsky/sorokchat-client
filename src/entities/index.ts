@@ -10,7 +10,9 @@ export {
 } from './authorization';
 export {
   type Chat,
+  ChatAvatar,
   ChatSchema,
+  ChatsList,
   ChatsService,
   type GetMyChats,
   injectGetMyChats,

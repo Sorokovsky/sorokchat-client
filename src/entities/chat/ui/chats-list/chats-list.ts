@@ -1,13 +1,16 @@
 import type { InputSignal } from '@angular/core';
 import { Component, input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
+import { cutText } from '@/shared';
+
+import { MAX_DESCRIPTION_LENGTH } from '../../config';
 import type { Chat } from '../../models';
-import { Avatar } from '@/shared';
+import { ChatAvatar } from '../chat-avatar/chat-avatar';
 
 @Component({
   selector: 'app-chats-list',
-  imports: [RouterLink, Avatar],
+  imports: [RouterLink, ChatAvatar, RouterLinkActive],
   templateUrl: './chats-list.html',
   styleUrl: './chats-list.scss',
 })
@@ -17,5 +20,9 @@ export class ChatsList {
 
   public getChatPath(chat: Chat): string {
     return `${this.rootPath()}/${chat.id}`;
+  }
+
+  public getDescription(chat: Chat): string {
+    return cutText(chat.description, MAX_DESCRIPTION_LENGTH);
   }
 }

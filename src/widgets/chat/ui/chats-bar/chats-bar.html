@@ -1,3 +1,4 @@
 <div class="chats-bar">
     <app-chats-bar-head />
+    <app-chats-list [chats]="myChats.data() || []" [rootPath]="rootPath()" />
 </div>

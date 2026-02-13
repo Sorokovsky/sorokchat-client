@@ -1,0 +1,42 @@
+@use "variables" as *;
+@use "hover" as *;
+:host {
+  display: contents;
+}
+
+.chats-list {
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10rem;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10rem;
+    padding: 10rem 20rem;
+    border-radius: 10rem;
+    @include hover();
+    &._active {
+      background-color: $primary-hover-background;
+    }
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    gap: 10rem;
+  }
+  &__name {
+    font-size: 22rem;
+    font-weight: bold;
+  }
+
+  &__description {
+    font-size: 16rem;
+    text-wrap: nowrap;
+  }
+}

@@ -19,4 +19,10 @@ export {
   ProblemDetailsSchema,
 } from './models';
 export { ActionIcon, Avatar, Button, Form, FormField, Heading, Icon, Loader, UIInput } from './ui';
-export { injectCurrentPage, injectCurrentPath, removeDynamicPath, zodValidation } from './util';
+export {
+  cutText,
+  injectCurrentPage,
+  injectCurrentPath,
+  removeDynamicPath,
+  zodValidation,
+} from './util';
