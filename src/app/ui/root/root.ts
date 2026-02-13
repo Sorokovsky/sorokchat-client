@@ -16,7 +16,9 @@ import {injectAuthenticationGuard} from "../../guards";
 })
 export class Root {
   private readonly profile: GetProfileQuery = injectGetProfile();
-  protected readonly isLoading: Signal<boolean> = computed((): boolean => this.profile.isLoading());
+  protected readonly isLoading: Signal<boolean> = computed((): boolean =>
+    this.profile.isFetching(),
+  );
 
   constructor() {
     injectAuthenticationGuard();
