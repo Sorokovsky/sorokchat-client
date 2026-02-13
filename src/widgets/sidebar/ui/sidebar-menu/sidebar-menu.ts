@@ -1,14 +1,21 @@
 import type { InputSignal } from '@angular/core';
 import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { LucideAngularModule } from 'lucide-angular';
 
 import type { Page } from '@/shared';
+import { removeDynamicPath } from '@/shared';
 
 @Component({
   selector: 'app-sidebar-menu',
-  imports: [],
+  imports: [RouterLink, LucideAngularModule],
   templateUrl: './sidebar-menu.html',
   styleUrl: './sidebar-menu.scss',
 })
 export class SidebarMenu {
   public readonly menu: InputSignal<Page[]> = input.required<Page[]>();
+
+  protected getLink(item: Page): string {
+    return removeDynamicPath(item.path);
+  }
 }
