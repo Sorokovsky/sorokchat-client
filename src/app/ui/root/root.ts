@@ -1,16 +1,17 @@
-import type {Signal} from "@angular/core";
-import {Component, computed} from "@angular/core";
-import {RouterOutlet} from "@angular/router";
+import type { Signal } from '@angular/core';
+import { Component, computed } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { NgxSonnerToaster } from 'ngx-sonner';
 
-import type {GetProfileQuery} from "@/entities";
-import {injectGetProfile} from "@/entities";
-import {Loader} from "@/shared";
+import type { GetProfileQuery } from '@/entities';
+import { injectGetProfile } from '@/entities';
+import { Loader } from '@/shared';
 
-import {injectAuthenticationGuard} from "../../guards";
+import { injectAuthenticationGuard } from '../../guards';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Loader],
+  imports: [RouterOutlet, Loader, NgxSonnerToaster],
   templateUrl: './root.html',
   styleUrl: './root.scss',
 })
