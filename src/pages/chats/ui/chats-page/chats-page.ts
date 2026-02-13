@@ -1,4 +1,7 @@
+import type { Signal } from '@angular/core';
 import { Component } from '@angular/core';
+
+import { injectParameter } from '@/shared';
 
 @Component({
   selector: 'app-chats-page',
@@ -6,4 +9,6 @@ import { Component } from '@angular/core';
   templateUrl: './chats-page.html',
   styleUrl: './chats-page.scss',
 })
-export class ChatsPage {}
+export class ChatsPage {
+  public readonly chatId: Signal<string | null> = injectParameter('chatId');
+}

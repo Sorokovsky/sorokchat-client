@@ -23,6 +23,7 @@ export {
   cutText,
   injectCurrentPage,
   injectCurrentPath,
+  injectParameter,
   removeDynamicPath,
   zodValidation,
 } from './util';
