@@ -1,4 +1,5 @@
 @use "variables" as *;
+@use "border" as *;
 
 :host {
   display: contents;
@@ -7,6 +8,8 @@
 .input {
   width: 100%;
   outline: none;
+  @include border('', 2rem);
+  border-radius: 10rem;
 
   &, &::placeholder {
     padding: 10rem 5rem;

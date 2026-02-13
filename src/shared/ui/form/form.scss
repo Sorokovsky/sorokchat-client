@@ -1,4 +1,4 @@
-@use "variables" as *;
+@use "border" as *;
 :host {
   display: contents;
 }
@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   gap: 20rem;
-  border: 1rem solid $border-color;
+  @include border();
   padding: 20rem 15rem;
   border-radius: 20rem;
 }
