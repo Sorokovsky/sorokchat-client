@@ -1,0 +1,8 @@
+@use "border" as *;
+:host {
+  display: contents;
+}
+
+.right-sidebar {
+  @include border('right');
+}

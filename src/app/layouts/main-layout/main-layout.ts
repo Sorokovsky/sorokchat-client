@@ -1,7 +1,10 @@
-import {Component} from "@angular/core";
-import {RouterOutlet} from "@angular/router";
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
-import {Sidebar} from "@/widgets";
+import type { Mappings, Page } from '@/shared';
+import { Sidebar } from '@/widgets';
+
+import { BOTTOM_LEFT_MENU, MAPPINGS, TOP_LEFT_MENU } from '../../data';
 
 @Component({
   selector: 'app-main-layout',
@@ -9,4 +12,8 @@ import {Sidebar} from "@/widgets";
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss',
 })
-export class MainLayout {}
+export class MainLayout {
+  protected readonly topLeftMenu: Page[] = TOP_LEFT_MENU;
+  protected readonly bottomLeftMenu: Page[] = BOTTOM_LEFT_MENU;
+  protected readonly mappings: Mappings = MAPPINGS;
+}

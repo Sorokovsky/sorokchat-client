@@ -1,3 +1,4 @@
 <aside class="sidebar">
-    sidebar
+    <app-left-sidebar [topMenu]="topLeftMenu()" [bottomMenu]="bottomLeftMenu()" />
+    <app-right-sidebar [mappings]="mappings()" />
 </aside>
