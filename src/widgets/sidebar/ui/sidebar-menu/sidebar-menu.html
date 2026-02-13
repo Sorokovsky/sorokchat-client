@@ -2,7 +2,7 @@
     <ul>
         @for (item of menu(); track item.path) {
             <li>
-                <a [routerLink]="getLink(item)">
+                <a [routerLink]="getLink(item)" routerLinkActive="_active" class="sidebar-menu__item">
                     <lucide-icon [img]="item.icon" />
                 </a>
             </li>

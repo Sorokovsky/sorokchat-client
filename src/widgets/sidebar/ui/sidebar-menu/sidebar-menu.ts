@@ -1,6 +1,6 @@
 import type { InputSignal } from '@angular/core';
 import { Component, input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 
 import type { Page } from '@/shared';
@@ -8,7 +8,7 @@ import { removeDynamicPath } from '@/shared';
 
 @Component({
   selector: 'app-sidebar-menu',
-  imports: [RouterLink, LucideAngularModule],
+  imports: [RouterLink, LucideAngularModule, RouterLinkActive],
   templateUrl: './sidebar-menu.html',
   styleUrl: './sidebar-menu.scss',
 })
