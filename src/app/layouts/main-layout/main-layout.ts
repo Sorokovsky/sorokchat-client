@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component} from "@angular/core";
+import {RouterOutlet} from "@angular/router";
+
+import {Sidebar} from "@/widgets";
 
 @Component({
   selector: 'app-main-layout',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Sidebar],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss',
 })

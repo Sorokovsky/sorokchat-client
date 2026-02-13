@@ -1,0 +1,11 @@
+@use "variables" as *;
+@use "border" as *;
+:host {
+  display: contents;
+}
+
+.sidebar {
+  flex: 0 0 300rem;
+  background-color: $secondary-background;
+  @include border('right');
+}

@@ -6,12 +6,8 @@
   flex-direction: column;
   justify-content: flex-start;
 
-  > * {
+  app-loader {
     flex: 1 1 100%;
-  }
-
-  router-outlet {
-    flex: 0 0 0;
   }
 }
 

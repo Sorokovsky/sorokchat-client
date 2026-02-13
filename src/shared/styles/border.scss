@@ -1,0 +1,10 @@
+@use "variables" as *;
+
+@mixin border($position: '') {
+  $value: 2rem solid $border-color;
+  @if ($position == '') {
+    border: $value;
+  } @else {
+    border-#{$position}: $value;
+  }
+}
