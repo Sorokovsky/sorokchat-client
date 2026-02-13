@@ -17,5 +17,5 @@ export {
   type ProblemDetails,
   ProblemDetailsSchema,
 } from './models';
-export { Button, Form, FormField, Heading, Loader, UIInput } from './ui';
-export { injectCurrentPage, removeDynamicPath, zodValidation } from './util';
+export { ActionIcon, Button, Form, FormField, Heading, Icon, Loader, UIInput } from './ui';
+export { injectCurrentPage, injectCurrentPath, removeDynamicPath, zodValidation } from './util';

@@ -10,17 +10,4 @@
     gap: 10rem;
 
   }
-  &__item {
-    display: block;
-    padding: 10rem 20rem;
-    color: $icon-color;
-    transition: .3s all ease;
-    border-radius: 10rem;
-    &:hover {
-      background-color: $primary-hover-background;
-    }
-    &._active {
-      color: $primary-text-color;
-    }
-  }
 }

@@ -4,5 +4,6 @@
 }
 
 .right-sidebar {
+  flex: 1 1 auto;
   @include border('right');
 }

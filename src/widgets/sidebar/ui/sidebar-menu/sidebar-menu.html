@@ -3,7 +3,9 @@
         @for (item of menu(); track item.path) {
             <li>
                 <a [routerLink]="getLink(item)" routerLinkActive="_active" class="sidebar-menu__item">
-                    <lucide-icon [img]="item.icon" />
+                    @if (item.icon) {
+                        <app-action-icon [icon]="item.icon" [isActive]="isActive(item)" />
+                    }
                 </a>
             </li>
         }
