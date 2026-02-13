@@ -1,4 +1,5 @@
 export { ActionIcon } from './action-icon/action-icon';
+export { Avatar } from './avatar/avatar';
 export { Button } from './button/button';
 export { Form } from './form/form';
 export { FormField } from './form-field/form-field';

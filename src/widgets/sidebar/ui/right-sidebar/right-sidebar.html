@@ -1,3 +1,8 @@
 <div class="right-sidebar">
-    right
+    @let bar = component();
+    @if (bar) {
+        <ng-container *ngComponentOutlet="bar" />
+    } @else {
+        <app-no-bar />
+    }
 </div>

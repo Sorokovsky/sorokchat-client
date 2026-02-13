@@ -1,0 +1,9 @@
+<div class="avatar" [style]="{width: `${size()}rem`, height: `${size()}rem`}">
+    @let currentType = type();
+    @if(currentType === 'image') {
+        <img [ngSrc]="value()" alt="" [width]="size()" [height]="size()"/>
+    }
+    @else if (currentType === 'named') {
+        <span>{{value()}}</span>
+    }
+</div>
