@@ -17,13 +17,19 @@ import { NoBar } from '../no-bar/no-bar';
 export class RightSidebar {
   public readonly mappings: InputSignal<Mappings> = input.required<Mappings>();
   protected readonly currentPath: Signal<string> = injectCurrentPath();
+  protected readonly key: Signal<string | null> = computed((): string | null => {
+    const mappings: Mappings = this.mappings();
+    const keys: string[] = Object.keys(mappings);
+    const key: string | null =
+      keys.find((key: string): boolean => this.currentPath().includes(key)) || null;
+    if (key === null) return null;
+    return key;
+  });
 
   protected readonly component: Signal<Type<unknown> | null> = computed(
     (): Type<unknown> | null => {
       const mappings: Mappings = this.mappings();
-      const keys: string[] = Object.keys(mappings);
-      const key: string | null =
-        keys.find((key: string): boolean => this.currentPath().includes(key)) || null;
+      const key: string | null = this.key();
       if (key === null) return null;
       if (key in mappings) return mappings[key];
       return null;

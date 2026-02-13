@@ -8,5 +8,4 @@ export {
   type RegisterPayload,
   RegisterSchema,
 } from './authorization';
-export { ChatsBar } from './chats';
 export { type User, UserSchema } from './user';

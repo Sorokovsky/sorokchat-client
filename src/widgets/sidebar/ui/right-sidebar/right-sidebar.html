@@ -1,7 +1,7 @@
 <div class="right-sidebar">
     @let bar = component();
     @if (bar) {
-        <ng-container *ngComponentOutlet="bar" />
+        <ng-container *ngComponentOutlet="bar; inputs: {rootPath: key()}" />
     } @else {
         <app-no-bar />
     }
