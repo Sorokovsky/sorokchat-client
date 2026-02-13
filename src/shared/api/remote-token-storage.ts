@@ -10,7 +10,10 @@ export class RemoteTokenStorage {
 
   public setToken(token: string, request: HttpRequest<unknown>): HttpRequest<unknown> {
     return request.clone({
-      headers: request.headers.set(RemoteTokenStorage.HEADER_NAME, token),
+      headers: request.headers.set(
+        RemoteTokenStorage.HEADER_NAME,
+        `${RemoteTokenStorage.BEARER_PREFIX}${token}`,
+      ),
     });
   }
 
