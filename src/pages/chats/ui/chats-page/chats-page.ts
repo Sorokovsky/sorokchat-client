@@ -4,11 +4,11 @@ import { Component } from '@angular/core';
 
 import type { Chat, GetMyChats } from '@/entities';
 import { injectGetMyChats } from '@/entities';
-import { injectParameter } from '@/shared';
+import { EmptyMessage, injectParameter } from '@/shared';
 
 @Component({
   selector: 'app-chats-page',
-  imports: [],
+  imports: [EmptyMessage],
   templateUrl: './chats-page.html',
   styleUrl: './chats-page.scss',
 })

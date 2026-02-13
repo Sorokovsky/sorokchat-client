@@ -18,7 +18,18 @@ export {
   type ProblemDetails,
   ProblemDetailsSchema,
 } from './models';
-export { ActionIcon, Avatar, Button, Form, FormField, Heading, Icon, Loader, UIInput } from './ui';
+export {
+  ActionIcon,
+  Avatar,
+  Button,
+  EmptyMessage,
+  Form,
+  FormField,
+  Heading,
+  Icon,
+  Loader,
+  UIInput,
+} from './ui';
 export {
   cutText,
   injectCurrentPage,

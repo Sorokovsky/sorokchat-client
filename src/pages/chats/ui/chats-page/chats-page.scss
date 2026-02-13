@@ -1,4 +1,3 @@
-@use "variables" as *;
 :host {
   display: contents;
 }
@@ -7,17 +6,4 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  .no-chat {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    span {
-      background-color: $secondary-background;
-      padding: 10rem 20rem;
-      border-radius: 10rem;
-      font-size: 24rem;
-    }
-  }
 }
