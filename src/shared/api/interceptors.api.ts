@@ -2,5 +2,10 @@ import type { HttpInterceptorFn } from '@angular/common/http';
 
 import { authorizationInterceptor } from './authorization-interceptor';
 import { errorInterceptor } from './error-interceptor';
+import { localeInterceptor } from './locale-interceptor';
 
-export const INTERCEPTORS: HttpInterceptorFn[] = [authorizationInterceptor, errorInterceptor];
+export const INTERCEPTORS: HttpInterceptorFn[] = [
+  localeInterceptor,
+  authorizationInterceptor,
+  errorInterceptor,
+];

@@ -1,6 +1,5 @@
-import type { HttpRequest, HttpResponse } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import type {HttpRequest, HttpResponse} from "@angular/common/http";
+import {Injectable} from "@angular/core";
 
 @Injectable({
   providedIn: 'root',
@@ -11,9 +10,7 @@ export class RemoteTokenStorage {
 
   public setToken(token: string, request: HttpRequest<unknown>): HttpRequest<unknown> {
     return request.clone({
-      headers: new HttpHeaders({
-        [RemoteTokenStorage.HEADER_NAME]: `${RemoteTokenStorage.BEARER_PREFIX}${token}`,
-      }),
+      headers: request.headers.set(RemoteTokenStorage.HEADER_NAME, token),
     });
   }
 
