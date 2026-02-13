@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EllipsisIcon } from 'lucide-angular';
+import { SquarePenIcon } from 'lucide-angular';
 
 import type { IconType } from '@/shared';
 import { ActionIcon } from '@/shared';
@@ -11,5 +11,5 @@ import { ActionIcon } from '@/shared';
   styleUrl: './create-chat-action.scss',
 })
 export class CreateChatAction {
-  protected readonly icon: IconType = EllipsisIcon;
+  protected readonly icon: IconType = SquarePenIcon;
 }
