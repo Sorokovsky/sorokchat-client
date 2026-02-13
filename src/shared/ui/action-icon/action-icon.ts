@@ -9,6 +9,10 @@ import { Icon } from '../icon/icon';
   imports: [Icon],
   templateUrl: './action-icon.html',
   styleUrl: './action-icon.scss',
+  host: {
+    class: 'action-icon',
+    '[class._active]': 'isActive()',
+  },
 })
 export class ActionIcon {
   public readonly icon: InputSignal<IconType> = input.required<IconType>();

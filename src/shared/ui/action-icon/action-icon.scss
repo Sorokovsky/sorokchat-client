@@ -1,18 +1,17 @@
 @use "variables" as *;
 :host {
-  display: contents;
-}
-
-.action-icon {
-  display: block;
   overflow: hidden;
-  padding: 10rem 20rem;
   transition: .3s all ease;
   border-radius: 10rem;
+  * {
+    transition: .3s all ease;
+  }
   &:hover {
     background-color: $primary-hover-background;
   }
   &._active {
-    color: $primary-text-color;
+    * {
+      color: $primary-text-color;
+    }
   }
 }

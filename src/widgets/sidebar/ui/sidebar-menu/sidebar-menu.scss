@@ -8,5 +8,9 @@
     display: flex;
     flex-direction: column;
     gap: 10rem;
+    .action-icon {
+      display: block;
+      padding: 10rem 20rem;
+    }
   }
 }
