@@ -13,9 +13,10 @@ import SockJS from "sockjs-client";
 export class WebSocketService {
   private readonly _isConnected: WritableSignal<boolean> = signal<boolean>(false);
   private readonly injector: Injector = inject(Injector);
+  private readonly messageQueue: { destination: string, body: string }[] = [];
   private subcribers: number = 0;
 
-  private client: Client;
+  private readonly client: Client;
 
   constructor() {
     this.client = new Client({
@@ -40,15 +41,27 @@ export class WebSocketService {
       return () => {
         subsrciption.unsubscribe();
         this.subcribers -= 1;
-        if (this.subcribers === 0) this.disconnect();
+        setTimeout(() => {
+          if (this.subcribers === 0) this.disconnect();
+        }, 500);
       }
     });
     return toSignal(observable, { initialValue: initialValue as T, injector: this.injector });
   }
 
+  public send<T>(destination: string, body: T): void {
+    const payload = { destination, body: JSON.stringify(body) };
+    if (this.client.connected) {
+      this.client.publish(payload);
+    } else {
+      this.messageQueue.push(payload);
+      this.connect();
+    }
+  }
+
   private connect(): void {
     if (!this.client.active) {
-      this.client.activate()
+      this.client.activate();
     }
   }
 
@@ -62,7 +75,10 @@ export class WebSocketService {
     client.onConnect = () => {
       this._isConnected.set(true);
       console.log("STOMP Підключено");
-
+      while (this.messageQueue.length > 0) {
+        const message = this.messageQueue.shift();
+        if (message) this.client.publish(message);
+      }
     };
 
     client.onStompError = (frame: Frame): void => {
