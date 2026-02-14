@@ -3,14 +3,12 @@ import { Component, computed, input, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import type { z as zod } from "zod";
 
-import type { Chat, GetProfileQuery } from '@/entities';
-import { injectGetProfile } from '@/entities';
+import type { Chat, GetProfileQuery, WriteMessagePayload } from '@/entities';
+import { injectGetProfile, WriteMessageSchema } from '@/entities';
 import type { Field } from "@/shared";
 import { AbstractForm, UIInput } from "@/shared";
 
 import { TEXT_FIELD } from '../../data';
-import type { NewMessagePayload } from '../../models';
-import { NewMessageSchema } from '../../models';
 import { SendButton } from "../send-button/send-button";
 
 @Component({
@@ -22,7 +20,7 @@ import { SendButton } from "../send-button/send-button";
     '(send)': 'writeMessage($event)'
   }
 })
-export class SendMessageForm extends AbstractForm<NewMessagePayload> {
+export class SendMessageForm extends AbstractForm<WriteMessagePayload> {
 
   protected readonly isLoading: WritableSignal<boolean> = signal(false);
 
@@ -32,8 +30,8 @@ export class SendMessageForm extends AbstractForm<NewMessagePayload> {
     return signal([TEXT_FIELD]);
   }
 
-  protected override getSchema(): Signal<zod.ZodSchema<NewMessagePayload>> {
-    return computed<zod.ZodSchema<NewMessagePayload>>((): zod.ZodSchema<NewMessagePayload> => NewMessageSchema);
+  protected override getSchema(): Signal<zod.ZodSchema<WriteMessagePayload>> {
+    return computed<zod.ZodSchema<WriteMessagePayload>>((): zod.ZodSchema<WriteMessagePayload> => WriteMessageSchema);
   }
 
   protected override getIsLoading(): Signal<boolean> {
@@ -41,10 +39,10 @@ export class SendMessageForm extends AbstractForm<NewMessagePayload> {
   }
 
   public readonly chat: InputSignal<Chat> = input.required<Chat>();
-  protected schema: zod.ZodSchema<NewMessagePayload> = NewMessageSchema;
+  protected schema: zod.ZodSchema<WriteMessagePayload> = WriteMessageSchema;
   private readonly protfile: GetProfileQuery = injectGetProfile();
 
-  protected writeMessage(newMessage: NewMessagePayload): void {
+  protected writeMessage(newMessage: WriteMessagePayload): void {
     console.log(newMessage);
     this.form().reset();
   }
