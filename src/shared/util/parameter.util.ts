@@ -6,6 +6,11 @@ import { NavigationEnd } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, map } from 'rxjs';
 
+function getDefaultParameter(route: ActivatedRoute, parameterName: string): string | null {
+  const parameters: Params = route.snapshot.params;
+  return parameters[parameterName] || null;
+}
+
 export function injectParameter(parameterName: string): Signal<string | null> {
   const route: ActivatedRoute = inject(ActivatedRoute);
   const router: Router = inject(Router);
@@ -19,6 +24,6 @@ export function injectParameter(parameterName: string): Signal<string | null> {
         return parametersMap[parameterName] || null;
       }),
     ),
-    { initialValue: null },
+    { initialValue: getDefaultParameter(route, parameterName) },
   );
 }

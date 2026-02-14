@@ -19,6 +19,7 @@ export {
   ProblemDetailsSchema,
 } from './models';
 export {
+  ActionButton,
   ActionIcon,
   Avatar,
   Button,

@@ -1,1 +1,1 @@
-export { ChatsBar } from './ui';
+export { ChatsBar, CurrentChat } from './ui';

@@ -1,0 +1,10 @@
+@let currentChat = chat();
+<div class="chat-head">
+    <div class="chat-head__left">
+        <app-chat-avatar [chat]="currentChat" />
+        <app-heading tag="h2" [text]="currentChat.name" />
+    </div>
+    <div class="chat-head__right">
+        <app-get-chat-info-action />
+    </div>
+</div>

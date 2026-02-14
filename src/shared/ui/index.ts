@@ -1,3 +1,4 @@
+export { ActionButton } from './action-button/action-button';
 export { ActionIcon } from './action-icon/action-icon';
 export { Avatar } from './avatar/avatar';
 export { Button } from './button/button';

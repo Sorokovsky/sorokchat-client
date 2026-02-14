@@ -1,0 +1,14 @@
+:host {
+  display: contents;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  .action-icon {
+    display: block;
+    padding: 5rem;
+  }
+}
