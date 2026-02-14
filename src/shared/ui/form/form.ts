@@ -1,11 +1,10 @@
-import type { InputSignal, OnInit, OutputEmitterRef, Signal, WritableSignal } from '@angular/core';
-import { Component, computed, inject, input, output, signal } from '@angular/core';
-import type { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import type { InputSignal, Signal } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import type { z as zod } from 'zod';
 
 import type { Field } from '../../models';
-import { zodValidation } from '../../util';
+import { AbstractForm } from '../../util';
 import { Button } from '../button/button';
 import { FormField } from '../form-field/form-field';
 import { Heading } from '../heading/heading';
@@ -16,55 +15,23 @@ import { Heading } from '../heading/heading';
   templateUrl: './form.html',
   styleUrl: './form.scss',
 })
-export class Form<T> implements OnInit {
-  private readonly builder: FormBuilder = inject(FormBuilder);
-  private readonly isInvalid: WritableSignal<boolean> = signal<boolean>(false);
+export class Form<T> extends AbstractForm<T> {
   public readonly fields: InputSignal<Field[]> = input.required<Field[]>();
   public readonly title: InputSignal<string> = input.required<string>();
   public readonly submitText: InputSignal<string> = input.required<string>();
   public readonly schema: InputSignal<zod.ZodSchema<T>> = input.required<zod.ZodSchema<T>>();
   public readonly isLoading: InputSignal<boolean> = input<boolean>(false);
-  public readonly send: OutputEmitterRef<T> = output<T>();
-  public form: Signal<FormGroup> = computed((): FormGroup => {
-    return this.builder.group(this.collectInputs(this.fields()), {
-      validators: [zodValidation(this.schema())],
-    });
-  });
 
-  protected readonly isDisabled: Signal<boolean> = computed((): boolean => {
-    return this.isLoading() || this.isInvalid();
-  });
-
-  public ngOnInit(): void {
-    const form: FormGroup = this.form();
-    form.valueChanges.subscribe((): void => {
-      this.isInvalid.set(form.invalid);
-    });
-    this.isInvalid.set(form.invalid);
+  protected override getFields(): Signal<Field[]> {
+    return computed<Field[]>((): Field[] => this.fields());
   }
 
-  public onSubmit(): void {
-    const form: FormGroup = this.form();
-    if (form.valid) this.send.emit(form.value as T);
-    else form.markAllAsTouched();
+  protected override getSchema(): Signal<zod.ZodSchema<T>> {
+    return computed<zod.ZodSchema<T>>((): zod.ZodSchema<T> => this.schema());
   }
 
-  protected getError(name: string): string | null {
-    const errors: ValidationErrors | null = this.form().errors;
-    if (errors === null) return null;
-    if (name in errors) return errors[name].message;
-    return null;
-  }
 
-  protected getControl(name: string): FormControl {
-    return this.form().get(name) as FormControl;
-  }
-
-  private collectInputs(fields: Field[]): Record<string, string[]> {
-    const result: Record<string, string[]> = {};
-    for (const field of fields) {
-      result[field.name] = [field.defaultValue || ''];
-    }
-    return result;
+  protected override getIsLoading(): Signal<boolean> {
+    return computed<boolean>((): boolean => this.isLoading());
   }
 }

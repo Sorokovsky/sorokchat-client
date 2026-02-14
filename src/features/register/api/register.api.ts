@@ -11,6 +11,6 @@ export function injectRegister(): RegisterMutation {
   return injectBaseMutation(
     [QueryKeys.REGISTER],
     async (payload: RegisterPayload): Promise<User> => await authorizationService.register(payload),
-    [QueryKeys.PROFILE],
+    [QueryKeys.PROFILE]
   );
 }

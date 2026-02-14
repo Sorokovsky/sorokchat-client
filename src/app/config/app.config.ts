@@ -17,7 +17,15 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
-    provideTanStackQuery(new QueryClient()),
+    provideTanStackQuery(new QueryClient({
+      defaultOptions: {
+        queries: {
+          refetchOnMount: false,
+          refetchOnWindowFocus: false,
+          retryOnMount: false
+        }
+      }
+    })),
     provideHttpClient(withInterceptors(INTERCEPTORS)),
     {
       provide: LOCALE_ID,

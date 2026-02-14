@@ -2,7 +2,7 @@ import type { InputSignal } from '@angular/core';
 import { input } from '@angular/core';
 import { Component } from '@angular/core';
 
-import type { IconType } from '../../models';
+import type { ButtonType, IconType } from '../../models';
 import { ActionIcon } from '../action-icon/action-icon';
 
 @Component({
@@ -13,4 +13,5 @@ import { ActionIcon } from '../action-icon/action-icon';
 })
 export class ActionButton {
   public readonly icon: InputSignal<IconType> = input.required<IconType>();
+  public readonly type: InputSignal<ButtonType> = input<ButtonType>("button");
 }

@@ -358,6 +358,11 @@
   dependencies:
     tslib "^2.3.0"
 
+"@angular/language-service@^21.1.4":
+  version "21.1.4"
+  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-21.1.4.tgz#828447a87a56381947fd607c458b0efb1d6a1cfa"
+  integrity sha512-E0OKcbYMJPaWlDsz4clPoFJRCgpWBSmMZtgzd4Py3C6yxTyPCZYgA43UyzUDiQI7rHHjD5V6d5EvocgSq6uBfQ==
+
 "@angular/platform-browser@^20.3.0":
   version "20.3.16"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-20.3.16.tgz#08eb56c9ba35b19399a15531422edd597734e082"

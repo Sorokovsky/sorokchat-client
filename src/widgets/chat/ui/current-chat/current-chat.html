@@ -1,4 +1,7 @@
 @let currentChat = chat();
 <div class="current-chat">
-    <app-chat-head [chat]="currentChat" />
+  <app-chat-head [chat]="currentChat" />
+  <div class="messages">
+  </div>
+  <app-send-message-form [chat]="currentChat" />
 </div>

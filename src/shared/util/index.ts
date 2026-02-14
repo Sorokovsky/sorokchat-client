@@ -1,3 +1,4 @@
+export { AbstractForm } from "./abstract-form.util";
 export { injectCurrentPage } from './current-page.injection';
 export { injectCurrentPath } from './current-path.injection';
 export { cutText } from './cut-text.util';

@@ -21,7 +21,7 @@ export class LoginForm {
   protected readonly submitText: string = 'Увійти';
   protected readonly fields: Field[] = LOGIN_FIELDS;
   protected readonly schema: zod.ZodSchema<LoginPayload> = LoginSchema;
-  private readonly mutation: LoginMutation = injectLogin();
+  protected readonly mutation: LoginMutation = injectLogin();
 
   public login(payload: LoginPayload): void {
     this.mutation.mutate(payload);
