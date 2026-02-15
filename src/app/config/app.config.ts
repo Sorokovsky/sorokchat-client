@@ -10,10 +10,10 @@ import { provideTanStackQuery, QueryClient } from '@tanstack/angular-query-exper
 
 import {
   AesService,
-  ENCRYPTION_SERVICE_KEY,
+  ENCRYPTION_SERVICE,
   HmacService,
   INTERCEPTORS,
-  SIGNING_SERVICE_KEY,
+  SIGNING_SERVICE,
 } from '@/shared';
 
 import { routes } from '../routes';
@@ -40,11 +40,11 @@ export const appConfig: ApplicationConfig = {
       useValue: 'uk-UA',
     },
     {
-      provide: SIGNING_SERVICE_KEY,
+      provide: SIGNING_SERVICE,
       useClass: HmacService,
     },
     {
-      provide: ENCRYPTION_SERVICE_KEY,
+      provide: ENCRYPTION_SERVICE,
       useClass: AesService,
     },
   ],

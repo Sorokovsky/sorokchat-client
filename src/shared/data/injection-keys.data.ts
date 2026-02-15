@@ -1,2 +1,0 @@
-export const ENCRYPTION_SERVICE_KEY: string = 'ENCRYPTION_SERVICE';
-export const SIGNING_SERVICE_KEY: string = 'SIGNING_SERVICE';

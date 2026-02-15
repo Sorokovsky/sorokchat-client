@@ -1,5 +1,5 @@
 export { injectBaseMutation, injectBaseQuery, INTERCEPTORS, WebSocketService } from './api';
-export { ENCRYPTION_SERVICE_KEY, Endpoints, QueryKeys, SIGNING_SERVICE_KEY } from './data';
+export { ENCRYPTION_SERVICE, Endpoints, QueryKeys, SIGNING_SERVICE } from './data';
 export {
   AccessRule,
   type AccessSetting,
