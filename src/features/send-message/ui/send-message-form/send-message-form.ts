@@ -1,15 +1,17 @@
 import type { InputSignal, Signal, WritableSignal } from '@angular/core';
+import { inject } from '@angular/core';
 import { Component, computed, input, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import type { z as zod } from "zod";
+import type { z as zod } from 'zod';
 
-import type { Chat, GetProfileQuery, WriteMessagePayload } from '@/entities';
-import { injectGetProfile, WriteMessageSchema } from '@/entities';
-import type { Field } from "@/shared";
-import { AbstractForm, UIInput } from "@/shared";
+import type { Chat, WriteMessagePayload } from '@/entities';
+import { MessagesService } from '@/entities';
+import { WriteMessageSchema } from '@/entities';
+import type { Field } from '@/shared';
+import { AbstractForm, UIInput } from '@/shared';
 
 import { TEXT_FIELD } from '../../data';
-import { SendButton } from "../send-button/send-button";
+import { SendButton } from '../send-button/send-button';
 
 @Component({
   selector: 'app-send-message-form',
@@ -17,10 +19,11 @@ import { SendButton } from "../send-button/send-button";
   templateUrl: './send-message-form.html',
   styleUrl: './send-message-form.scss',
   host: {
-    '(send)': 'writeMessage($event)'
-  }
+    '(send)': 'writeMessage($event)',
+  },
 })
 export class SendMessageForm extends AbstractForm<WriteMessagePayload> {
+  private readonly messagesService: MessagesService = inject(MessagesService);
 
   protected readonly isLoading: WritableSignal<boolean> = signal(false);
 
@@ -31,7 +34,9 @@ export class SendMessageForm extends AbstractForm<WriteMessagePayload> {
   }
 
   protected override getSchema(): Signal<zod.ZodSchema<WriteMessagePayload>> {
-    return computed<zod.ZodSchema<WriteMessagePayload>>((): zod.ZodSchema<WriteMessagePayload> => WriteMessageSchema);
+    return computed<zod.ZodSchema<WriteMessagePayload>>(
+      (): zod.ZodSchema<WriteMessagePayload> => WriteMessageSchema,
+    );
   }
 
   protected override getIsLoading(): Signal<boolean> {
@@ -40,10 +45,9 @@ export class SendMessageForm extends AbstractForm<WriteMessagePayload> {
 
   public readonly chat: InputSignal<Chat> = input.required<Chat>();
   protected schema: zod.ZodSchema<WriteMessagePayload> = WriteMessageSchema;
-  private readonly protfile: GetProfileQuery = injectGetProfile();
 
   protected writeMessage(newMessage: WriteMessagePayload): void {
-    console.log(newMessage);
+    this.messagesService.writeMessage(newMessage, this.chat().id);
     this.form().reset();
   }
 }

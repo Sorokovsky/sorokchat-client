@@ -1,29 +1,49 @@
-import type {Signal} from '@angular/core';
+import type { Signal, WritableSignal } from '@angular/core';
+import { inject } from '@angular/core';
 import { Injectable, signal } from '@angular/core';
 import type { IFrame, IMessage, StompSubscription } from '@stomp/stompjs';
 import { Client } from '@stomp/stompjs';
-import type {Observable} from 'rxjs';
-import { BehaviorSubject  } from 'rxjs';
+import type { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import SockJS from 'sockjs-client';
+
+import { LocaleTokenStorage } from './locale-token-storage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebSocketService {
-  private readonly _isConnected = signal(false);
-  private readonly messageSubjects = new Map<string, BehaviorSubject<unknown>>();
-  private readonly currentSubscriptions = new Map<string, StompSubscription>();
+  private readonly localeTokenStorage: LocaleTokenStorage = inject(LocaleTokenStorage);
+
+  private readonly _isConnected: WritableSignal<boolean> = signal(false);
+  private readonly messageSubjects: Map<string, BehaviorSubject<unknown>> = new Map<
+    string,
+    BehaviorSubject<unknown>
+  >();
+  private readonly currentSubscriptions: Map<string, StompSubscription> = new Map<
+    string,
+    StompSubscription
+  >();
   private readonly client: Client;
 
   public readonly isConnected: Signal<boolean> = this._isConnected.asReadonly();
 
   constructor() {
     this.client = new Client({
-      webSocketFactory: () => new SockJS('http://localhost:8080/ws'),
+      webSocketFactory: (): WebSocket => new SockJS('http://localhost:8080/ws'),
+      connectHeaders: {
+        Authorization: `Bearer ${this.localeTokenStorage.getToken()}`,
+      },
       reconnectDelay: 5000,
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
-      debug: (str) => console.debug('[STOMP]', str),
+      debug: (str: string): void => console.debug('[STOMP]', str),
+      beforeConnect: (): void => {
+        const accessToken: string = this.localeTokenStorage.getToken();
+        this.client.connectHeaders = {
+          Authorization: `Bearer ${accessToken}`,
+        };
+      },
     });
 
     this.setupHandlers();

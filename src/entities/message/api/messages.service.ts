@@ -13,18 +13,21 @@ import { MessageSchema } from '../models';
   providedIn: 'root',
 })
 export class MessagesService {
-  private static readonly SECRET_KEY: string = 'SECRET_KEY';
+  private static readonly SECRET_KEY: string = 'a8Vqd9QyabWjodNVlEW0R5E4vYg0fviL';
 
   private readonly webSocketService: WebSocketService = inject(WebSocketService);
   private readonly encryptionService: EncryptionService = inject(ENCRYPTION_SERVICE);
   private readonly signingService: SigningService = inject(SIGNING_SERVICE);
 
   private readonly _messages: WritableSignal<MessagePayload[]> = signal<MessagePayload[]>([]);
+  private readonly activeSubscriptions: Set<number> = new Set<number>();
 
   public readonly messages: Signal<MessagePayload[]> = this._messages.asReadonly();
 
   public listenChat(chatId: number): void {
-    this.webSocketService.subscribe(`/topic/chats/${chatId}`).subscribe((event: unknown): void => {
+    if (this.activeSubscriptions.has(chatId)) return;
+    this.activeSubscriptions.add(chatId);
+    this.webSocketService.subscribe(`topic/chat/${chatId}`).subscribe((event: unknown): void => {
       const result: ZodSafeParseResult<MessagePayload> = MessageSchema.safeParse(event);
       if (result.success)
         this._messages.update((previous: MessagePayload[]): MessagePayload[] => {
@@ -34,7 +37,9 @@ export class MessagesService {
   }
 
   public stopListeningChat(chatId: number): void {
-    this.webSocketService.unsubscribe(`/topic/chats/${chatId}`);
+    if (!this.activeSubscriptions.has(chatId)) return;
+    this.activeSubscriptions.delete(chatId);
+    this.webSocketService.unsubscribe(`topic/chat/${chatId}`);
   }
 
   public async writeMessage(payload: WriteMessagePayload, chatId: number): Promise<void> {
@@ -46,37 +51,24 @@ export class MessagesService {
       text: MessagesService.bufferToString(encryptedBytes),
       mac: MessagesService.bufferToString(signing),
     };
-    this.webSocketService.send(`/chats.send/${chatId}`, newMessage);
+    this.webSocketService.send(`chat.send/${chatId}`, newMessage);
+  }
+
+  public getActiveSubscriptions(): number[] {
+    return Array.from(this.activeSubscriptions);
+  }
+
+  public isSubscribed(chatId: number): boolean {
+    return this.activeSubscriptions.has(chatId);
   }
 
   private static bufferToString(buffer: ArrayBuffer): string {
-    const bytes = new Uint8Array(buffer);
-    if ('toBase64' in bytes && typeof bytes.toBase64 === 'function') {
-      return bytes.toBase64({ alphabet: 'base64url' });
-    }
-
-    const binary: string = String.fromCharCode(...bytes);
-
-    return btoa(binary).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/, '');
+    const decoder = new TextDecoder('utf-8');
+    return decoder.decode(buffer);
   }
 
-  private static stringToBuffer(base64url: string): ArrayBuffer {
-    try {
-      if ('fromBase64' in Uint8Array && typeof Uint8Array.fromBase64 === 'function') {
-        return Uint8Array.fromBase64(base64url, { alphabet: 'base64url' }).buffer;
-      }
-
-      let base64: string = base64url.replaceAll('-', '+').replaceAll('_', '/');
-      while (base64.length % 4) base64 += '=';
-
-      const binary = atob(base64);
-      const bytes = new Uint8Array(binary.length);
-      for (let i = 0; i < binary.length; i++) {
-        bytes[i] = binary.charCodeAt(i);
-      }
-      return bytes.buffer;
-    } catch {
-      throw new Error('Невалідний base64url формат');
-    }
+  private static stringToBuffer(plain: string): ArrayBuffer {
+    const encoder = new TextEncoder();
+    return encoder.encode(plain).buffer;
   }
 }
