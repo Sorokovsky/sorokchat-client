@@ -1,94 +1,123 @@
-import type { Signal, WritableSignal } from '@angular/core';
-import { inject, Injectable, Injector, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import type { Frame, IMessage } from '@stomp/stompjs';
+import type {Signal} from '@angular/core';
+import { Injectable, signal } from '@angular/core';
+import type { IFrame, IMessage, StompSubscription } from '@stomp/stompjs';
 import { Client } from '@stomp/stompjs';
-import type { Observer } from 'rxjs';
-import { Observable } from 'rxjs';
+import type {Observable} from 'rxjs';
+import { BehaviorSubject  } from 'rxjs';
 import SockJS from 'sockjs-client';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebSocketService {
-  private readonly _isConnected: WritableSignal<boolean> = signal<boolean>(false);
-  private readonly injector: Injector = inject(Injector);
-  private readonly messageQueue: { destination: string; body: string }[] = [];
-  private subcribers: number = 0;
-
+  private readonly _isConnected = signal(false);
+  private readonly messageSubjects = new Map<string, BehaviorSubject<unknown>>();
+  private readonly currentSubscriptions = new Map<string, StompSubscription>();
   private readonly client: Client;
+
+  public readonly isConnected: Signal<boolean> = this._isConnected.asReadonly();
 
   constructor() {
     this.client = new Client({
       webSocketFactory: () => new SockJS('http://localhost:8080/ws'),
-      reconnectDelay: 1000,
-      heartbeatIncoming: 1000,
-      heartbeatOutgoing: 1000,
-      debug: (str: string) => console.log(str),
+      reconnectDelay: 5000,
+      heartbeatIncoming: 4000,
+      heartbeatOutgoing: 4000,
+      debug: (str) => console.debug('[STOMP]', str),
     });
-    this.setupHandlers(this.client);
+
+    this.setupHandlers();
   }
 
-  public readonly isConnected: Signal<boolean> = this._isConnected.asReadonly();
-
-  public subscribe<T>(topic: string): Signal<T | undefined> {
-    this.connect();
-    const observable: Observable<T> = new Observable<T>((observer: Observer<T>): (() => void) => {
-      this.subcribers += 1;
-      const subsrciption = this.client.subscribe(topic, (message: IMessage): void => {
-        observer.next(JSON.parse(message.body) as T);
-      });
-      return () => {
-        subsrciption.unsubscribe();
-        this.subcribers -= 1;
-        setTimeout(() => {
-          if (this.subcribers === 0) this.disconnect();
-        }, 500);
-      };
-    });
-    return toSignal(observable, { initialValue: undefined, injector: this.injector });
+  public activate(): void {
+    if (!this.client.active) this.client.activate();
   }
 
-  public send<T>(destination: string, body: T): void {
-    const payload = { destination, body: JSON.stringify(body) };
+  public deactivate(): void {
+    if (this.client.active) this.client.deactivate();
+  }
+
+  public subscribe(destination: string): Observable<unknown> {
+    if (!this.messageSubjects.has(destination)) {
+      const subject = new BehaviorSubject<unknown>(null);
+      this.messageSubjects.set(destination, subject as BehaviorSubject<unknown>);
+
+      this.resubscribeIfConnected(destination, subject);
+    }
+
+    return this.messageSubjects.get(destination)!.asObservable();
+  }
+
+  private resubscribeIfConnected(destination: string, subject: BehaviorSubject<unknown>) {
     if (this.client.connected) {
-      this.client.publish(payload);
-    } else {
-      this.messageQueue.push(payload);
-      this.connect();
+      const subscription = this.client.subscribe(destination, (msg: IMessage) => {
+        try {
+          const body = JSON.parse(msg.body);
+          subject.next(body);
+        } catch (err) {
+          console.error(`[STOMP] Parse error @ ${destination}`, msg.body, err);
+          subject.next(null);
+        }
+      });
+
+      this.currentSubscriptions.set(destination, subscription);
     }
   }
 
-  private connect(): void {
-    if (!this.client.active) {
-      this.client.activate();
+  public unsubscribe(destination: string): void {
+    const subject = this.messageSubjects.get(destination);
+    if (subject) {
+      subject.complete();
+      this.messageSubjects.delete(destination);
     }
-  }
 
-  private disconnect(): void {
-    if (this.client.active) {
+    const subscription = this.currentSubscriptions.get(destination);
+    if (subscription) {
+      subscription.unsubscribe();
+      this.currentSubscriptions.delete(destination);
+    }
+
+    if (this.messageSubjects.size === 0 && this.client.connected) {
       this.client.deactivate();
     }
   }
 
-  private setupHandlers(client: Client): void {
-    client.onConnect = () => {
+  public send(destination: string, body: unknown): void {
+    if (!this.client.connected) {
+      console.warn('[STOMP] Не підключено →', destination);
+      return;
+    }
+    this.client.publish({ destination, body: JSON.stringify(body) });
+  }
+
+  private setupHandlers(): void {
+    this.client.onConnect = () => {
       this._isConnected.set(true);
-      console.log('STOMP Підключено');
-      while (this.messageQueue.length > 0) {
-        const message = this.messageQueue.shift();
-        if (message) this.client.publish(message);
+      console.log('[STOMP] Підключено');
+
+      this.currentSubscriptions.clear();
+
+      for (const [destination, subject] of this.messageSubjects.entries()) {
+        const sub = this.client.subscribe(destination, (msg: IMessage) => {
+          try {
+            const body = JSON.parse(msg.body);
+            subject.next(body);
+          } catch (error: unknown) {
+            console.error(`[STOMP] Reconnect parse error @ ${destination}`, error);
+            subject.next(null);
+          }
+        });
+
+        this.currentSubscriptions.set(destination, sub);
       }
     };
 
-    client.onStompError = (frame: Frame): void => {
+    this.client.onDisconnect = () => {
       this._isConnected.set(false);
-      console.log('STOMP помилка: ', frame);
+      console.log('[STOMP] Відключено');
     };
 
-    client.onWebSocketClose = () => {
-      this._isConnected.set(false);
-      console.log("WebSocket з'єднання закрито");
-    };
+    this.client.onWebSocketError = (event) => console.error('[WS error]', event);
+    this.client.onStompError = (frame: IFrame) => console.error('[STOMP error]', frame);
   }
 }

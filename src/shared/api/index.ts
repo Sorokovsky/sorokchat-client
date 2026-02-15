@@ -1,4 +1,4 @@
 export { injectBaseMutation } from './base-mutation.api';
 export { injectBaseQuery } from './base-query.api';
 export { INTERCEPTORS } from './interceptors.api';
-export { WebSocketService } from "./websocket.service";
+export { WebSocketService } from './websocket.service';
