@@ -60,7 +60,8 @@ export class AesService implements EncryptionService {
         ciphertextAndTag,
       );
     } catch (error: unknown) {
-      throw new Error(`Помилка розшифровки: ${error}`, { cause: error });
+      console.log(`Помилка розшифровки: ${error}`);
+      return encrypted;
     }
   }
 }
