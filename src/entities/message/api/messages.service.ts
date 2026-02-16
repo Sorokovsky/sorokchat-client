@@ -15,17 +15,18 @@ import type {
   WriteMessagePayload,
 } from '../models';
 import { MessageSchema } from '../models';
+import { MessagesRepository } from './messages.repository';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MessagesService {
   private static readonly SECRET_KEY: string = 'a8Vqd9QyabWjodNVlEW0R5E4vYg0fviL';
-  private static readonly MESSAGES_KEYS: string = 'messages';
 
   private readonly webSocketService: WebSocketService = inject(WebSocketService);
   private readonly encryptionService: EncryptionService = inject(ENCRYPTION_SERVICE);
   private readonly signingService: SigningService = inject(SIGNING_SERVICE);
+  private readonly messagesRepository: MessagesRepository = inject(MessagesRepository);
 
   private readonly _messages: WritableSignal<MessagePayload[]> = signal<MessagePayload[]>([]);
 
@@ -66,14 +67,16 @@ export class MessagesService {
   public listenChat(chatId: number): void {
     if (this.activeSubscriptions.has(chatId)) return;
     this.activeSubscriptions.add(chatId);
-    this.webSocketService.subscribe(`/topic/chat/${chatId}`).subscribe((event: unknown): void => {
-      const result: ZodSafeParseResult<MessagePayload> = MessageSchema.safeParse(event);
-      if (result.success) {
-        const messages: MessagePayload[] = [...this._messages(), result.data];
-        localStorage.setItem(MessagesService.MESSAGES_KEYS, JSON.stringify(messages));
-        this.loadLocal();
-      }
-    });
+    this.webSocketService
+      .subscribe(`/topic/chat/${chatId}`)
+      .subscribe(async (event: unknown): Promise<void> => {
+        const result: ZodSafeParseResult<MessagePayload> = MessageSchema.safeParse(event);
+        if (result.success) {
+          const messages: MessagePayload[] = [...this._messages(), result.data];
+          await this.messagesRepository.saveMessages(messages);
+          this.loadLocal();
+        }
+      });
   }
 
   public stopListeningChat(chatId: number): void {
@@ -111,8 +114,8 @@ export class MessagesService {
     return btoa(String.fromCharCode(...new Uint8Array(buffer)));
   }
 
-  private loadLocal(): void {
-    const data: unknown = JSON.parse(localStorage.getItem(MessagesService.MESSAGES_KEYS) || '[]');
+  private async loadLocal(): Promise<void> {
+    const data: unknown = await this.messagesRepository.getMessages();
     const parsed: ZodSafeParseResult<MessagePayload[]> = MessageSchema.array().safeParse(data);
     if (parsed.success) {
       this._messages.set(parsed.data);
