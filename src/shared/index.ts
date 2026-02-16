@@ -36,6 +36,7 @@ export {
   AesService,
   cutText,
   type EncryptionService,
+  formatDate,
   HmacService,
   injectCurrentPage,
   injectCurrentPath,

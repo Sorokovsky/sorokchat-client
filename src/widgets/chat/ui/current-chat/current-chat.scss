@@ -3,12 +3,8 @@
 }
 
 .current-chat {
-  height: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.messages {
-  flex: 1 1 auto;
+  height: 100vh;
+  display: grid;
+  overflow-y: hidden;
+  grid-template-rows: min-content auto min-content;
 }

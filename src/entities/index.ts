@@ -20,12 +20,13 @@ export {
   NewChatSchema,
 } from './chat';
 export {
+  MessageList,
   type MessagePayload,
   MessageSchema,
   MessagesService,
   type NewMessagePayload,
   NewMessageSchema,
   type WriteMessagePayload,
-  WriteMessageSchema
-} from "./message";
-export { type User, UserSchema } from './user';
+  WriteMessageSchema,
+} from './message';
+export { type User, UserAvatar, UserSchema } from './user';

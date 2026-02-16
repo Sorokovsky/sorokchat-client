@@ -60,7 +60,7 @@ export class WebSocketService {
   public subscribe(destination: string): Observable<unknown> {
     if (!this.messageSubjects.has(destination)) {
       const subject = new BehaviorSubject<unknown>(null);
-      this.messageSubjects.set(destination, subject as BehaviorSubject<unknown>);
+      this.messageSubjects.set(destination, subject);
 
       this.resubscribeIfConnected(destination, subject);
     }
@@ -68,17 +68,21 @@ export class WebSocketService {
     return this.messageSubjects.get(destination)!.asObservable();
   }
 
-  private resubscribeIfConnected(destination: string, subject: BehaviorSubject<unknown>) {
+  private resubscribeIfConnected(destination: string, subject: BehaviorSubject<unknown>): void {
     if (this.client.connected) {
-      const subscription = this.client.subscribe(destination, (msg: IMessage) => {
-        try {
-          const body = JSON.parse(msg.body);
-          subject.next(body);
-        } catch (err) {
-          console.error(`[STOMP] Parse error @ ${destination}`, msg.body, err);
-          subject.next(null);
-        }
-      });
+      const subscription: StompSubscription = this.client.subscribe(
+        destination,
+        (msg: IMessage): void => {
+          console.log(msg);
+          try {
+            const body = JSON.parse(msg.body);
+            subject.next(body);
+          } catch (err) {
+            console.error(`[STOMP] Parse error @ ${destination}`, msg.body, err);
+            subject.next(null);
+          }
+        },
+      );
 
       this.currentSubscriptions.set(destination, subscription);
     }

@@ -1,0 +1,41 @@
+@use "variables" as *;
+:host {
+  display: contents;
+}
+
+.message-list {
+  padding: 20rem 0;
+  overflow-y: scroll;
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20rem;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+    padding-right: 20rem;
+    &._my {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+  }
+  &__description {
+    background-color: $secondary-background;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    padding: 10rem 15rem;
+    border-radius: 20rem;
+  }
+
+  &__text {
+    font-size: 24rem;
+  }
+
+  &__date {
+    font-size: 18rem;
+    color: $icon-color;
+  }
+}
