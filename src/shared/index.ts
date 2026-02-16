@@ -1,5 +1,12 @@
-export { injectBaseMutation, injectBaseQuery, INTERCEPTORS, WebSocketService } from './api';
-export { ENCRYPTION_SERVICE, Endpoints, QueryKeys, SIGNING_SERVICE } from './data';
+export type { StorageService } from './api';
+export {
+  AngularStorageService,
+  injectBaseMutation,
+  injectBaseQuery,
+  INTERCEPTORS,
+  WebSocketService,
+} from './api';
+export { ENCRYPTION_SERVICE, Endpoints, QueryKeys, SIGNING_SERVICE, STORAGE_SERVICE } from './data';
 export {
   AccessRule,
   type AccessSetting,

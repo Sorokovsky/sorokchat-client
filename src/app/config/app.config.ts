@@ -11,10 +11,12 @@ import { provideTanStackQuery, QueryClient } from '@tanstack/angular-query-exper
 
 import {
   AesService,
+  AngularStorageService,
   ENCRYPTION_SERVICE,
   HmacService,
   INTERCEPTORS,
   SIGNING_SERVICE,
+  STORAGE_SERVICE,
 } from '@/shared';
 
 import { routes } from '../routes';
@@ -39,6 +41,10 @@ export const appConfig: ApplicationConfig = {
         },
       }),
     ),
+    {
+      provide: STORAGE_SERVICE,
+      useClass: AngularStorageService,
+    },
     {
       provide: LOCALE_ID,
       useValue: 'uk-UA',
