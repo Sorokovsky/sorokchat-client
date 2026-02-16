@@ -31,7 +31,7 @@ export class MessagesService {
   private readonly _messages: WritableSignal<MessagePayload[]> = signal<MessagePayload[]>([]);
 
   constructor() {
-    this.loadLocal();
+    this.loadLocal().then();
   }
 
   private readonly activeSubscriptions: Set<number> = new Set<number>();
