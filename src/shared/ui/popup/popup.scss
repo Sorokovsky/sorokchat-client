@@ -35,13 +35,16 @@
     flex-direction: row-reverse;
   }
 
+  &__main {
+    padding: 10rem 0;
+  }
+
   &__content {
     max-width: 1000rem;
     padding: 10rem 15rem;
     border-radius: 30rem;
     width: 100%;
     background-color: $primary-background;
-    height: 80%;
     overflow-y: auto;
     @include border();
   }

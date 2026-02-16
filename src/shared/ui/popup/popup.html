@@ -6,6 +6,8 @@
         <div class="popup__head">
             <app-popup-close (click)="close()" />
         </div>
-        <div class="popup__main"></div>
+        <div class="popup__main">
+            <ng-content />
+        </div>
     </div>
 </div>

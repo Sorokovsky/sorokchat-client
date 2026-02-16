@@ -1,2 +1,4 @@
 <app-action-button [icon]="icon" (click)="openPopup()" />
-<app-popup [(isOpen)]="isPopupOpen"/>
+<app-popup [(isOpen)]="isPopupOpen" >
+    <app-create-chat-form (send)="closePopup()" />
+</app-popup>

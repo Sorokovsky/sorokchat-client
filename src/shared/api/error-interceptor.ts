@@ -19,7 +19,7 @@ export const errorInterceptor: HttpInterceptorFn = (
       if (error instanceof HttpErrorResponse && error.error) {
         return throwError((): ProblemDetails => error.error);
       }
-      return throwError(() => error);
+      return throwError((): unknown => error);
     }),
   );
 };
