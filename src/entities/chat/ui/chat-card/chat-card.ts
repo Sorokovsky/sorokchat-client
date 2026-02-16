@@ -7,7 +7,7 @@ import type { Chat } from '@/entities';
 import { ChatAvatar } from '@/entities';
 import { cutText } from '@/shared';
 
-import { MAX_DESCRIPTION_LENGTH } from '../../config';
+import { MAX_DESCRIPTION_LENGTH, MAX_NAME_LENGTH } from '../../config';
 
 @Component({
   selector: 'app-chat-card',
@@ -21,6 +21,10 @@ export class ChatCard {
 
   protected readonly description: Signal<string> = computed<string>((): string => {
     return cutText(this.chat().description, MAX_DESCRIPTION_LENGTH);
+  });
+
+  protected readonly name: Signal<string> = computed<string>((): string => {
+    return cutText(this.chat().name, MAX_NAME_LENGTH);
   });
 
   protected readonly link: Signal<string> = computed<string>((): string => {
