@@ -29,7 +29,7 @@ export const authorizationInterceptor: HttpInterceptorFn = (
       if (event instanceof HttpResponse) {
         const newToken: string | null = remoteTokenStorage.getToken(event);
         if (newToken) {
-          localeTokenStorage.setToken(newToken);
+          localeTokenStorage.setToken(newToken).then();
         }
       }
       return event;
