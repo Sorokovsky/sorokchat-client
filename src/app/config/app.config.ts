@@ -6,6 +6,7 @@ import {
   provideZonelessChangeDetection,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { provideServiceWorker } from '@angular/service-worker';
 import { provideTanStackQuery, QueryClient } from '@tanstack/angular-query-experimental';
 
 import {
@@ -23,6 +24,10 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
+    provideHttpClient(withInterceptors(INTERCEPTORS)),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: true,
+    }),
     provideTanStackQuery(
       new QueryClient({
         defaultOptions: {
@@ -34,7 +39,6 @@ export const appConfig: ApplicationConfig = {
         },
       }),
     ),
-    provideHttpClient(withInterceptors(INTERCEPTORS)),
     {
       provide: LOCALE_ID,
       useValue: 'uk-UA',

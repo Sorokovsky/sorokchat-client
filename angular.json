@@ -27,8 +27,10 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/manifest.webmanifest"
             ],
+            "serviceWorker": "ngsw-config.json",
             "styles": ["src/app/styles/styles.scss"],
             "stylePreprocessorOptions": {
               "includePaths": ["src/shared/styles"]
