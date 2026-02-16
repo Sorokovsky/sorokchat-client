@@ -1,0 +1,48 @@
+@use "variables" as *;
+@use "border" as *;
+
+:host {
+  display: contents;
+}
+
+.popup {
+  &__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color: $backdrop-color;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s all ease;
+    &._open {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+  }
+
+  &__content {
+    max-width: 1000rem;
+    padding: 10rem 15rem;
+    border-radius: 30rem;
+    width: 100%;
+    background-color: $primary-background;
+    height: 80%;
+    overflow-y: auto;
+    @include border();
+  }
+}

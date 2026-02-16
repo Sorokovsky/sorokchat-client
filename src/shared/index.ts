@@ -36,6 +36,7 @@ export {
   Heading,
   Icon,
   Loader,
+  Popup,
   UIInput,
 } from './ui';
 export {

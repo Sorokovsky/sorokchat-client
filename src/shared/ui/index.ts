@@ -9,3 +9,4 @@ export { Heading } from './heading/heading';
 export { Icon } from './icon/icon';
 export { UIInput } from './input/ui-input';
 export { Loader } from './loader/loader';
+export { Popup } from './popup/popup';
