@@ -7,7 +7,7 @@ import type {
 import { HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import type { Observable } from 'rxjs';
-import { map } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { LocaleTokenStorage } from './locale-token-storage';
 import { RemoteTokenStorage } from './remote-token-storage';
@@ -16,14 +16,20 @@ export const authorizationInterceptor: HttpInterceptorFn = (
   request: HttpRequest<unknown>,
   next: HttpHandlerFn,
 ): Observable<HttpEvent<unknown>> => {
-  const localeStorage: LocaleTokenStorage = inject(LocaleTokenStorage);
-  const remoteStorage: RemoteTokenStorage = inject(RemoteTokenStorage);
-  return next(remoteStorage.setToken(localeStorage.getToken(), request)).pipe(
+  const localeTokenStorage: LocaleTokenStorage = inject(LocaleTokenStorage);
+  const remoteTokenStorage: RemoteTokenStorage = inject(RemoteTokenStorage);
+
+  const token: string | null = localeTokenStorage.getToken();
+  let resultRequest: HttpRequest<unknown> = request;
+  if (token) {
+    resultRequest = remoteTokenStorage.setToken(token, request);
+  }
+  return next(resultRequest).pipe(
     map((event: HttpEvent<unknown>): HttpEvent<unknown> => {
       if (event instanceof HttpResponse) {
-        const token: string | null = remoteStorage.getToken(event);
-        if (token) {
-          localeStorage.setToken(token);
+        const newToken: string | null = remoteTokenStorage.getToken(event);
+        if (newToken) {
+          localeTokenStorage.setToken(newToken);
         }
       }
       return event;

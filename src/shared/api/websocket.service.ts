@@ -32,16 +32,16 @@ export class WebSocketService {
     this.client = new Client({
       webSocketFactory: (): WebSocket => new SockJS('http://localhost:8080/ws'),
       connectHeaders: {
-        Authorization: `Bearer ${this.localeTokenStorage.getToken()}`,
+        Authorization: `Bearer ${this.localeTokenStorage.getToken() || '<TOKEN>'}`,
       },
       reconnectDelay: 5000,
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
       debug: (str: string): void => console.debug('[STOMP]', str),
       beforeConnect: (): void => {
-        const accessToken: string = this.localeTokenStorage.getToken();
+        const accessToken: string | null = this.localeTokenStorage.getToken();
         this.client.connectHeaders = {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${accessToken || '<TOKEN>'}`,
         };
       },
     });
