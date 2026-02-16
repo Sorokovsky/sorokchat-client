@@ -1,5 +1,4 @@
 import { inject, Injectable } from '@angular/core';
-import type { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 
 import { STORAGE_SERVICE } from '@/shared';
@@ -15,7 +14,6 @@ export class LocaleTokenStorage {
   private readonly storageService: StorageService = inject(STORAGE_SERVICE);
 
   private tokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
-  public readonly token$: Observable<string | null> = this.tokenSubject.asObservable();
 
   constructor() {
     this.loadInitialToken().then();
