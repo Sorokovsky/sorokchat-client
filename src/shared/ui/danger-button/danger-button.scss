@@ -1,0 +1,17 @@
+@use "variables" as *;
+@use "hover" as *;
+:host {
+  display: contents;
+}
+
+.danger-button {
+  background-color: $secondary-background;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 10rem;
+  font-size: 20rem;
+  color: $danger-color;
+  border-radius: 10rem;
+  @include hover();
+}

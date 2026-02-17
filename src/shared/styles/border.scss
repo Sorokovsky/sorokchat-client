@@ -1,7 +1,7 @@
 @use "variables" as *;
 
-@mixin border($position: '', $width: 1rem) {
-  $value: $width solid $border-color;
+@mixin border($position: '', $width: 1rem, $color: $border-color) {
+  $value: $width solid $color;
   @if ($position == '') {
     border: $value;
   } @else {

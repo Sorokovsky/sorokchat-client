@@ -1,5 +1,5 @@
-import type {HttpRequest, HttpResponse} from "@angular/common/http";
-import {Injectable} from "@angular/core";
+import type { HttpRequest, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,7 @@ export class RemoteTokenStorage {
   public getToken(response: HttpResponse<unknown>): string | null {
     return (
       response.headers
-        .get(RemoteTokenStorage.HEADER_NAME)
+        .get(RemoteTokenStorage.HEADER_NAME.toLowerCase())
         ?.replace(RemoteTokenStorage.BEARER_PREFIX, '') || null
     );
   }

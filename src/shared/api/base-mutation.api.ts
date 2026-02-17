@@ -9,6 +9,9 @@ export function injectBaseMutation<TData = unknown, TVariables = void>(
   keys: string[],
   mutationFn: MutationFunction<TData, TVariables>,
   refreshKeys: string[] = [],
+  onSuccess: () => void = (): void => {
+    /* empty */
+  },
 ): BaseMutation<TData, TVariables> {
   const client: QueryClient = inject(QueryClient);
   return injectMutation(
@@ -17,6 +20,7 @@ export function injectBaseMutation<TData = unknown, TVariables = void>(
       mutationFn,
       async onSuccess(): Promise<void> {
         await client.resetQueries({ queryKey: refreshKeys });
+        onSuccess();
       },
       async onError(error: ProblemDetails): Promise<void> {
         toast.error(error.title);

@@ -2,6 +2,7 @@ export { ActionButton } from './action-button/action-button';
 export { ActionIcon } from './action-icon/action-icon';
 export { Avatar } from './avatar/avatar';
 export { Button } from './button/button';
+export { DangerButton } from './danger-button/danger-button';
 export { EmptyMessage } from './empty-message/empty-message';
 export { Form } from './form/form';
 export { FormField } from './form-field/form-field';

@@ -21,9 +21,7 @@ export const authorizationInterceptor: HttpInterceptorFn = (
 
   const token: string | null = localeTokenStorage.getToken();
   let resultRequest: HttpRequest<unknown> = request;
-  if (token) {
-    resultRequest = remoteTokenStorage.setToken(token, request);
-  }
+  if (token) resultRequest = remoteTokenStorage.setToken(token, request);
   return next(resultRequest).pipe(
     map((event: HttpEvent<unknown>): HttpEvent<unknown> => {
       if (event instanceof HttpResponse) {
