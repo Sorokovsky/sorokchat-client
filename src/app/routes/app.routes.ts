@@ -1,9 +1,10 @@
 import type { Routes } from '@angular/router';
 
-import { CHATS_PAGE } from '@/pages';
+import { CHATS_PAGE, SETTINGS_PAGE } from '@/pages';
+import { PRIVACY_PAGE } from '@/pages/privacy';
 import { removeDynamicPath } from '@/shared';
 
-import { ANONYMOUS_PAGES, SECURED_PAGES } from '../data';
+import { ANONYMOUS_PAGES } from '../data';
 import { AuthorizationLayout, MainLayout } from '../layouts';
 
 export const routes: Routes = [
@@ -15,7 +16,11 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayout,
-    children: SECURED_PAGES,
+    children: [
+      CHATS_PAGE,
+      { ...CHATS_PAGE, path: removeDynamicPath(CHATS_PAGE.path) },
+      { ...SETTINGS_PAGE, children: [PRIVACY_PAGE] },
+    ],
   },
   {
     path: '',
