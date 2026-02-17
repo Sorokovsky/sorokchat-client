@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
-import type { StorageService } from '@/shared';
+import { MessagesService } from '@/entities';
 import { WebSocketService } from '@/shared';
 import { LocaleTokenStorage } from '@/shared';
-import { Endpoints, STORAGE_SERVICE } from '@/shared';
+import { Endpoints } from '@/shared';
 
 import type { User } from '../../user/@x/authorization';
 import type { LoginPayload, RegisterPayload } from '../models';
@@ -15,7 +15,7 @@ import type { LoginPayload, RegisterPayload } from '../models';
 })
 export class AuthorizationService {
   private readonly client: HttpClient = inject(HttpClient);
-  private readonly storageService: StorageService = inject(STORAGE_SERVICE);
+  private readonly messagesService: MessagesService = inject(MessagesService);
   private readonly tokenStorageService: LocaleTokenStorage = inject(LocaleTokenStorage);
   private readonly webSocketService: WebSocketService = inject(WebSocketService);
 
@@ -33,8 +33,8 @@ export class AuthorizationService {
 
   public async logout(): Promise<void> {
     await lastValueFrom(this.client.delete<void>(Endpoints.LOGOUT));
-    await this.storageService.clear();
     await this.tokenStorageService.clearToken();
+    await this.messagesService.clearMessages();
     this.webSocketService.deactivate();
   }
 }

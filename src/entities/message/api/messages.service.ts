@@ -105,6 +105,11 @@ export class MessagesService {
     return this.activeSubscriptions.has(chatId);
   }
 
+  public async clearMessages(): Promise<void> {
+    await this.messagesRepository.clearMessages();
+    this._messages.set([]);
+  }
+
   private static base64ToBuffer(base64: string): ArrayBuffer {
     return Uint8Array.from(atob(base64), (character: string): number => character.charCodeAt(0))
       .buffer;

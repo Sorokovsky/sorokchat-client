@@ -19,4 +19,8 @@ export class MessagesRepository {
   public async saveMessages(messages: MessagePayload[]): Promise<void> {
     await this.storageService.set<MessagePayload[]>(MessagesRepository.KEY, messages);
   }
+
+  public async clearMessages(): Promise<void> {
+    await this.storageService.remove(MessagesRepository.KEY);
+  }
 }
