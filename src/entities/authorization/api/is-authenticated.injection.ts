@@ -6,5 +6,8 @@ import { injectGetProfile } from './get-profile.injection';
 
 export function injectIsAuthenticated(): Signal<boolean> {
   const profile: GetProfileQuery = injectGetProfile();
-  return computed((): boolean => profile.data() !== undefined);
+  return computed((): boolean => {
+    console.log(profile.data() !== undefined);
+    return profile.data() !== undefined;
+  });
 }

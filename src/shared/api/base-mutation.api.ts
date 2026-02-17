@@ -9,18 +9,14 @@ export function injectBaseMutation<TData = unknown, TVariables = void>(
   keys: string[],
   mutationFn: MutationFunction<TData, TVariables>,
   refreshKeys: string[] = [],
-  onSuccess: () => void = (): void => {
-    /* empty */
-  },
 ): BaseMutation<TData, TVariables> {
   const client: QueryClient = inject(QueryClient);
   return injectMutation(
     (): CreateMutationOptions<TData, ProblemDetails, TVariables> => ({
       mutationKey: keys,
       mutationFn,
-      async onSuccess(): Promise<void> {
-        await client.resetQueries({ queryKey: refreshKeys });
-        onSuccess();
+      async onSettled(): Promise<void> {
+        await client.invalidateQueries({ queryKey: refreshKeys, refetchType: 'all' });
       },
       async onError(error: ProblemDetails): Promise<void> {
         toast.error(error.title);

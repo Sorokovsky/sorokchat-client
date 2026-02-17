@@ -8,6 +8,7 @@ import {
 import { provideRouter } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideTanStackQuery, QueryClient } from '@tanstack/angular-query-experimental';
+import { withDevtools } from '@tanstack/angular-query-experimental/devtools';
 
 import {
   AesService,
@@ -34,12 +35,14 @@ export const appConfig: ApplicationConfig = {
       new QueryClient({
         defaultOptions: {
           queries: {
-            refetchOnMount: false,
+            refetchOnMount: true,
             refetchOnWindowFocus: false,
             retryOnMount: false,
+            staleTime: 0,
           },
         },
       }),
+      withDevtools(),
     ),
     {
       provide: STORAGE_SERVICE,
