@@ -16,7 +16,15 @@ export function injectBaseMutation<TData = unknown, TVariables = void>(
       mutationKey: keys,
       mutationFn,
       async onSettled(): Promise<void> {
-        await client.invalidateQueries({ queryKey: refreshKeys, refetchType: 'all' });
+        if (refreshKeys.length > 0) {
+          client
+            .getQueryCache()
+            .findAll({ queryKey: refreshKeys, exact: false })
+            .forEach((query) => {
+              query.setData(null);
+            });
+          await client.invalidateQueries({ queryKey: refreshKeys });
+        }
       },
       async onError(error: ProblemDetails): Promise<void> {
         toast.error(error.title);
