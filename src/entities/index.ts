@@ -29,4 +29,5 @@ export {
   type WriteMessagePayload,
   WriteMessageSchema,
 } from './message';
+export { NoSettings } from './settings';
 export { type User, UserAvatar, UserSchema } from './user';

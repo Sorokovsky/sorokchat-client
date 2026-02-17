@@ -1,3 +1,4 @@
+import type { Type } from '@angular/core';
 import type { Routes } from '@angular/router';
 
 import { CHATS_PAGE, PRIVACY_PAGE, SETTINGS_PAGE } from '@/pages';
@@ -18,7 +19,19 @@ export const routes: Routes = [
     children: [
       CHATS_PAGE,
       { ...CHATS_PAGE, path: removeDynamicPath(CHATS_PAGE.path) },
-      { ...SETTINGS_PAGE, children: [PRIVACY_PAGE] },
+      {
+        ...SETTINGS_PAGE,
+        children: [
+          {
+            ...SETTINGS_PAGE,
+            path: '',
+            pathMatch: 'full',
+            loadComponent: (): Promise<Type<unknown>> =>
+              import('@/entities').then((result): Type<unknown> => result.NoSettings),
+          },
+          PRIVACY_PAGE,
+        ],
+      },
     ],
   },
   {
