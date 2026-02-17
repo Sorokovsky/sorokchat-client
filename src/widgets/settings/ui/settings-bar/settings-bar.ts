@@ -5,7 +5,7 @@ import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import type { Page } from '@/shared';
-import { Heading, Icon } from '@/shared';
+import { Heading, Icon, injectCurrentPath } from '@/shared';
 
 import { SettingsService } from '../../api';
 
@@ -17,6 +17,7 @@ import { SettingsService } from '../../api';
 })
 export class SettingsBar {
   private readonly service: SettingsService = inject(SettingsService);
+  private readonly currentPath: Signal<string> = injectCurrentPath();
 
   public rootPath: InputSignal<string> = input.required<string>();
 
@@ -24,5 +25,9 @@ export class SettingsBar {
 
   public getLink(item: Page): string {
     return `${this.rootPath()}/${item.path}`;
+  }
+
+  public isActive(item: Page): boolean {
+    return this.currentPath().includes(item.path);
   }
 }

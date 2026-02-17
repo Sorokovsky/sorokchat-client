@@ -3,9 +3,13 @@
     <ul>
         @for (item of menu(); track item.path) {
             <li>
-                <a [routerLink]="getLink(item)" class="settings-bar__card">
+                <a
+                        [routerLink]="getLink(item)"
+                        class="settings-bar__card"
+                        [class._active]="isActive(item)"
+                >
                     @if (item.icon) {
-                    <app-icon [icon]="item.icon" />
+                        <app-icon [icon]="item.icon" />
                     }
                     <span class="settings-bar__name">{{item.title}}</span>
                 </a>

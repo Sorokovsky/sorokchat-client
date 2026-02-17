@@ -1,0 +1,30 @@
+@use "variables" as *;
+@use "hover" as *;
+:host {
+  display: contents;
+}
+
+.settings-bar {
+  ul {
+    padding: 20rem 0;
+  }
+  &__card {
+    display: flex;
+    align-items: center;
+    padding: 10rem 20rem;
+    gap: 10rem;
+    font-size: 20rem;
+    border-radius: 5rem;
+    color: $icon-color;
+    @include hover();
+    app-icon {
+      transition: .3s all ease;
+    }
+    &._active {
+      background-color: $primary-hover-background;
+      &, app-icon {
+        color: $primary-text-color;
+      }
+    }
+  }
+}
