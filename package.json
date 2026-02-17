@@ -33,6 +33,7 @@
     "@angular/router": "^20.3.0",
     "@angular/service-worker": "^21.1.4",
     "@ngx-pwa/local-storage": "^21.0.0",
+    "@stomp/stompjs": "^7.3.0",
     "@tanstack/angular-query-experimental": "^5.90.25",
     "date-fns": "^4.1.0",
     "lucide-angular": "^0.564.0",
