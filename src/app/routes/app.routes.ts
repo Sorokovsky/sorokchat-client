@@ -1,7 +1,6 @@
 import type { Routes } from '@angular/router';
 
-import { CHATS_PAGE, SETTINGS_PAGE } from '@/pages';
-import { PRIVACY_PAGE } from '@/pages/privacy';
+import { CHATS_PAGE, PRIVACY_PAGE, SETTINGS_PAGE } from '@/pages';
 import { removeDynamicPath } from '@/shared';
 
 import { ANONYMOUS_PAGES } from '../data';

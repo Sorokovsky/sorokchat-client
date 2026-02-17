@@ -1,4 +1,5 @@
-import type { Signal } from '@angular/core';
+import type { OnInit, Signal } from '@angular/core';
+import { inject } from '@angular/core';
 import { Component, computed } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgxSonnerToaster } from 'ngx-sonner';
@@ -6,7 +7,9 @@ import { NgxSonnerToaster } from 'ngx-sonner';
 import type { GetProfileQuery } from '@/entities';
 import { injectGetProfile } from '@/entities';
 import { Loader } from '@/shared';
+import { SettingsService } from '@/widgets';
 
+import { SETTINGS_MENU } from '../../data';
 import { injectAuthenticationGuard } from '../../guards';
 
 @Component({
@@ -15,7 +18,9 @@ import { injectAuthenticationGuard } from '../../guards';
   templateUrl: './root.html',
   styleUrl: './root.scss',
 })
-export class Root {
+export class Root implements OnInit {
+  private readonly settingsService: SettingsService = inject(SettingsService);
+
   private readonly profile: GetProfileQuery = injectGetProfile();
   protected readonly isLoading: Signal<boolean> = computed((): boolean =>
     this.profile.isFetching(),
@@ -23,5 +28,9 @@ export class Root {
 
   constructor() {
     injectAuthenticationGuard();
+  }
+
+  public ngOnInit() {
+    this.settingsService.setSettingsMenu(SETTINGS_MENU);
   }
 }
