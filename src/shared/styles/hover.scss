@@ -2,7 +2,9 @@
 
 @mixin hover() {
   transition: .3s all ease;
-  &:hover {
-    background-color: $primary-hover-background;
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: $primary-hover-background;
+    }
   }
 }
