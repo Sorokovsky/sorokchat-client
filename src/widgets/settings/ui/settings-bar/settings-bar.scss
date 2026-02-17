@@ -7,6 +7,9 @@
 .settings-bar {
   ul {
     padding: 20rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20rem;
   }
   &__card {
     display: flex;
