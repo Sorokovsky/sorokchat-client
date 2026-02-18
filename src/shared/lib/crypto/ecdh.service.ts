@@ -34,7 +34,7 @@ export class EcdhService {
       await this.importPrivateKey(myPrivateKey),
       EcdhService.BITS_LENGTH,
     );
-    return bufferToBase64(sharedKey);
+    return bufferToBase64(await crypto.subtle.digest('SHA-256', sharedKey));
   }
 
   private async importPublicKey(base64PublicKey: string): Promise<CryptoKey> {
