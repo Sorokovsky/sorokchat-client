@@ -79,7 +79,7 @@ export class MessagesService {
         if (result.success) {
           const messages: MessagePayload[] = [...this._messages(), result.data];
           await this.messagesRepository.saveMessages(messages);
-          this.loadLocal();
+          this.loadLocal().then();
         }
       });
   }
