@@ -41,19 +41,7 @@ export class EcdhService {
       false,
       ['deriveKey', 'deriveBits'],
     );
-    const derivedKey: CryptoKey = await crypto.subtle.deriveKey(
-      {
-        name: 'HKDF',
-        hash: 'SHA-256',
-        salt: new Uint8Array(0),
-        info: new TextEncoder().encode('chat-message-encryption-v1'),
-      },
-      baseKey,
-      { name: 'AES-GCM', length: EcdhService.BITS_LENGTH },
-      true,
-      ['encrypt', 'decrypt'],
-    );
-    return bufferToBase64(await crypto.subtle.exportKey('raw', derivedKey));
+    return bufferToBase64(await crypto.subtle.exportKey('raw', baseKey));
   }
 
   private importPublicKey(base64PublicKey: string): Promise<CryptoKey> {
