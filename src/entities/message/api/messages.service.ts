@@ -3,7 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import type { ZodSafeParseResult } from 'zod';
 
 import type { EncryptionService, SigningService } from '@/shared';
-import { SIGNING_SERVICE } from '@/shared';
+import { base64ToBuffer, bufferToBase64, SIGNING_SERVICE } from '@/shared';
 import { ENCRYPTION_SERVICE, WebSocketService } from '@/shared';
 
 import type { Chat } from '../../chat/@x/message';
@@ -42,8 +42,8 @@ export class MessagesService {
     const user: User | undefined = chat.members.find(
       (member: User): boolean => member.id === message.authorId,
     );
-    const signingBuffer: ArrayBuffer = MessagesService.base64ToBuffer(message.mac);
-    const encryptedBuffer: ArrayBuffer = MessagesService.base64ToBuffer(message.text);
+    const signingBuffer: ArrayBuffer = base64ToBuffer(message.mac);
+    const encryptedBuffer: ArrayBuffer = base64ToBuffer(message.text);
     const keyBuffer: ArrayBuffer = new TextEncoder().encode(MessagesService.SECRET_KEY).buffer;
     const isSuggested: boolean = await this.signingService.verify(
       encryptedBuffer,
@@ -91,8 +91,8 @@ export class MessagesService {
     const encryptedBytes: ArrayBuffer = await this.encryptionService.encrypt(textBytes, keyBytes);
     const signing: ArrayBuffer = await this.signingService.sign(encryptedBytes, keyBytes);
     const newMessage: NewMessagePayload = {
-      text: MessagesService.bufferToBase64(encryptedBytes),
-      mac: MessagesService.bufferToBase64(signing),
+      text: bufferToBase64(encryptedBytes),
+      mac: bufferToBase64(signing),
     };
     this.webSocketService.send(`/chat.send/${chatId}`, newMessage);
   }
@@ -108,15 +108,6 @@ export class MessagesService {
   public async clearMessages(): Promise<void> {
     await this.messagesRepository.clearMessages();
     this._messages.set([]);
-  }
-
-  private static base64ToBuffer(base64: string): ArrayBuffer {
-    return Uint8Array.from(atob(base64), (character: string): number => character.charCodeAt(0))
-      .buffer;
-  }
-
-  private static bufferToBase64(buffer: ArrayBuffer): string {
-    return btoa(String.fromCharCode(...new Uint8Array(buffer)));
   }
 
   private async loadLocal(): Promise<void> {

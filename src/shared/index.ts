@@ -8,7 +8,15 @@ export {
   WebSocketService,
 } from './api';
 export { ENCRYPTION_SERVICE, Endpoints, QueryKeys, SIGNING_SERVICE, STORAGE_SERVICE } from './data';
-export { AesService, type EncryptionService, HmacService, type SigningService } from './lib';
+export {
+  AesService,
+  base64ToBuffer,
+  bufferToBase64,
+  concatBuffers,
+  type EncryptionService,
+  HmacService,
+  type SigningService,
+} from './lib';
 export {
   AccessRule,
   type AccessSetting,

@@ -5,3 +5,4 @@ export {
   HmacService,
   type SigningService,
 } from './crypto';
+export { base64ToBuffer, bufferToBase64 } from './encoding';
