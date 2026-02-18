@@ -44,9 +44,9 @@ export class EcdhService {
     return bufferToBase64(await crypto.subtle.exportKey('raw', baseKey));
   }
 
-  private importPublicKey(base64PublicKey: string): Promise<CryptoKey> {
+  private async importPublicKey(base64PublicKey: string): Promise<CryptoKey> {
     const buffer: ArrayBuffer = base64ToBuffer(base64PublicKey);
-    return crypto.subtle.importKey(
+    return await crypto.subtle.importKey(
       'raw',
       buffer,
       {
@@ -58,9 +58,9 @@ export class EcdhService {
     );
   }
 
-  private importPrivateKey(base64PrivateKey: string): Promise<CryptoKey> {
+  private async importPrivateKey(base64PrivateKey: string): Promise<CryptoKey> {
     const buffer: ArrayBuffer = base64ToBuffer(base64PrivateKey);
-    return crypto.subtle.importKey(
+    return await crypto.subtle.importKey(
       'pkcs8',
       buffer,
       { name: EcdhService.NAME, namedCurve: EcdhService.CURVE_NAME },
