@@ -15,6 +15,7 @@ export {
   concatBuffers,
   type EncryptionService,
   HmacService,
+  KeysInfrastructure,
   type SigningService,
 } from './lib';
 export {

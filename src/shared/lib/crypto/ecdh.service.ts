@@ -34,14 +34,7 @@ export class EcdhService {
       await this.importPrivateKey(myPrivateKey),
       EcdhService.BITS_LENGTH,
     );
-    const baseKey: CryptoKey = await crypto.subtle.importKey(
-      'raw',
-      sharedKey,
-      { name: 'HKDF' },
-      false,
-      ['deriveKey', 'deriveBits'],
-    );
-    return bufferToBase64(await crypto.subtle.exportKey('raw', baseKey));
+    return bufferToBase64(sharedKey);
   }
 
   private async importPublicKey(base64PublicKey: string): Promise<CryptoKey> {

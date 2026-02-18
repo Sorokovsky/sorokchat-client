@@ -3,8 +3,14 @@ import { inject, Injectable, signal } from '@angular/core';
 import type { ZodSafeParseResult } from 'zod';
 
 import type { EncryptionService, SigningService } from '@/shared';
-import { base64ToBuffer, bufferToBase64, SIGNING_SERVICE } from '@/shared';
-import { ENCRYPTION_SERVICE, WebSocketService } from '@/shared';
+import {
+  base64ToBuffer,
+  bufferToBase64,
+  ENCRYPTION_SERVICE,
+  KeysInfrastructure,
+  SIGNING_SERVICE,
+  WebSocketService,
+} from '@/shared';
 
 import type { Chat } from '../../chat/@x/message';
 import type { User } from '../../user/@x/chat';
@@ -21,12 +27,11 @@ import { MessagesRepository } from './messages.repository';
   providedIn: 'root',
 })
 export class MessagesService {
-  private static readonly SECRET_KEY: string = 'a8Vqd9QyabWjodNVlEW0R5E4vYg0fviL';
-
   private readonly webSocketService: WebSocketService = inject(WebSocketService);
   private readonly encryptionService: EncryptionService = inject(ENCRYPTION_SERVICE);
   private readonly signingService: SigningService = inject(SIGNING_SERVICE);
   private readonly messagesRepository: MessagesRepository = inject(MessagesRepository);
+  private readonly keysInfrastructure: KeysInfrastructure = inject(KeysInfrastructure);
 
   private readonly _messages: WritableSignal<MessagePayload[]> = signal<MessagePayload[]>([]);
 
@@ -44,7 +49,7 @@ export class MessagesService {
     );
     const signingBuffer: ArrayBuffer = base64ToBuffer(message.mac);
     const encryptedBuffer: ArrayBuffer = base64ToBuffer(message.text);
-    const keyBuffer: ArrayBuffer = new TextEncoder().encode(MessagesService.SECRET_KEY).buffer;
+    const keyBuffer: ArrayBuffer = base64ToBuffer(await this.keysInfrastructure.getSharedKey());
     const isSuggested: boolean = await this.signingService.verify(
       encryptedBuffer,
       keyBuffer,
@@ -87,7 +92,8 @@ export class MessagesService {
 
   public async writeMessage(payload: WriteMessagePayload, chatId: number): Promise<void> {
     const textBytes: ArrayBuffer = new TextEncoder().encode(payload.text).buffer;
-    const keyBytes: ArrayBuffer = new TextEncoder().encode(MessagesService.SECRET_KEY).buffer;
+    const sharedKey: string = await this.keysInfrastructure.getSharedKey();
+    const keyBytes: ArrayBuffer = base64ToBuffer(sharedKey);
     const encryptedBytes: ArrayBuffer = await this.encryptionService.encrypt(textBytes, keyBytes);
     const signing: ArrayBuffer = await this.signingService.sign(encryptedBytes, keyBytes);
     const newMessage: NewMessagePayload = {
