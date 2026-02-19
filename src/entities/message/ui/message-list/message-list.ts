@@ -1,4 +1,5 @@
 import type { InputSignal, ResourceLoaderParams, ResourceRef, Signal } from '@angular/core';
+import { EnvironmentInjector, runInInjectionContext } from '@angular/core';
 import { computed, resource } from '@angular/core';
 import { inject } from '@angular/core';
 import { Component, input } from '@angular/core';
@@ -11,6 +12,7 @@ import type { Chat } from '../../../chat/@x/message';
 import { UserAvatar } from '../../../user/@x/chat';
 import { MessagesService } from '../../api';
 import type { ChatMessagePayload, MessagePayload } from '../../models';
+import { prepareMessage } from '../../util';
 
 interface Params {
   chat: Chat;
@@ -26,6 +28,7 @@ interface Params {
 export class MessageList {
   private readonly messagesService: MessagesService = inject(MessagesService);
   private readonly profile: GetProfileQuery = injectGetProfile();
+  private readonly injector: EnvironmentInjector = inject(EnvironmentInjector);
 
   public readonly chat: InputSignal<Chat> = input.required<Chat>();
   private readonly messagesResource: ResourceRef<ChatMessagePayload[] | undefined> = resource({
@@ -40,8 +43,11 @@ export class MessageList {
         messages
           .filter((message: MessagePayload): boolean => message.chatId === chat.id)
           .map(
-            (message: MessagePayload): Promise<ChatMessagePayload> =>
-              this.messagesService.prepareMessage(chat, message),
+            async (message: MessagePayload): Promise<ChatMessagePayload> =>
+              await runInInjectionContext(
+                this.injector,
+                (): Promise<ChatMessagePayload> => prepareMessage(message, chat),
+              ),
           ),
       );
     },

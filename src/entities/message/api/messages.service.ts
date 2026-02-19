@@ -12,14 +12,7 @@ import {
   WebSocketService,
 } from '@/shared';
 
-import type { Chat } from '../../chat/@x/message';
-import type { User } from '../../user/@x/chat';
-import type {
-  ChatMessagePayload,
-  MessagePayload,
-  NewMessagePayload,
-  WriteMessagePayload,
-} from '../models';
+import type { MessagePayload, NewMessagePayload, WriteMessagePayload } from '../models';
 import { MessageSchema } from '../models';
 import { MessagesRepository } from './messages.repository';
 
@@ -42,32 +35,6 @@ export class MessagesService {
   private readonly activeSubscriptions: Set<number> = new Set<number>();
 
   public readonly messages: Signal<MessagePayload[]> = this._messages.asReadonly();
-
-  public async prepareMessage(chat: Chat, message: MessagePayload): Promise<ChatMessagePayload> {
-    const user: User | undefined = chat.members.find(
-      (member: User): boolean => member.id === message.authorId,
-    );
-    const signingBuffer: ArrayBuffer = base64ToBuffer(message.mac);
-    const encryptedBuffer: ArrayBuffer = base64ToBuffer(message.text);
-    const keyBuffer: ArrayBuffer = base64ToBuffer(await this.keysInfrastructure.getSharedKey());
-    const isSuggested: boolean = await this.signingService.verify(
-      encryptedBuffer,
-      keyBuffer,
-      signingBuffer,
-    );
-    const decryptedBuffer: ArrayBuffer = await this.encryptionService.decrypt(
-      encryptedBuffer,
-      keyBuffer,
-    );
-    return {
-      text: new TextDecoder().decode(decryptedBuffer),
-      suggested: isSuggested,
-      author: user,
-      chatId: chat.id,
-      updatedAt: message.updatedAt,
-      createdAt: message.createdAt,
-    };
-  }
 
   public listenChat(chatId: number): void {
     if (this.activeSubscriptions.has(chatId)) return;
@@ -109,11 +76,6 @@ export class MessagesService {
 
   public isSubscribed(chatId: number): boolean {
     return this.activeSubscriptions.has(chatId);
-  }
-
-  public async clearMessages(): Promise<void> {
-    await this.messagesRepository.clearMessages();
-    this._messages.set([]);
   }
 
   private async loadLocal(): Promise<void> {
