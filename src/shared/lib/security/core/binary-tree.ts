@@ -23,7 +23,7 @@ export class BinaryTree<T> {
   }
 
   private static deepClone<T>({ current, left, right }: NodeTree<T>): NodeTree<T> {
-    const clone = {
+    const clone: NodeTree<T> = {
       current: current ? { ...current } : null,
       left: null as NodeTree<T> | null,
       right: null as NodeTree<T> | null,
