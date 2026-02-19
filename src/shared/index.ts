@@ -11,11 +11,13 @@ export { ENCRYPTION_SERVICE, Endpoints, QueryKeys, SIGNING_SERVICE, STORAGE_SERV
 export {
   AesService,
   base64ToBuffer,
+  BinaryTree,
   bufferToBase64,
   concatBuffers,
   type EncryptionService,
   HmacService,
   KeysInfrastructure,
+  type NodeTree,
   type SigningService,
 } from './lib';
 export {

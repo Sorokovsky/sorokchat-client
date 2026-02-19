@@ -6,4 +6,4 @@ export {
   type SigningService,
 } from './crypto';
 export { base64ToBuffer, bufferToBase64 } from './encoding';
-export { KeysInfrastructure } from './security';
+export { BinaryTree, KeysInfrastructure, type NodeTree } from './security';
