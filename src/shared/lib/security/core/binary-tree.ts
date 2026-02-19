@@ -22,12 +22,23 @@ export class BinaryTree<T> {
     return node;
   }
 
-  private static deepClone<T>({ current, left, right, parent }: NodeTree<T>): NodeTree<T> {
-    return {
+  private static deepClone<T>({ current, left, right }: NodeTree<T>): NodeTree<T> {
+    const clone = {
       current: current ? { ...current } : null,
-      left: left ? this.deepClone(left) : null,
-      right: right ? this.deepClone(right) : null,
-      parent: parent,
+      left: null as NodeTree<T> | null,
+      right: null as NodeTree<T> | null,
+      parent: null as NodeTree<T> | null,
     };
+    if (left) {
+      clone.left = this.deepClone(left);
+      clone.left.parent = clone;
+    }
+
+    if (right) {
+      clone.right = this.deepClone(right);
+      clone.right.parent = clone;
+    }
+
+    return clone;
   }
 }
