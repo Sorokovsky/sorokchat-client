@@ -10,13 +10,17 @@ import type { StorageService } from './storage.service';
 })
 export class AngularStorageService implements StorageService {
   private readonly storage: StorageMap = inject(StorageMap);
+  private readonly cache: Map<string, unknown> = new Map<string, unknown>();
 
   public async set<T>(key: string, value: T): Promise<void> {
+    this.cache.set(key, value);
     return await lastValueFrom<void>(this.storage.set(key, value));
   }
 
   public async get<T>(key: string): Promise<T | null> {
     try {
+      const fromCache: T = this.cache.get(key) as T;
+      if (fromCache) return fromCache;
       return await lastValueFrom<T>(this.storage.get(key) as Observable<T>);
     } catch {
       return null;
@@ -24,13 +28,17 @@ export class AngularStorageService implements StorageService {
   }
 
   public async remove(key: string): Promise<void> {
+    this.cache.delete(key);
     return await lastValueFrom(this.storage.delete(key));
   }
   public async contains(key: string): Promise<boolean> {
-    return await lastValueFrom<boolean>(this.storage.has(key));
+    const isInCache: boolean = this.cache.has(key);
+    const isInStorage: boolean = await lastValueFrom<boolean>(this.storage.has(key));
+    return isInCache || isInStorage;
   }
 
   public async clear(): Promise<void> {
+    this.cache.clear();
     return await lastValueFrom<void>(this.storage.clear());
   }
 }
