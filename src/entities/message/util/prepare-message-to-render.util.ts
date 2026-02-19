@@ -7,7 +7,7 @@ import type { Chat } from '../../chat/@x/message';
 import type { User } from '../../user/@x/message';
 import type { ChatMessagePayload, MessagePayload } from '../models';
 
-export async function prepareMessage(
+export async function prepareMessageToRender(
   message: MessagePayload,
   chat: Chat,
 ): Promise<ChatMessagePayload> {

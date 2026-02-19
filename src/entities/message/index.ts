@@ -8,4 +8,4 @@ export {
   WriteMessageSchema,
 } from './models';
 export { MessageList } from './ui';
-export { prepareMessage } from './util';
+export { prepareMessageToRender, prepareMessageToSending } from './util';

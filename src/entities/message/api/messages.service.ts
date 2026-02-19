@@ -1,19 +1,18 @@
 import type { Signal, WritableSignal } from '@angular/core';
-import { inject, Injectable, signal } from '@angular/core';
+import {
+  EnvironmentInjector,
+  inject,
+  Injectable,
+  runInInjectionContext,
+  signal,
+} from '@angular/core';
 import type { ZodSafeParseResult } from 'zod';
 
-import type { EncryptionService, SigningService } from '@/shared';
-import {
-  base64ToBuffer,
-  bufferToBase64,
-  ENCRYPTION_SERVICE,
-  KeysInfrastructure,
-  SIGNING_SERVICE,
-  WebSocketService,
-} from '@/shared';
+import { WebSocketService } from '@/shared';
 
 import type { MessagePayload, NewMessagePayload, WriteMessagePayload } from '../models';
 import { MessageSchema } from '../models';
+import { prepareMessageToSending } from '../util';
 import { MessagesRepository } from './messages.repository';
 
 @Injectable({
@@ -21,10 +20,8 @@ import { MessagesRepository } from './messages.repository';
 })
 export class MessagesService {
   private readonly webSocketService: WebSocketService = inject(WebSocketService);
-  private readonly encryptionService: EncryptionService = inject(ENCRYPTION_SERVICE);
-  private readonly signingService: SigningService = inject(SIGNING_SERVICE);
   private readonly messagesRepository: MessagesRepository = inject(MessagesRepository);
-  private readonly keysInfrastructure: KeysInfrastructure = inject(KeysInfrastructure);
+  private readonly injector: EnvironmentInjector = inject(EnvironmentInjector);
 
   private readonly _messages: WritableSignal<MessagePayload[]> = signal<MessagePayload[]>([]);
 
@@ -58,15 +55,10 @@ export class MessagesService {
   }
 
   public async writeMessage(payload: WriteMessagePayload, chatId: number): Promise<void> {
-    const textBytes: ArrayBuffer = new TextEncoder().encode(payload.text).buffer;
-    const sharedKey: string = await this.keysInfrastructure.getSharedKey();
-    const keyBytes: ArrayBuffer = base64ToBuffer(sharedKey);
-    const encryptedBytes: ArrayBuffer = await this.encryptionService.encrypt(textBytes, keyBytes);
-    const signing: ArrayBuffer = await this.signingService.sign(encryptedBytes, keyBytes);
-    const newMessage: NewMessagePayload = {
-      text: bufferToBase64(encryptedBytes),
-      mac: bufferToBase64(signing),
-    };
+    const newMessage: NewMessagePayload = await runInInjectionContext(
+      this.injector,
+      async (): Promise<NewMessagePayload> => await prepareMessageToSending(payload),
+    );
     this.webSocketService.send(`/chat.send/${chatId}`, newMessage);
   }
 

@@ -12,7 +12,7 @@ import type { Chat } from '../../../chat/@x/message';
 import { UserAvatar } from '../../../user/@x/chat';
 import { MessagesService } from '../../api';
 import type { ChatMessagePayload, MessagePayload } from '../../models';
-import { prepareMessage } from '../../util';
+import { prepareMessageToRender } from '../../util';
 
 interface Params {
   chat: Chat;
@@ -46,7 +46,8 @@ export class MessageList {
             async (message: MessagePayload): Promise<ChatMessagePayload> =>
               await runInInjectionContext(
                 this.injector,
-                (): Promise<ChatMessagePayload> => prepareMessage(message, chat),
+                async (): Promise<ChatMessagePayload> =>
+                  await prepareMessageToRender(message, chat),
               ),
           ),
       );
