@@ -13,11 +13,14 @@ export {
   base64ToBuffer,
   BinaryTree,
   bufferToBase64,
+  buildMembersTree,
   concatBuffers,
   type EncryptionService,
+  findNodeByNodeId,
   HmacService,
   KeysInfrastructure,
   type NodeTree,
+  type SecurityNode,
   type SigningService,
 } from './lib';
 export {
