@@ -36,12 +36,12 @@
   &__text {
     font-size: 24rem;
     @media (max-width: 768px) {
-      font-size: 20rem;
+      font-size: 16rem;
     }
   }
 
   &__date {
-    font-size: 18rem;
+    font-size: 14rem;
     color: $icon-color;
   }
 }
