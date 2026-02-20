@@ -16,6 +16,9 @@
     align-items: center;
     gap: 10rem;
     padding-right: 20rem;
+    @media (pointer: coarse) {
+      padding-right: 0;
+    }
     &._my {
       align-self: flex-end;
       flex-direction: row-reverse;
