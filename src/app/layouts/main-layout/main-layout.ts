@@ -1,6 +1,5 @@
-import type { EffectRef, OnDestroy, OnInit, Signal } from '@angular/core';
-import { computed, effect, untracked } from '@angular/core';
-import { Component, inject } from '@angular/core';
+import type { EffectRef, Signal } from '@angular/core';
+import { Component, computed, DestroyRef, effect, inject, untracked } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import type { Chat, GetMyChats } from '@/entities';
@@ -17,16 +16,20 @@ import { BOTTOM_LEFT_MENU, MAPPINGS, TOP_LEFT_MENU } from '../../data';
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss',
 })
-export class MainLayout implements OnInit, OnDestroy {
+export class MainLayout {
   private readonly messagesService: MessagesService = inject(MessagesService);
   private readonly webSocketService: WebSocketService = inject(WebSocketService);
   private readonly myChats: GetMyChats = injectGetMyChats();
+  private readonly destroyRef: DestroyRef = inject(DestroyRef);
 
   protected readonly topLeftMenu: Page[] = TOP_LEFT_MENU;
   protected readonly bottomLeftMenu: Page[] = BOTTOM_LEFT_MENU;
   protected readonly mappings: Mappings = MAPPINGS;
 
-  private readonly chats: Signal<Chat[]> = computed((): Chat[] => this.myChats.data() ?? []);
+  private readonly chats: Signal<Chat[]> = computed((): Chat[] => {
+    const chats: Chat[] | undefined = this.myChats.data();
+    return chats ? [...chats] : [];
+  });
 
   private readonly chatSubscriptionEffect: EffectRef = effect((): void => {
     const currentChatsIndexes = new Set(this.chats().map((chat: Chat): number => chat.id));
@@ -43,16 +46,15 @@ export class MainLayout implements OnInit, OnDestroy {
         }
       }
     });
-  });
 
-  public ngOnInit(): void {
     this.webSocketService.activate();
-  }
 
-  public ngOnDestroy(): void {
-    for (const chat of this.chats()) {
-      this.messagesService.stopListeningChat(chat.id);
-    }
-    this.webSocketService.deactivate();
-  }
+    this.destroyRef.onDestroy((): void => {
+      const chats: Chat[] = this.myChats.data() ?? [];
+      for (const chat of chats) {
+        this.messagesService.stopListeningChat(chat.id);
+      }
+      this.webSocketService.deactivate();
+    });
+  });
 }
