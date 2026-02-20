@@ -4,3 +4,4 @@ export { LoginForm } from './login';
 export { LogoutButton } from './logout';
 export { RegisterForm } from './register';
 export { SendMessageForm } from './send-message';
+export { ToggleSidebar } from './toggle-sidebar';
