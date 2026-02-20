@@ -11,6 +11,7 @@ import { SettingsService } from '@/widgets';
 
 import { SETTINGS_MENU } from '../../data';
 import { injectAuthenticationGuard } from '../../guards';
+import { UpdateService } from '../../util';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { injectAuthenticationGuard } from '../../guards';
 })
 export class Root implements OnInit {
   private readonly settingsService: SettingsService = inject(SettingsService);
+  private readonly updateService: UpdateService = inject(UpdateService);
 
   private readonly profile: GetProfileQuery = injectGetProfile();
   protected readonly isLoading: Signal<boolean> = computed((): boolean =>
