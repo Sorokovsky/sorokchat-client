@@ -39,8 +39,9 @@ export class ToggleSidebar implements OnInit, OnDestroy {
   private closeIfNotIcon(event: PointerEvent): void {
     const { target } = event;
     if (!(target instanceof HTMLElement)) return;
-    const isToggler: boolean = target.closest('.toggle-button') === null;
-    const isLeftSidebar: boolean = target.closest('.left-sidebar') === null;
-    if (isToggler && isLeftSidebar) this.isActive.set(false);
+    const isNotToggler: boolean = target.closest('.toggle-button') === null;
+    const isNotLeftSidebar: boolean = target.closest('.left-sidebar') === null;
+    const isNotPopupContent: boolean = target.closest('.popup__content') === null;
+    if (isNotToggler && isNotLeftSidebar && isNotPopupContent) this.isActive.set(false);
   }
 }
