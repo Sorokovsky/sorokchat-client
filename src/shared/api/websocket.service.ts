@@ -30,7 +30,7 @@ export class WebSocketService {
 
   constructor() {
     this.client = new Client({
-      webSocketFactory: (): WebSocket => new SockJS('http://localhost:8080/ws'),
+      webSocketFactory: (): WebSocket => new SockJS(`${import.meta.env.NG_APP_API_URL}/ws`),
       reconnectDelay: 5000,
       heartbeatIncoming: 4000,
       heartbeatOutgoing: 4000,
