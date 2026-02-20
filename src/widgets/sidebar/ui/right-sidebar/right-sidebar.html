@@ -1,9 +1,11 @@
 <div class="right-sidebar">
     @let bar = component();
     <app-toggle-sidebar [(isActive)]="isOpen" />
-    @if (bar) {
-        <ng-container *ngComponentOutlet="bar; inputs: {rootPath: key()}" />
-    } @else {
-        <app-no-bar />
-    }
+    <div class="right-sidebar__content">
+        @if (bar) {
+            <ng-container *ngComponentOutlet="bar; inputs: {rootPath: key()}" />
+        } @else {
+            <app-no-bar />
+        }
+    </div>
 </div>
