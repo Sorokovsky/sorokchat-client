@@ -17,8 +17,8 @@ export class UpdateService {
         filter((event: VersionEvent): event is VersionReadyEvent => event.type === 'VERSION_READY'),
       )
       .subscribe((): void => {
-        const mustNow: boolean = confirm('Доступна нова версія додатка. Оновити зараз?');
-        if (mustNow) {
+        const mustUpdateNow: boolean = confirm('Доступна нова версія додатка. Оновити зараз?');
+        if (mustUpdateNow) {
           this.updater.activateUpdate().then((): void => document.location.reload());
         }
       });
