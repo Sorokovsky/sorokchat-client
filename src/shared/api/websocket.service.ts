@@ -70,7 +70,6 @@ export class WebSocketService {
       const subscription: StompSubscription = this.client.subscribe(
         destination,
         (msg: IMessage): void => {
-          console.log(msg);
           try {
             const body = JSON.parse(msg.body);
             subject.next(body);
