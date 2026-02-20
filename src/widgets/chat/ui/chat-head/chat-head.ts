@@ -5,7 +5,6 @@ import type { Chat } from '@/entities';
 import { ChatAvatar } from '@/entities';
 import { GetChatInfoAction } from '@/features';
 import { Heading } from '@/shared';
-
 @Component({
   selector: 'app-chat-head',
   imports: [ChatAvatar, Heading, GetChatInfoAction],

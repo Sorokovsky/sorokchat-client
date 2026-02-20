@@ -2,7 +2,7 @@
 <div class="chat-head">
     <div class="chat-head__left">
         <app-chat-avatar [chat]="currentChat" />
-        <app-heading tag="h2" [text]="currentChat.name" />
+        <app-heading tag="h2" [text]="chat().name" />
     </div>
     <div class="chat-head__right">
         <app-get-chat-info-action />

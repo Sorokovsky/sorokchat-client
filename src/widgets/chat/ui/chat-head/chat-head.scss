@@ -8,10 +8,16 @@
   justify-content: space-between;
   gap: 30rem;
   padding: 15rem 0;
+  @media (max-width: 768px) {
+    gap: 10rem;
+  }
   &__left {
     display: flex;
     align-items: center;
     gap: 15rem;
+    @media (max-width: 768px) {
+      gap: 5rem;
+    }
   }
 
   &__right {

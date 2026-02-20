@@ -16,6 +16,7 @@ export {
   ChatsService,
   type GetMyChats,
   injectGetMyChats,
+  MAX_NAME_LENGTH,
   type NewChat,
   NewChatSchema,
 } from './chat';
