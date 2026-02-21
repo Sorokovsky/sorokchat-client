@@ -1,3 +1,4 @@
+export { AddContactAction } from './add-contact';
 export { CreateChatAction } from './create-chat';
 export { GetChatInfoAction } from './get-chat-info';
 export { LoginForm } from './login';
