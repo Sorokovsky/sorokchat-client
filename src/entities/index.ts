@@ -32,3 +32,4 @@ export {
 } from './message';
 export { NoSettings } from './settings';
 export { type User, UserAvatar, UserSchema } from './user';
+export { ContactsServie } from './contacts';

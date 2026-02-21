@@ -1,0 +1,1 @@
+export { ContactsServie } from './api';
