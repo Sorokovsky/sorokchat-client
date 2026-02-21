@@ -1,0 +1,9 @@
+<app-popup [(isOpen)]="isOpen">
+  <app-form
+    [fields]="fields"
+    [title]="title"
+    [submitText]="submitText"
+    [schema]="schema"
+    (send)="addToContact($event)"
+  />
+</app-popup>
