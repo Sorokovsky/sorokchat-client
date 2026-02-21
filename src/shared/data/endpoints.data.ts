@@ -11,10 +11,10 @@ export const Endpoints = {
   CREATE_CHAT: `${CHATS}/create`,
   GET_CHATS_BY_ME: `${CHATS}/by-me`,
   CHATS: CHATS,
-  addToContacts(email: string) {
+  addContact(email: string) {
     return `${CONTACTS}/add-by-email/${email}`;
   },
-  removeFromContacts(id: number) {
+  removeContact(id: number) {
     return `${CONTACTS}/remove-by-id/${id}`;
   },
 } as const;
