@@ -7,12 +7,14 @@ export function injectBaseQuery<TOutput>(
   keys: string[],
   queryFunction: () => Promise<TOutput> | TOutput,
   retry: boolean | number = false,
+  enabled: boolean = true,
 ): BaseQuery<TOutput> {
   return injectQuery(
     (): CreateQueryOptions<TOutput, ProblemDetails, TOutput, string[]> => ({
       queryKey: keys,
       queryFn: queryFunction,
       retry: retry,
+      enabled,
     }),
   );
 }
