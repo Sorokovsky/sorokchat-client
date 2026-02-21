@@ -20,6 +20,9 @@ export const UserSchema = BaseSchema.extend({
   firstName: zod.string().nonempty({ message: 'Імʼя повинно бути.' }),
   lastName: zod.string().nonempty({ message: 'Прізвище повинно бути.' }),
   middleName: zod.string().nonempty({ message: 'По батькові повинно бути.' }),
+  get contacts() {
+    return UserSchema.array().optional();
+  },
 });
 
 export type User = zod.infer<typeof UserSchema>;
