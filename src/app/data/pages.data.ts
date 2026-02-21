@@ -1,4 +1,4 @@
-import { CHATS_PAGE, LOGIN_PAGE, REGISTER_PAGE, SETTINGS_PAGE } from '@/pages';
+import { CHATS_PAGE, CONTACTS_PAGE, LOGIN_PAGE, REGISTER_PAGE, SETTINGS_PAGE } from '@/pages';
 import { PRIVACY_PAGE } from '@/pages/privacy';
 import type { Page } from '@/shared';
 import { removeDynamicPath } from '@/shared';
@@ -11,5 +11,7 @@ export const ALL_PAGES: Page[] = Array.from(
     SETTINGS_PAGE,
     PRIVACY_PAGE,
     ...ANONYMOUS_PAGES,
+    CONTACTS_PAGE,
+    { ...CONTACTS_PAGE, path: removeDynamicPath(CHATS_PAGE.path) },
   ]),
 );

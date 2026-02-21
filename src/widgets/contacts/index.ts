@@ -1,0 +1,1 @@
+export { ContactsBar } from './ui';

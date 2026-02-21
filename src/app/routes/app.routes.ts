@@ -1,7 +1,7 @@
 import type { Type } from '@angular/core';
 import type { Routes } from '@angular/router';
 
-import { CHATS_PAGE, PRIVACY_PAGE, SETTINGS_PAGE } from '@/pages';
+import { CHATS_PAGE, CONTACTS_PAGE, PRIVACY_PAGE, SETTINGS_PAGE } from '@/pages';
 import { removeDynamicPath } from '@/shared';
 
 import { ANONYMOUS_PAGES } from '../data';
@@ -19,6 +19,8 @@ export const routes: Routes = [
     children: [
       CHATS_PAGE,
       { ...CHATS_PAGE, path: removeDynamicPath(CHATS_PAGE.path) },
+      CONTACTS_PAGE,
+      { ...CONTACTS_PAGE, path: removeDynamicPath(CONTACTS_PAGE.path) },
       {
         ...SETTINGS_PAGE,
         children: [
