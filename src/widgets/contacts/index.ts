@@ -1,1 +1,1 @@
-export { ContactsBar } from './ui';
+export { ContactsBar, CurrentContact } from './ui';

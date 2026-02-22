@@ -1,1 +1,5 @@
+@let currentContact = contact(); @if(currentContact) {
+<app-current-contact [contact]="currentContact" />
+} @else {
 <app-empty-message>Виберіть конакт.</app-empty-message>
+}
