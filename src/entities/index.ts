@@ -20,6 +20,7 @@ export {
   type NewChat,
   NewChatSchema,
 } from './chat';
+export { ContactsList, ContactsServie } from './contacts';
 export {
   MessageList,
   type MessagePayload,
@@ -32,4 +33,3 @@ export {
 } from './message';
 export { NoSettings } from './settings';
 export { type User, UserAvatar, UserSchema } from './user';
-export { ContactsServie } from './contacts';

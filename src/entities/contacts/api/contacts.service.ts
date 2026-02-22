@@ -1,8 +1,10 @@
-import { User } from '../../user/@x/contacts';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+
 import { Endpoints } from '@/shared';
+
+import type { User } from '../../user/@x/contacts';
 
 @Injectable({
   providedIn: 'root',

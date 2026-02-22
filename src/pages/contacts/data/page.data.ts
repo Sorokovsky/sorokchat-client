@@ -1,6 +1,8 @@
-import { AccessRule, type Page } from '@/shared';
-import { Type } from '@angular/core';
+import type { Type } from '@angular/core';
 import { HandshakeIcon } from 'lucide-angular';
+
+import type { Page } from '@/shared';
+import { AccessRule } from '@/shared';
 
 export const CONTACTS_PAGE: Page = {
   accessRule: AccessRule.SECURED,

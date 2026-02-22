@@ -2,9 +2,10 @@ import { inject } from '@angular/core';
 
 import { injectBaseQuery, QueryKeys } from '@/shared';
 
+import type { GetProfileQuery } from '../../authorization/@x/chat';
+import { injectGetProfile } from '../../authorization/@x/chat';
 import type { Chat, GetMyChats } from '../models';
 import { ChatsService } from './chats.service';
-import { type GetProfileQuery, injectGetProfile } from '../../authorization/@x/chat';
 
 export function injectGetMyChats(): GetMyChats {
   const profile: GetProfileQuery = injectGetProfile();

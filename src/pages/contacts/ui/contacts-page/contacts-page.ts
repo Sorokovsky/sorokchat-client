@@ -1,5 +1,6 @@
-import { EmptyMessage } from '@/shared';
 import { Component } from '@angular/core';
+
+import { EmptyMessage } from '@/shared';
 
 @Component({
   selector: 'app-contracts-page',

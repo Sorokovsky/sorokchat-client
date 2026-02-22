@@ -1,8 +1,9 @@
 import type { InputSignal } from '@angular/core';
 import { Component, input } from '@angular/core';
 
+import { ContactsList } from '@/entities';
+
 import { ContactsBarHead } from '../contacts-bar-head/contacts-bar-head';
-import { ContactsList } from '../contacts-list/contacts-list';
 
 @Component({
   selector: 'app-contacts-bar',
