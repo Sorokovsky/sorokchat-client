@@ -1,0 +1,18 @@
+:root {
+  color-scheme: dark;
+}
+
+$primary-background: light-dark(#fff, #1b1818);
+$secondary-background: light-dark(#fff, #333232);
+$loader-primary-color: light-dark(#fff, #fffdfd);
+$loader-secondary-color: light-dark(#fff, #c1c1c1);
+$border-color: light-dark(#fff, #595757);
+$primary-text-color: light-dark(#fff, #f4f4f4);
+$error-text-color: light-dark(#fff, #bd5252);
+$button-disabled-background: light-dark(#fff, #595757);
+$submit-background: light-dark(#fff, #036537);
+$submit-hover-background: light-dark(#fff, #09592e);
+$icon-color: light-dark(#fff, #8c8b8b);
+$primary-hover-background: light-dark(#fff, #595757);
+$backdrop-color: light-dark(#fff, rgba(62, 59, 59, 0.6));
+$danger-color: light-dark(#fff, #c64545);

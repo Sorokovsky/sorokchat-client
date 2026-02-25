@@ -4,12 +4,14 @@ import tseslint from 'typescript-eslint';
 import angular from 'angular-eslint';
 import boundaries from 'eslint-plugin-boundaries';
 import importPlugin from 'eslint-plugin-import';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import prettierConfig from 'eslint-config-prettier';
 
-module.exports = tseslint.config(
+export default tseslint.config(
   {
     files: ['**/*.ts'],
     plugins: {
-      'simple-import-sort': require('eslint-plugin-simple-import-sort'),
+      'simple-import-sort': simpleImportSort,
       boundaries: boundaries,
       import: importPlugin,
     },
@@ -39,7 +41,7 @@ module.exports = tseslint.config(
       ...tseslint.configs.recommended,
       ...tseslint.configs.stylistic,
       ...angular.configs.tsRecommended,
-      require('eslint-config-prettier'),
+      prettierConfig,
     ],
     rules: {
       'no-restricted-imports': [
