@@ -1,1 +1,0 @@
-export { GetChatInfoAction } from './ui';

@@ -1,9 +1,0 @@
-<nav class="chats-list">
-    <ul>
-        @for (chat of chats(); track chat.id) {
-            <li>
-                <app-chat-card [chat]="chat" [rootPath]="rootPath()" />
-            </li>
-        }
-    </ul>
-</nav>

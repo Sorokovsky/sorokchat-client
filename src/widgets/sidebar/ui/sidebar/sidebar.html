@@ -1,6 +1,0 @@
-<aside class="sidebar">
-    <app-left-sidebar [(isRightOpen)]="isRightOpen" [topMenu]="topLeftMenu()" [bottomMenu]="bottomLeftMenu()" />
-    @if (isRightOpen()) {
-        <app-right-sidebar [(isOpen)]="isRightOpen" [mappings]="mappings()" />
-    }
-</aside>

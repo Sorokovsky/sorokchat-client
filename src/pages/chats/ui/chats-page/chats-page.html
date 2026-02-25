@@ -1,8 +1,0 @@
-<div class="chats-page">
-    @let currentChat = chat();
-    @if (currentChat === null) {
-        <app-empty-message>Виберіть чат для спілкування.</app-empty-message>
-    } @else {
-        <app-current-chat [chat]="currentChat" />
-    }
-</div>

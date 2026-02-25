@@ -1,7 +1,0 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="form()" class="form">
-    <app-heading [text]="title()"/>
-    @for (field of fields(); track field.name) {
-        <app-form-field [control]="getControl(field.name)" [error]="getError(field.name)" [field]="field"/>
-    }
-    <app-button [isDisabled]="isDisabled()" class="form__button" type="submit">{{ submitText() }}</app-button>
-</form>
