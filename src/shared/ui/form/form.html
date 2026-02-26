@@ -2,16 +2,15 @@
   <form>
     <h1 class="heading">{{title()}}</h1>
     @for(field of fields(); track field.name) {
-    <div class="field">
-      <label [for]="field.name" class="label">{{field.label}}</label>
+    <label class="field">
+      <span class="label">{{field.label}}</span>
       <input
         [type]="field.type"
         [placeholder]="field.placeholder"
         [autocomplete]="field.autocomplete"
         class="input"
-        [id]="field.name"
       />
-    </div>
+    </label>
     }
     <button class="button" type="submit">{{submitText()}}</button>
   </form>
