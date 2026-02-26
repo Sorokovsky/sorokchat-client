@@ -1,6 +1,6 @@
 @let form = formGroup();
 <div class="form">
-  <form [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <h1 class="heading">{{title()}}</h1>
     @for(field of fields(); track field.name) {
     <label class="field">

@@ -17,4 +17,8 @@ import { REGISTER_FIELDS } from '../../data';
 export class RegisterForm {
   protected readonly fields: Field[] = REGISTER_FIELDS;
   protected readonly schema: GenericSchema<RegisterPayload> = RegisterSchema;
+
+  protected register(payload: RegisterPayload): void {
+    console.log(payload);
+  }
 }
