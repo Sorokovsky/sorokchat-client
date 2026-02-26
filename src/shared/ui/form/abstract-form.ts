@@ -1,4 +1,4 @@
-import type { OnInit, Signal, WritableSignal } from '@angular/core';
+import type { Signal } from '@angular/core';
 import { Component, computed, inject } from '@angular/core';
 import type { FormControl, FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
@@ -32,9 +32,5 @@ export abstract class AbstractFormComponent<T> {
       result[name] = this.formBuilder.control(defaultValue || '');
     }
     return result;
-  }
-
-  protected onSubmit(): void {
-    const form: FormGroup = this.formGroup();
   }
 }
