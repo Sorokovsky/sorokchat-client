@@ -4140,6 +4140,13 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
+lucide-angular@^0.575.0:
+  version "0.575.0"
+  resolved "https://registry.yarnpkg.com/lucide-angular/-/lucide-angular-0.575.0.tgz#7ab6d6eeb11cba76bbf56ca1cb689e3782bbd317"
+  integrity sha512-BCf0/PtyyKTzlsm9kxxXWCWa27vFS27Wp4dWxQws7SlY0/XpHqNo8b6RverBoNqd2J1RbHkRtArLTFCEq4WDXA==
+  dependencies:
+    tslib "^2.3.0"
+
 magic-string@0.30.21, magic-string@^0.30.21:
   version "0.30.21"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.30.21.tgz#56763ec09a0fa8091df27879fd94d19078c00d91"
@@ -5608,6 +5615,11 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
+
+valibot@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/valibot/-/valibot-1.2.0.tgz#8fc720d9e4082ba16e30a914064a39619b2f1d6f"
+  integrity sha512-mm1rxUsmOxzrwnX5arGS+U4T25RdvpPjPN4yR0u9pUBov9+zGVtO84tif1eY4r6zWxVxu3KzIyknJy3rxfRZZg==
 
 validate-npm-package-name@^7.0.0:
   version "7.0.2"
