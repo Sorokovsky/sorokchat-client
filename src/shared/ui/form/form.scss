@@ -51,6 +51,7 @@
   outline: none;
   font-size: 24rem;
   transition: 0.3s all ease;
+  width: 100%;
   color: $primary-text-color;
   cursor: pointer;
   &[type='submit'] {
