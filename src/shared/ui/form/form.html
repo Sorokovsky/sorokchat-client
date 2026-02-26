@@ -1,1 +1,17 @@
-<div>Is works</div>
+<div class="form">
+  <form>
+    <div class="field">
+      <h1 class="heading">{{title()}}</h1>
+      @for(field of fields(); track field.name) {
+      <label [for]="field.name" class="label">{{field.label}}</label>
+      <input
+        [type]="field.type"
+        [placeholder]="field.placeholder"
+        [autocomplete]="field.autocomplete"
+        class="input"
+        [id]="field.name"
+      >
+      }</div>
+      <button class="button">{{submitText()}}</button>
+  </form>
+</div>

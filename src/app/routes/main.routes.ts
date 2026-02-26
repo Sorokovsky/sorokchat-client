@@ -1,3 +1,5 @@
-import { Routes } from '@angular/router';
+import type { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+import { AUTHORIZATION_LAYOUT } from '../layouts/authorization';
+
+export const routes: Routes = [AUTHORIZATION_LAYOUT];
