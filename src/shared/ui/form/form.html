@@ -1,5 +1,6 @@
+@let form = formGroup();
 <div class="form">
-  <form>
+  <form [formGroup]="form">
     <h1 class="heading">{{title()}}</h1>
     @for(field of fields(); track field.name) {
     <label class="field">
@@ -8,6 +9,8 @@
         [type]="field.type"
         [placeholder]="field.placeholder"
         [autocomplete]="field.autocomplete"
+        [formControl]="getControl(field.name)"
+        [name]="field.name"
         class="input"
       />
     </label>
