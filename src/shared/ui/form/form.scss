@@ -1,3 +1,69 @@
+@use 'variables' as *;
+
 :host {
   display: contents;
+}
+
+.form {
+  max-width: 800rem;
+  width: 100%;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10rem;
+  }
+  .input {
+    padding: 10rem;
+    border-radius: 10rem;
+    outline: none;
+    border: none;
+    border: 2rem solid $border-color;
+    transition: 0.3s all ease;
+    &,
+    &::placeholder {
+      color: $icon-color;
+      font-size: 14rem;
+    }
+    &:focus,
+    &:hover {
+      border-color: $primary-text-color;
+      &,
+      &::placeholder {
+        color: $loader-primary-color;
+      }
+    }
+  }
+}
+
+.button {
+  padding: 10rem;
+  border-radius: 10rem;
+  border: none;
+  outline: none;
+  font-size: 24rem;
+  transition: 0.3s all ease;
+  color: $primary-text-color;
+  cursor: pointer;
+  &[type='submit'] {
+    background-color: $submit-background;
+    &:hover {
+      background-color: $submit-hover-background;
+    }
+  }
+  &:disabled {
+    background-color: $button-disabled-background;
+    cursor: not-allowed;
+    &:hover {
+      background-color: $button-disabled-background;
+    }
+  }
 }
