@@ -5,16 +5,14 @@ import type { GenericSchema } from 'valibot';
 
 import type { Field } from '../../models';
 import { Button } from '../button/button';
-import { Error } from '../error/error';
-import { Input } from '../input/input';
-import { Label } from '../label/label';
+import { Field as FieldComponent } from '../field/field';
 import { AbstractFormComponent } from './abstract-form';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.html',
   styleUrls: ['./form.scss'],
-  imports: [ReactiveFormsModule, Input, Button, Error, Label],
+  imports: [ReactiveFormsModule, Button, FieldComponent],
 })
 export class FormComponent<T> extends AbstractFormComponent<T> {
   public readonly formTitle: InputSignal<string> = input.required<string>();

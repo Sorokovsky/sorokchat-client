@@ -47,11 +47,6 @@ export abstract class AbstractFormComponent<T> implements OnInit {
     return this.formGroup().get(name) as FormControl;
   }
 
-  protected getErrors(name: string): string[] | null {
-    const control: FormControl = this.getControl(name);
-    return control.errors ? Object.values(control.errors) : null;
-  }
-
   private collectControls(fields: Field[]): Record<string, FormControl> {
     const result: Record<string, FormControl> = {};
     const schema: GenericSchema<T> = this.getSchema();
