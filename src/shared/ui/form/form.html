@@ -4,7 +4,7 @@
     <h1 class="heading">{{formTitle()}}</h1>
     @for(field of fields(); track field.name) {
     <label class="field">
-      <span class="label">{{field.label}}</span>
+      <app-label>{{field.label}}</app-label>
       <app-input [field]="field" [control]="getControl(field.name)" />
       @for(error of getErrors(field.name); track error) {
       <app-error [error]="error" />
