@@ -4,13 +4,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import type { GenericSchema } from 'valibot';
 
 import type { Field } from '../../models';
+import { Input } from '../input/input';
 import { AbstractFormComponent } from './abstract-form';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.html',
   styleUrls: ['./form.scss'],
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, Input],
 })
 export class FormComponent<T> extends AbstractFormComponent<T> {
   public readonly formTitle: InputSignal<string> = input.required<string>();

@@ -5,14 +5,7 @@
     @for(field of fields(); track field.name) {
     <label class="field">
       <span class="label">{{field.label}}</span>
-      <input
-        [type]="field.type"
-        [placeholder]="field.placeholder"
-        [autocomplete]="field.autocomplete"
-        [formControl]="getControl(field.name)"
-        [name]="field.name"
-        class="input"
-      />
+      <app-input [field]="field" [control]="getControl(field.name)" />
       @for(error of getErrors(field.name); track error) {
       <span class="error">{{error}}</span>
       }
