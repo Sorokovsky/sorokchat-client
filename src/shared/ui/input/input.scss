@@ -24,6 +24,6 @@
     }
   }
   &._invalid {
-    border: 1rem solid $error-text-color;
+    border-color: $error-text-color;
   }
 }
