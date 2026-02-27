@@ -17,12 +17,14 @@ export default tseslint.config(
     },
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        project: './tsconfig.app.json',
       },
     },
     settings: {
       'import/resolver': {
-        typescript: true,
+        typescript: {
+          project: './tsconfig.app.json',
+        },
         node: {
           extensions: ['.ts', '.tsx'],
         },
