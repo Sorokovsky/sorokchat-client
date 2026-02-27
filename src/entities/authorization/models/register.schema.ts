@@ -1,11 +1,15 @@
 import type { InferOutput } from 'valibot';
-import { maxLength, minLength, nonEmpty, object, pipe, string } from 'valibot';
+import { maxLength, minLength, nonEmpty, object, pipe, string, transform } from 'valibot';
 
 const MAX_PASSWORD_LENGTH: number = 32;
 const MIN_PASSWORD_LENGTH: number = 8;
 
 export const RegisterSchema = object({
-  nickname: pipe(string(), nonEmpty("Унікальне ім'я має бути.")),
+  nickname: pipe(
+    string(),
+    nonEmpty("Унікальне ім'я має бути."),
+    transform((value: string): string => value.replace(/\s+/g, '-')),
+  ),
   displayName: pipe(string(), nonEmpty("Видиме ім'я має бути.")),
   password: pipe(
     string(),

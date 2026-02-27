@@ -5,7 +5,15 @@ import { safeParse } from 'valibot';
 export function valibotValidator<T>(schema: GenericSchema<T>): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const result: SafeParseResult<GenericSchema<T>> = safeParse(schema, control.value);
-    if (result.success) return null;
+    if (result.success) {
+      if (JSON.stringify(control.value) !== JSON.stringify(result.output)) {
+        control.setValue(result.output, {
+          emitEvent: false,
+          onlySelf: true,
+        });
+      }
+      return null;
+    }
     const errors: Record<string, string | Record<string, string>> = {};
     result.issues.forEach((issue: BaseIssue<unknown>) => {
       const errorCode = issue.type || 'valibot';
