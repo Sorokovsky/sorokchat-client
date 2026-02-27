@@ -60,6 +60,7 @@ export abstract class AbstractFormComponent<T> implements OnInit {
       const fieldSchema = entries[name];
       result[name] = this.formBuilder.control(defaultValue || '', {
         validators: fieldSchema ? [valibotValidator(fieldSchema)] : [],
+        updateOn: 'change',
       });
     }
     return result;

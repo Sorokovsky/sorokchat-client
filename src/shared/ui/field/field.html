@@ -1,8 +1,11 @@
 @let input = field();
+@let controller = control();
 <label class="field">
   <app-label>{{input.label}}</app-label>
-  <app-input [field]="input" [control]="control()" />
-  @for(error of errors(); track error) {
-  <app-error [error]="error" />
+  <app-input [invalid]="controller.invalid" [field]="input" [control]="controller" />
+  @if (controller.invalid) {
+    @for(error of errors(); track error) {
+      <app-error [error]="error" />
+    }
   }
 </label>

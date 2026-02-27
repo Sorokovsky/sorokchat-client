@@ -23,4 +23,7 @@
       color: $loader-primary-color;
     }
   }
+  &._invalid {
+    border: 1rem solid $error-text-color;
+  }
 }

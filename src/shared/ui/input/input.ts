@@ -14,4 +14,5 @@ import type { Field } from '../../models';
 export class Input {
   public readonly field: InputSignal<Field> = input.required<Field>();
   public readonly control: InputSignal<FormControl> = input.required<FormControl>();
+  public readonly invalid: InputSignal<boolean> = input<boolean>(false);
 }
