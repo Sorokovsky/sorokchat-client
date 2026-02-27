@@ -1,3 +1,4 @@
+<div class="register-form">
 <app-form
   (send)="register($event)"
   [fields]="fields"
@@ -5,3 +6,7 @@
   formTitle="Реєстрація"
   submitText="Зареєструватися"
 />
+<p class="splash">
+  Якщо вже зареєстровані, <a [routerLink]="loginUrl" class="accent">увійдіть</a>.
+</p>
+</div>
