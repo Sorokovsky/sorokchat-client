@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { RegisterForm } from '@/features';
+import { PagePaths } from '@/shared';
 
 @Component({
   selector: 'app-register-page',
@@ -9,4 +10,8 @@ import { RegisterForm } from '@/features';
   styleUrls: ['./register-page.scss'],
   imports: [RegisterForm, RouterLink],
 })
-export class RegisterPage {}
+export class RegisterPage {
+  private pathService: PagePaths = inject(PagePaths);
+
+  protected loginUrl: string = this.pathService.loginUrl;
+}

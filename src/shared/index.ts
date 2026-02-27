@@ -8,3 +8,4 @@ export {
   FormComponent,
   Input,
 } from './ui';
+export { PagePaths } from './utils';
