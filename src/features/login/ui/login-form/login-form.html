@@ -1,0 +1,12 @@
+<div class="login-form">
+<app-form
+  (send)="login($event)"
+  [fields]="fields"
+  [schema]="schema"
+  formTitle="Вхід"
+  submitText="Увійти"
+/>
+<p class="splash">
+  Якщо ще не зареєстровані, <a [routerLink]="registerUrl" class="accent">зареєструйтесь</a>.
+</p>
+</div>

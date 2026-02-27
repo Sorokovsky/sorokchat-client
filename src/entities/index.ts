@@ -1,1 +1,6 @@
-export { type RegisterPayload, RegisterSchema } from './authorization';
+export {
+  type LoginPayload,
+  LoginSchema,
+  type RegisterPayload,
+  RegisterSchema,
+} from './authorization';
