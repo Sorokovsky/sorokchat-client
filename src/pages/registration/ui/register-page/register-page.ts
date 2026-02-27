@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { RegisterForm } from '@/features';
 
@@ -6,6 +7,6 @@ import { RegisterForm } from '@/features';
   selector: 'app-register-page',
   templateUrl: './register-page.html',
   styleUrls: ['./register-page.scss'],
-  imports: [RegisterForm],
+  imports: [RegisterForm, RouterLink],
 })
 export class RegisterPage {}

@@ -1,0 +1,8 @@
+@use 'variables' as *;
+
+@mixin accent() {
+  color: $accent-color;
+  &:hover {
+    text-decoration: underline;
+  }
+}

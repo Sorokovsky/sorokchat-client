@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'accent' as *;
 
 * {
   margin: 0;
@@ -33,4 +34,12 @@ li {
   color: inherit;
   font-weight: inherit;
   font-style: inherit;
+}
+
+.accent {
+  @include accent();
+}
+
+.splash {
+  font-size: 24rem;
 }
