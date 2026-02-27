@@ -13,7 +13,7 @@ import { AbstractFormComponent } from './abstract-form';
   imports: [ReactiveFormsModule],
 })
 export class FormComponent<T> extends AbstractFormComponent<T> {
-  public readonly title: InputSignal<string> = input.required<string>();
+  public readonly formTitle: InputSignal<string> = input.required<string>();
   public readonly fields: InputSignal<Field[]> = input.required<Field[]>();
   public readonly submitText: InputSignal<string> = input.required<string>();
   public readonly schema: InputSignal<GenericSchema<T>> = input.required<GenericSchema<T>>();

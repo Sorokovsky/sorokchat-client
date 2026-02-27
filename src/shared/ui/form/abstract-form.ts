@@ -17,6 +17,10 @@ export abstract class AbstractFormComponent<T> implements OnInit {
   protected abstract getSchema(): GenericSchema<T>;
   protected abstract isLoading(): boolean;
   protected readonly isInvalid: WritableSignal<boolean> = signal<boolean>(false);
+  protected readonly isDisabled: Signal<boolean> = computed<boolean>(
+    (): boolean => this.isInvalid() || this.isLoading(),
+  );
+
   public readonly send: OutputEmitterRef<T> = output<T>();
 
   protected readonly formGroup: Signal<FormGroup> = computed<FormGroup>((): FormGroup => {
@@ -41,6 +45,11 @@ export abstract class AbstractFormComponent<T> implements OnInit {
 
   protected getControl(name: string): FormControl {
     return this.formGroup().get(name) as FormControl;
+  }
+
+  protected getErrors(name: string): string[] | null {
+    const control: FormControl = this.getControl(name);
+    return control.errors ? Object.values(control.errors) : null;
   }
 
   private collectControls(fields: Field[]): Record<string, FormControl> {

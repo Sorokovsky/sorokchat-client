@@ -1,7 +1,7 @@
 @let form = formGroup();
 <div class="form">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h1 class="heading">{{title()}}</h1>
+    <h1 class="heading">{{formTitle()}}</h1>
     @for(field of fields(); track field.name) {
     <label class="field">
       <span class="label">{{field.label}}</span>
@@ -13,8 +13,15 @@
         [name]="field.name"
         class="input"
       />
+      @for(error of getErrors(field.name); track error) {
+      <span class="error">{{error}}</span>
+      }
     </label>
     }
-    <button class="button" type="submit">{{submitText()}}</button>
+    <button
+      [disabled]="isDisabled()"
+      class="button"
+      type="submit"
+    >{{submitText()}}</button>
   </form>
 </div>
