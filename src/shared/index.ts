@@ -1,3 +1,3 @@
-export type { Field, IconType, Page } from './models';
+export type { ButtonType, Field, IconType, Page } from './models';
 export { AccessRule } from './models';
-export { AbstractFormComponent, FormComponent, Input } from './ui';
+export { AbstractFormComponent, Button, FormComponent, Input } from './ui';

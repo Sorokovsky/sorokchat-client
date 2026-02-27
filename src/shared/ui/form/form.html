@@ -11,10 +11,11 @@
       }
     </label>
     }
-    <button
-      [disabled]="isDisabled()"
-      class="button"
-      type="submit"
-    >{{submitText()}}</button>
+    <app-button
+      type="button"
+      [isDisabled]="isDisabled()"
+    >
+      {{submitText()}}
+    </app-button>
   </form>
 </div>
