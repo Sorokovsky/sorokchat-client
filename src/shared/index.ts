@@ -1,4 +1,10 @@
-export { AngularStorageService, injectBaeMutation, injectBaseQuery, STORAGE_SERVICE } from './api';
+export {
+  AngularStorageService,
+  injectBaeMutation,
+  injectBaseQuery,
+  INTERCEPTORS,
+  STORAGE_SERVICE,
+} from './api';
 export { Endpoints, QueryKeys, StorageKeys } from './data';
 export type {
   BaseMutation,

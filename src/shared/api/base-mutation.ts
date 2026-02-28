@@ -1,6 +1,7 @@
 import { inject } from '@angular/core';
 import type { CreateMutationOptions, MutationFunction } from '@tanstack/angular-query-experimental';
 import { injectMutation, QueryClient } from '@tanstack/angular-query-experimental';
+import { toast } from 'ngx-sonner';
 
 import type { BaseMutation, ProblemDetails } from '../models';
 
@@ -22,6 +23,9 @@ export function injectBaeMutation<TData = unknown, TVariables = void>(
             .forEach((query) => query.setData(null));
           await client.invalidateQueries({ queryKey: refreshKeys });
         }
+      },
+      onError(error: ProblemDetails): void {
+        toast.error(error.title);
       },
     }),
   );

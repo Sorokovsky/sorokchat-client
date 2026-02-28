@@ -1,11 +1,11 @@
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import type { ApplicationConfig } from '@angular/core';
 import { provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideTanStackQuery, QueryClient } from '@tanstack/angular-query-experimental';
 import { withDevtools } from '@tanstack/angular-query-experimental/devtools';
 
-import { AngularStorageService, STORAGE_SERVICE } from '@/shared';
+import { AngularStorageService, INTERCEPTORS, STORAGE_SERVICE } from '@/shared';
 
 import { routes } from '../routes';
 
@@ -13,7 +13,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors(INTERCEPTORS)),
     provideTanStackQuery(new QueryClient(), withDevtools()),
     {
       provide: STORAGE_SERVICE,
