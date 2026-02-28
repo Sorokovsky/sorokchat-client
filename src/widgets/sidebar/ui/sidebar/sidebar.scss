@@ -1,0 +1,8 @@
+@use "variables" as *;
+:host {
+    display: contents;
+}
+
+.sidebar {
+    background-color: $secondary-background;
+}

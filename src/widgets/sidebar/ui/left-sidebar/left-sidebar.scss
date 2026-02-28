@@ -1,0 +1,11 @@
+@use "variables" as *;
+
+:host {
+    display: contents;
+}
+
+.left-sidebar {
+    min-width: 70rem;
+    border-right: 2rem solid $border-color;
+    height: 100%;
+}
