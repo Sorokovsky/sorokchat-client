@@ -4,6 +4,8 @@ import { LOGIN_PAGE, REGISTER_PAGE } from '@/pages';
 import type { Page } from '@/shared';
 import { AccessRule, PagePaths } from '@/shared';
 
+import { authorizationGuard } from '../../../guards';
+
 const paths = new PagePaths();
 
 export const AUTHORIZATION_LAYOUT: Page = {
@@ -14,4 +16,5 @@ export const AUTHORIZATION_LAYOUT: Page = {
   children: [REGISTER_PAGE, LOGIN_PAGE],
   accessRule: AccessRule.ANONYMOUS,
   fullUrl: paths.authorizationUrl,
+  canActivateChild: [authorizationGuard],
 };

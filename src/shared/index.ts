@@ -15,6 +15,7 @@ export type {
   Page,
   ProblemDetails,
 } from './models';
+export type { AccessSetting } from './models';
 export { AccessRule, BaseSchema, ProblemDetailsSchema } from './models';
 export {
   AbstractFormComponent,
@@ -25,4 +26,4 @@ export {
   Input,
 } from './ui';
 export type { StorageService } from './utils';
-export { PagePaths } from './utils';
+export { injectCurrentPath, injectCurrentPage, PagePaths } from './utils';
