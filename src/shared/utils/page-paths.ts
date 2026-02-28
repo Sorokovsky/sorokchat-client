@@ -7,6 +7,7 @@ export class PagePaths {
   public readonly authorization: string = 'authorization';
   public readonly register: string = 'register';
   public readonly login: string = 'login';
+  public readonly main: string = '';
 
   public get registerUrl(): string {
     return `/${this.authorization}/${this.register}`;
@@ -18,5 +19,9 @@ export class PagePaths {
 
   public get authorizationUrl(): string {
     return `/${this.authorization}`;
+  }
+
+  public get mainUrl(): string {
+    return `/${this.main}`;
   }
 }
