@@ -4,3 +4,4 @@ export {
   type RegisterPayload,
   RegisterSchema,
 } from './authorization';
+export { type UserPayload, UserSchema } from './user';

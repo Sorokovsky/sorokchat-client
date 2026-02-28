@@ -1,22 +1,8 @@
 import type { InferOutput } from 'valibot';
-import { maxLength, minLength, nonEmpty, object, pipe, string, transform } from 'valibot';
+import { pick } from 'valibot';
 
-const MAX_PASSWORD_LENGTH: number = 32;
-const MIN_PASSWORD_LENGTH: number = 8;
+import { UserSchema } from '../../user/@x/authorization';
 
-export const RegisterSchema = object({
-  nickname: pipe(
-    string(),
-    nonEmpty("Унікальне ім'я має бути."),
-    transform((value: string): string => value.replace(/\s+/g, '-')),
-  ),
-  displayName: pipe(string(), nonEmpty("Видиме ім'я має бути.")),
-  password: pipe(
-    string(),
-    nonEmpty('Пароль має бути.'),
-    minLength(MIN_PASSWORD_LENGTH, `Мінімальна довжина паролю ${MIN_PASSWORD_LENGTH}.`),
-    maxLength(MAX_PASSWORD_LENGTH, `Максимальна довжина паролю ${MAX_PASSWORD_LENGTH}.`),
-  ),
-});
+export const RegisterSchema = pick(UserSchema, ['displayName', 'nickname', 'password']);
 
 export type RegisterPayload = InferOutput<typeof RegisterSchema>;

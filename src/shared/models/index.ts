@@ -1,4 +1,5 @@
 export { AccessRule } from './access-rule.types';
+export { BaseSchema } from './base.schema';
 export { type BaseMutation } from './base-mutation.types';
 export { type BaseQuery } from './base-query.types';
 export { type ButtonType } from './button-type.types';
