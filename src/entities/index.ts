@@ -1,4 +1,5 @@
 export {
+  AuthorizationService,
   type LoginPayload,
   LoginSchema,
   type RegisterPayload,

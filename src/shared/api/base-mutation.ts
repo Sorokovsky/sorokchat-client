@@ -5,7 +5,7 @@ import { toast } from 'ngx-sonner';
 
 import type { BaseMutation, ProblemDetails } from '../models';
 
-export function injectBaeMutation<TData = unknown, TVariables = void>(
+export function injectBaseMutation<TData = unknown, TVariables = void>(
   keys: string[],
   mutationFunction: MutationFunction<TData, TVariables>,
   refreshKeys: string[] = [],

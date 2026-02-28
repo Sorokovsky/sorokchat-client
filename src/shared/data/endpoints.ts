@@ -1,4 +1,6 @@
-export const SERVER_URL: string = '/api';
+import { Environment } from './environment';
+
+export const SERVER_URL: string = Environment.SERVER_URL;
 const AUTHORIZATION: string = `${SERVER_URL}/authorization`;
 const USERS: string = `${SERVER_URL}/users`;
 const CONTACTS: string = `${SERVER_URL}/contacts`;

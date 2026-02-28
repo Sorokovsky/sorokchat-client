@@ -8,6 +8,8 @@ import type { Field } from '@/shared';
 import { FormComponent, PagePaths } from '@/shared';
 
 import { REGISTER_FIELDS } from '../../data';
+import type { Register } from '../../models';
+import { injectRegister } from '../../api';
 
 @Component({
   selector: 'app-register-form',
@@ -16,12 +18,14 @@ import { REGISTER_FIELDS } from '../../data';
   imports: [FormComponent, RouterLink],
 })
 export class RegisterForm {
+  private readonly pathService: PagePaths = inject(PagePaths);
+  private readonly mutation: Register = injectRegister();
+
   protected readonly fields: Field[] = REGISTER_FIELDS;
   protected readonly schema: GenericSchema<RegisterPayload> = RegisterSchema;
-  private readonly pathService: PagePaths = inject(PagePaths);
   protected readonly loginUrl: string = this.pathService.loginUrl;
 
   protected register(payload: RegisterPayload): void {
-    console.log(payload);
+    this.mutation.mutate(payload);
   }
 }
