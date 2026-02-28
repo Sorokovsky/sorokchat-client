@@ -1,1 +1,2 @@
-export type IconType = string;
+import type { LucideIconData } from 'lucide-angular';
+export type IconType = LucideIconData;

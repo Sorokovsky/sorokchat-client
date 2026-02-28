@@ -1,0 +1,14 @@
+<nav class="left-menu">
+    <ul>
+        @for(item of menu(); track item.link) {
+        <li>
+            <a [routerLink]="item.link" class="left-menu__item" routerLinkActive="_active" [style]="{
+                width: `${size}rem`,
+                hight: `${size}rem`
+            }">
+                <lucide-angular [img]="item.icon" />
+            </a>
+        </li>
+        }
+    </ul>
+</nav>

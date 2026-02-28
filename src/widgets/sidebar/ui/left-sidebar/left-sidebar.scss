@@ -5,7 +5,10 @@
 }
 
 .left-sidebar {
-    min-width: 70rem;
     border-right: 2rem solid $border-color;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20rem;
+    justify-content: space-between;
 }

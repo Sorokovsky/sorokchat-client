@@ -8,6 +8,8 @@ export class PagePaths {
   public readonly register: string = 'register';
   public readonly login: string = 'login';
   public readonly main: string = '';
+  public readonly settings: string = 'settings';
+  public readonly chats: string = 'chats/:chatId';
 
   public get registerUrl(): string {
     return `/${this.authorization}/${this.register}`;
@@ -23,5 +25,13 @@ export class PagePaths {
 
   public get mainUrl(): string {
     return `/${this.main}`;
+  }
+
+  public get settingUrl(): string {
+    return `/${this.main}/${this.settings}`;
+  }
+
+  public get chatsUrl(): string {
+    return `${this.main}/${this.chats.replaceAll('/:chatId', '')}`;
   }
 }

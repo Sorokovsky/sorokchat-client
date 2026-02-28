@@ -1,1 +1,1 @@
-export { Sidebar } from './sidebar';
+export { type LeftMenuItem, Sidebar } from './sidebar';

@@ -5,7 +5,15 @@ export {
   INTERCEPTORS,
   STORAGE_SERVICE,
 } from './api';
-export { Endpoints, Environment, QueryKeys, StorageKeys } from './data';
+export {
+  Endpoints,
+  Environment,
+  ICON_SIZE,
+  LARGE_AVATAR_SIZE,
+  QueryKeys,
+  SMALL_AVATAR_SIZE,
+  StorageKeys,
+} from './data';
 export type {
   BaseMutation,
   BaseQuery,
@@ -26,4 +34,4 @@ export {
   Input,
 } from './ui';
 export type { StorageService } from './utils';
-export { injectCurrentPath, injectCurrentPage, PagePaths } from './utils';
+export { injectCurrentPage, injectCurrentPath, PagePaths } from './utils';
