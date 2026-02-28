@@ -1,6 +1,14 @@
-export { AngularStorageService, STORAGE_SERVICE } from './api';
-export type { ButtonType, Field, IconType, Page } from './models';
-export { AccessRule } from './models';
+export { AngularStorageService, injectBaeMutation, injectBaseQuery, STORAGE_SERVICE } from './api';
+export type {
+  BaseMutation,
+  BaseQuery,
+  ButtonType,
+  Field,
+  IconType,
+  Page,
+  ProblemDetails,
+} from './models';
+export { AccessRule, ProblemDetailsSchema } from './models';
 export {
   AbstractFormComponent,
   Button,
