@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
 import type { StorageService } from '@/shared';
-import { Endpoints, STORAGE_SERVICE } from '@/shared';
+import { Endpoints, STORAGE_SERVICE, StorageKeys } from '@/shared';
 
 import type { UserPayload } from '../../user/@x/authorization';
 import type { AuthorizedPayload, LoginPayload, RegisterPayload } from '../models';
@@ -12,8 +12,6 @@ import type { AuthorizedPayload, LoginPayload, RegisterPayload } from '../models
   providedIn: 'root',
 })
 export class AuthorizationService {
-  private static readonly ACCESS_TOKEN_KEY: string = 'access-token';
-
   private readonly storageService: StorageService = inject(STORAGE_SERVICE);
   private readonly client: HttpClient = inject(HttpClient);
 
@@ -33,7 +31,7 @@ export class AuthorizationService {
 
   public async logout(): Promise<void> {
     await lastValueFrom(this.client.delete(Endpoints.LOGOUT));
-    await this.storageService.remove(AuthorizationService.ACCESS_TOKEN_KEY);
+    await this.storageService.remove(StorageKeys.ACCESS_TOKEN);
   }
 
   public async profile(): Promise<UserPayload> {
@@ -48,6 +46,6 @@ export class AuthorizationService {
   }
 
   private async authorize(payload: AuthorizedPayload): Promise<void> {
-    await this.storageService.set(AuthorizationService.ACCESS_TOKEN_KEY, payload.accessToken);
+    await this.storageService.set(StorageKeys.ACCESS_TOKEN, payload.accessToken);
   }
 }
