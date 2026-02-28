@@ -24,9 +24,7 @@ export abstract class AbstractFormComponent<T> implements OnInit {
   public readonly send: OutputEmitterRef<T> = output<T>();
 
   protected readonly formGroup: Signal<FormGroup> = computed<FormGroup>((): FormGroup => {
-    return this.formBuilder.group(this.collectControls(this.getFields()), {
-      validators: [valibotValidator(this.getSchema())],
-    });
+    return this.formBuilder.group(this.collectControls(this.getFields()));
   });
 
   public ngOnInit(): void {
