@@ -1,5 +1,7 @@
+export type { Profile } from './authorization';
 export {
   AuthorizationService,
+  injectProfile,
   type LoginPayload,
   LoginSchema,
   type RegisterPayload,

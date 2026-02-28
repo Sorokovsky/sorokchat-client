@@ -1,4 +1,5 @@
-export { AuthorizationService } from './api';
+export { AuthorizationService, injectProfile } from './api';
+export type { Profile } from './models';
 export {
   type AuthorizedPayload,
   AuthorizedSchema,
