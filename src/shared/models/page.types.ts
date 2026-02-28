@@ -6,4 +6,5 @@ import type { IconType } from './icon.types';
 export type Page = Route & {
   icon?: IconType;
   accessRule: AccessRule;
+  fullUrl: string;
 };

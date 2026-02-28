@@ -13,4 +13,5 @@ export const AUTHORIZATION_LAYOUT: Page = {
     import('../ui').then((module): Type<unknown> => module.AuthorizationLayout),
   children: [REGISTER_PAGE, LOGIN_PAGE],
   accessRule: AccessRule.ANONYMOUS,
+  fullUrl: paths.authorizationUrl,
 };

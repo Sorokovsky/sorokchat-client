@@ -11,4 +11,5 @@ export const LOGIN_PAGE: Page = {
   accessRule: AccessRule.ANONYMOUS,
   loadComponent: (): Promise<Type<unknown>> =>
     import('../ui').then((module): Type<unknown> => module.LoginPage),
+  fullUrl: paths.loginUrl,
 };

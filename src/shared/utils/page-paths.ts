@@ -15,4 +15,8 @@ export class PagePaths {
   public get loginUrl(): string {
     return `/${this.authorization}/${this.login}`;
   }
+
+  public get authorizationUrl(): string {
+    return `/${this.authorization}`;
+  }
 }
