@@ -7,7 +7,9 @@ import { LoginSchema } from '@/entities';
 import type { Field } from '@/shared';
 import { FormComponent, PagePaths } from '@/shared';
 
+import { injectLogin } from '../../api';
 import { LOGIN_FIELDS } from '../../data';
+import type { Login } from '../../models';
 
 @Component({
   selector: 'app-login-form',
@@ -16,12 +18,14 @@ import { LOGIN_FIELDS } from '../../data';
   imports: [RouterLink, FormComponent],
 })
 export class LoginForm {
+  private readonly pathService: PagePaths = inject(PagePaths);
+  private readonly mutation: Login = injectLogin();
+
   protected readonly fields: Field[] = LOGIN_FIELDS;
   protected readonly schema: GenericSchema<LoginPayload> = LoginSchema;
-  private readonly pathService: PagePaths = inject(PagePaths);
   protected readonly registerUrl: string = this.pathService.registerUrl;
 
   protected login(payload: LoginPayload): void {
-    console.log(payload);
+    this.mutation.mutate(payload);
   }
 }
